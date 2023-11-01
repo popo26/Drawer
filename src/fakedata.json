@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "React",
+    "type": "drawer",
+    "draweritems": [
+      {
+        "id": 10,
+        "name": "Example folder",
+        "type": "drawer",
+        "draweritems": [
+          {
+            "id": 100,
+            "title": "How to study React",
+            "content": "https://freecodecamp/1/react-basics",
+            "type": "scribble"
+          },
+          {
+            "id": 101,
+            "title": "React cheatseat",
+            "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
+            "type": "scribble"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "C#",
+    "type": "drawer",
+    "draweritems": [
+      {
+        "id": 102,
+        "name": "Example code C#",
+        "type": "scribble"
+      },
+      {
+        "id": 103,
+        "name": "Unit test with C#",
+        "type": "scribble"
+      },
+      {
+        "id": 104,
+        "name": "C# basics",
+        "type": "scribble"
+      }
+    ]
+  }
+]
