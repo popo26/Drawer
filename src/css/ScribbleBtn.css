@@ -1,0 +1,16 @@
+.ScribbleBtn-div{
+    position:sticky;
+    background-color: blanchedalmond;
+}
+
+.ScribbleBtn {
+    background: black;
+    border-radius:20px;
+    color:white;
+}
+
+.ScribbleBtn:hover {
+    background: blue;
+    border-radius:20px;
+    color:white;
+}
