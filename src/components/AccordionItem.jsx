@@ -1,4 +1,5 @@
 import { TbTriangleInverted } from "react-icons/tb";
+import "../css/AccordionItem.css";
 
 export default function AccordionItem({ name, content, expandedIndex }) {
 
@@ -7,7 +8,7 @@ export default function AccordionItem({ name, content, expandedIndex }) {
     {<TbTriangleInverted />}</span>;
 
   return (
-    <div>
+    <div className="AccordionItem">
       <div>
         <div>{name} {triangle}</div>
       </div>

@@ -1,6 +1,9 @@
 .ScribbleBtn-div{
-    position:sticky;
+    position:absolute;
+    bottom:0;
     background-color: blanchedalmond;
+    border:2px solid black;
+    
 }
 
 .ScribbleBtn {

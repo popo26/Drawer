@@ -46,5 +46,27 @@
         "type": "scribble"
       }
     ]
+  },
+  {
+    "id": 3,
+    "name": "TYPESCRIPT",
+    "type": "drawer",
+    "draweritems": [
+      {
+        "id": 105,
+        "name": "Example code C#",
+        "type": "scribble"
+      },
+      {
+        "id": 106,
+        "name": "Unit test with C#",
+        "type": "scribble"
+      },
+      {
+        "id": 107,
+        "name": "C# basics",
+        "type": "scribble"
+      }
+    ]
   }
 ]
