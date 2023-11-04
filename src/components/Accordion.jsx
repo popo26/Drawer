@@ -1,9 +1,8 @@
-import AccordionList from "./AccordionList";
 import AccordionItem from "./AccordionItem";
 import "../css/Accordion.css";
 
 export default function Accordion({ expandedIndex, data }) {
-  const renderedList = data.map((item) => (
+  const renderedList = data['non-stray'].map((item) => (
     <AccordionItem 
     key={item.id} 
     name={item.name} 

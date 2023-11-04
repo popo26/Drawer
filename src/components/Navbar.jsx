@@ -2,6 +2,8 @@ import "../css/Navbar.css";
 import { Link } from "react-router-dom";
 import SearchPage from "../pages/SearchPage";
 import { Icon } from '@iconify/react';
+import logo2 from '../assets/logo2.png';
+
 
 export default function Navbar() {
   return (
@@ -11,6 +13,8 @@ export default function Navbar() {
 <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
     <Link className="navbar-brand" to="/home"><Icon icon="mingcute:drawer-line" color="black" width="48" height="48" /></Link>
+    {/* <Link className="navbar-brand" to="/home"><img src={logo2} width="50"/></Link> */}
+
     <span className="navbar-text">
         Hi TomTom!
       </span>

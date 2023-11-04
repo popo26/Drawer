@@ -12,7 +12,7 @@ export default function ProfilePage(){
             <InputField name="email" htmlFor="email" placeholder="Email" id="email" type="email"/>
             <button>Change</button><br/>
             <InputField name="password" htmlFor="password" placeholder="Password" id="password" type="password"/>
-            <button>Change</button><br/>
+            <Link to="/password-reset"><button>Change</button></Link><br/>
 
         </div>
     )

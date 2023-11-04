@@ -1,5 +1,33 @@
 [
   {
+    "stray": [
+      {
+        "id": 1000,
+        "title": "How to study React",
+        "content": "https://freecodecamp/1/react-basics",
+        "type": "scribble"
+      },
+      {
+        "id": 1001,
+        "title": "Why React?",
+        "content": "https://freecodecamp/1/react-basics",
+        "type": "scribble"
+      },
+      {
+        "id": 1002,
+        "title": "Java basics",
+        "content": "https://freecodecamp/1/react-basics",
+        "type": "scribble"
+      },
+      {
+        "id": 1003,
+        "title": "C# data types",
+        "content": "https://freecodecamp/1/react-basics",
+        "type": "scribble"
+      }
+    ]
+  },
+  {
     "id": 1,
     "name": "React",
     "type": "drawer",
