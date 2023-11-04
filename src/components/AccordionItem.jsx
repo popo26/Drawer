@@ -1,18 +1,36 @@
 import { GoTriangleLeft, GoTriangleDown } from "react-icons/go";
 import "../css/AccordionItem.css";
-import { Icon } from '@iconify/react';
-import {Link} from 'react-router-dom';
+import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
+export default function AccordionItem({ name, content, id, expandedIndex, isExpanded, handleExpanded, triangle }) {
+//  const [isExpanded, setIsExpanded] = useState(false);
 
-export default function AccordionItem({ name, content, expandedIndex }) {
+  const handleClick = () => {
+    handleExpanded(id)
+  };
 
-    let isExpanded = expandedIndex === -1;
-  const triangle = <span>{<GoTriangleLeft />}</span>;
+  // const triangle = (
+  //   <span id={id} onClick={handleClick}>
+  //     {isExpanded ? <GoTriangleLeft /> : <GoTriangleDown />}
+  //   </span>
+  // );
 
   return (
-    <div className="AccordionItem">
+    <div className="AccordionItem"  onClick={handleClick}>
       <div>
-        <div><Link to="/drawer-list"><Icon icon="mingcute:drawer-line" color="black" width="30" height="30" /></Link>{name} {triangle}</div>
+        <div>
+          <Link to="/drawer-list">
+            <Icon
+              icon="mingcute:drawer-line"
+              color="black"
+              width="30"
+              height="30"  
+            />
+          </Link>
+          {name} {triangle}
+        </div>
       </div>
       <div>
         {isExpanded ? <div>{content}</div> : <div>Sample scribble</div>}
