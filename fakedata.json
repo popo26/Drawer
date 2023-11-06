@@ -1,100 +1,139 @@
 {
+  "user": [
+    {
+      "id": 1,
+      "username": "Taro"
+    },
+    {
+      "id": 2,
+      "username": "Sabu"
+    }
+  ],
   "stray": [
     {
-      "id": 1000,
+      "userId": 1,
+      "id": 1,
       "title": "How to study React",
       "content": "https://freecodecamp/1/react-basics",
       "type": "scribble"
     },
     {
-      "id": 1001,
+      "userId": 1,
+      "id": 2,
       "title": "Why React?",
       "content": "https://freecodecamp/1/react-basics",
       "type": "scribble"
     },
     {
-      "id": 1002,
+      "userId": 1,
+      "id": 3,
       "title": "Java basics",
       "content": "https://freecodecamp/1/react-basics",
       "type": "scribble"
     },
     {
-      "id": 1003,
+      "userId": 1,
+      "id": 4,
       "title": "C# data types",
       "content": "https://freecodecamp/1/react-basics",
       "type": "scribble"
     }
   ],
-  "non-stray": [
+  "drawers": [
     {
+      "userId": 1,
       "id": 1,
       "name": "React",
       "type": "drawer",
-      "draweritems": [
-        {
-          "id": 10,
-          "name": "Example folder",
-          "type": "drawer",
-          "draweritems": [
-            {
-              "id": 100,
-              "title": "How to study React",
-              "content": "https://freecodecamp/1/react-basics",
-              "type": "scribble"
-            },
-            {
-              "id": 101,
-              "title": "React cheatseat",
-              "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
-              "type": "scribble"
-            }
-          ]
-        }
-      ]
+      "sub-drawer": true
     },
     {
+      "userId": 1,
+      "drawerId": 1,
+      "id": 4,
+      "name": "Example folder",
+      "type": "drawer",
+      "sub-drawer": false
+    },
+    {
+      "userId": 1,
+      "drawerId": 1,
+      "id": 5,
+      "name": "Example folder2",
+      "type": "drawer",
+      "sub-drawer": false
+    },
+    {
+      "userId": 1,
       "id": 2,
       "name": "C#",
       "type": "drawer",
-      "draweritems": [
-        {
-          "id": 102,
-          "name": "Example code C#",
-          "type": "scribble"
-        },
-        {
-          "id": 103,
-          "name": "Unit test with C#",
-          "type": "scribble"
-        },
-        {
-          "id": 104,
-          "name": "C# basics",
-          "type": "scribble"
-        }
-      ]
+      "sub-drawer": false
     },
     {
+      "userId": 1,
       "id": 3,
       "name": "TYPESCRIPT",
       "type": "drawer",
-      "draweritems": [
-        {
-          "id": 105,
-          "name": "Example code C#",
-          "type": "scribble"
-        },
-        {
-          "id": 106,
-          "name": "Unit test with C#",
-          "type": "scribble"
-        },
-        {
-          "id": 107,
-          "name": "C# basics",
-          "type": "scribble"
-        }
-      ]
+      "sub-drawer": false
+    }
+  ],
+  "scribbles": [
+    {
+      "drawerId": 4,
+      "id": 1,
+      "title": "How to study React",
+      "content": "https://freecodecamp/1/react-basics",
+      "type": "scribble"
+    },
+    {
+      "drawerId": 4,
+      "id": 2,
+      "title": "React cheatseat",
+      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
+      "type": "scribble"
+    },
+    {
+      "drawerId": 2,
+      "id": 3,
+      "title": "Example code C#",
+      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
+      "type": "scribble"
+    },
+    {
+      "drawerId": 2,
+      "id": 4,
+      "title": "Unit test with C#",
+      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
+      "type": "scribble"
+    },
+    {
+      "drawerId": 2,
+      "id": 5,
+      "title": "C# basics",
+      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
+      "type": "scribble"
+    },
+    {
+      "drawerId": 3,
+      "id": 6,
+      "title": "Example code TypeScript",
+      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
+      "type": "scribble"
+    },
+    {
+      "drawerId": 3,
+      "id": 7,
+      "title": "Unit test with TypeScript",
+      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
+      "type": "scribble"
+    },
+    {
+      "drawerId": 3,
+      "id": 8,
+      "title": "TypeScript basics",
+      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
+      "type": "scribble"
     }
   ]
 }

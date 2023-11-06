@@ -7,9 +7,9 @@ import { useState } from "react";
 export default function AccordionItem({ name, content, id, expandedIndex, isExpanded, handleExpanded, triangle }) {
 //  const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleClick = () => {
-    handleExpanded(id)
-  };
+  // const handleClick = () => {
+  //   handleExpanded(id)
+  // };
 
   // const triangle = (
   //   <span id={id} onClick={handleClick}>
