@@ -5,10 +5,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function AccordionItem({
-  name,
-  content,
-  id,
-  expandedIndex,
   isExpanded,
   handleExpand,
   triangle,
@@ -26,16 +22,18 @@ export default function AccordionItem({
       }}
     >
       <div>
-        <div>
-          <Link to="/drawer-list">
-            <Icon
-              icon="mingcute:drawer-line"
-              color="black"
-              width="30"
-              height="30"
-            />
-          </Link>
-          {item.name} {triangle}
+        <div className="accordion-header">
+            <Link to="/drawer-list">
+              <Icon
+                icon="mingcute:drawer-line"
+                color="black"
+                width="30"
+                height="30"
+              />
+            </Link>
+            <h1>
+              {item.name} {triangle}
+            </h1>
         </div>
       </div>
       <div>

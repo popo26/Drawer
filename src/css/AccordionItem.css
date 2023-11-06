@@ -2,3 +2,10 @@
     border:2px solid grey;
     text-align: left;
 }
+
+.accordion-header {
+display: flex;
+align-items: center;
+
+}
+

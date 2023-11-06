@@ -1,4 +1,26 @@
 .Accordion {
-    background-color:lightcyan;
-    padding:20px;
+  background-color: lightcyan;
+  padding: 20px;
+}
+
+.sub-drawer {
+  color: blue;
+  text-indent: 50px;
+}
+
+.no-scribble {
+  color: blueviolet;
+  text-indent: 100px;
+}
+
+.individual-scribble {
+  text-indent: 100px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.sub-drawer-header {
+  border: 2px solid lightseagreen;
 }

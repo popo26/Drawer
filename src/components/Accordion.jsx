@@ -42,9 +42,9 @@ export default function Accordion({
       }
     }
     return scribbleArray.map((item) => (
-      <a key={item.id}>
-        <h5>{item.title} </h5>
-      </a>
+      <Link key={item.id} to={null}>
+        <p className="individual-scribble">{item.title} </p>
+      </Link>
     ));
   };
 
@@ -55,10 +55,9 @@ export default function Accordion({
     for (let x in values) {
       for (let y in values[x]) {
         // if (values[x][y].drawerId) {
-          if (values[x][y].drawerId === id) {
-
+        if (values[x][y].drawerId === id) {
           //console.log("DrawerId: ", values[x][y].drawerId);
-          console.log("ID: ", values[x][y].id);
+          //console.log("ID: ", values[x][y].id);
           newArray.push(values[x][y]);
         }
       }
@@ -66,10 +65,13 @@ export default function Accordion({
     return newArray.map((item) => {
       const scribbleList = findScribbles(item.id, data["scribbles"]);
       return (
-        <div key={item.id}>
-          <p>{item.name}</p>
+        <div key={item.id} className="sub-drawer-header">
+          <h3 className="sub-drawer">{item.name}
+          <Link to={null}><Icon icon="ion:trash-outline" color="black" width="20" /></Link>
+          <Link to={null}><Icon icon="mingcute:drawer-line" color="black" width="22" /></Link>
+          </h3>
           {scribbleList.length === 0 ? (
-            <h6>No Scribbles</h6>
+            <h6 className="no-scribble">No Scribbles</h6>
           ) : (
             <div>{scribbleList}</div>
           )}
@@ -77,7 +79,6 @@ export default function Accordion({
       );
     });
   };
-
 
   // ++++++++++++++ Render Whole List +++++++++++++++++++++++++++++++++++++++++++++
   const renderedList = data["drawers"].map((item) => {
@@ -88,19 +89,17 @@ export default function Accordion({
         <span> {isExpanded ? <GoTriangleDown /> : <GoTriangleLeft />}</span>
       );
 
-  
       return (
         <AccordionItem
-        key={item.id}
-        triangle={triangle}
-        handleExpand={() => handleExpand(item.id)}
-        findSubDrawers={findSubDrawers}
-        findScribbles={findScribbles}
-        data={data}
-        item = {item}
-        isExpanded={isExpanded}
-      />
-
+          key={item.id}
+          triangle={triangle}
+          handleExpand={() => handleExpand(item.id)}
+          findSubDrawers={findSubDrawers}
+          findScribbles={findScribbles}
+          data={data}
+          item={item}
+          isExpanded={isExpanded}
+        />
 
         // <div
         //   key={item.id}
@@ -131,8 +130,6 @@ export default function Accordion({
         //     ) : null}
         //   </div>
         // </div>
-
-      
       );
     }
   });
