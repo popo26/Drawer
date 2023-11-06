@@ -54,9 +54,11 @@ export default function Accordion({
     let values = Object.values(array);
     for (let x in values) {
       for (let y in values[x]) {
-        if (values[x][y].drawerId) {
+        // if (values[x][y].drawerId) {
+          if (values[x][y].drawerId === id) {
+
           //console.log("DrawerId: ", values[x][y].drawerId);
-          //console.log("ID: ", values[x][y].id);
+          console.log("ID: ", values[x][y].id);
           newArray.push(values[x][y]);
         }
       }
@@ -76,6 +78,7 @@ export default function Accordion({
     });
   };
 
+
   // ++++++++++++++ Render Whole List +++++++++++++++++++++++++++++++++++++++++++++
   const renderedList = data["drawers"].map((item) => {
     if (!item.drawerId) {
@@ -85,46 +88,51 @@ export default function Accordion({
         <span> {isExpanded ? <GoTriangleDown /> : <GoTriangleLeft />}</span>
       );
 
+  
       return (
-        <div
-          key={item.id}
-          onClick={() => {
-            handleExpand(item.id);
-          }}
-        >
-          <div>
-            <div>
-              <Link to="/drawer-list">
-                <Icon
-                  icon="mingcute:drawer-line"
-                  color="black"
-                  width="30"
-                  height="30"
-                />
-              </Link>
-              {item.name} {triangle}
-            </div>
-          </div>
-          <div>
-            {isExpanded ? (
-              item["sub-drawer"] === true ? (
-                <div>{findSubDrawers(item.id, Array(data.drawers))} </div>
-              ) : (
-                <>{findScribbles(item.id, data.scribbles)}</>
-              )
-            ) : null}
-          </div>
-        </div>
+        <AccordionItem
+        key={item.id}
+        triangle={triangle}
+        handleExpand={() => handleExpand(item.id)}
+        findSubDrawers={findSubDrawers}
+        findScribbles={findScribbles}
+        data={data}
+        item = {item}
+        isExpanded={isExpanded}
+      />
 
-        //   <AccordionItem
+
+        // <div
         //   key={item.id}
-        //   id={item.id}
-        //   name={item.name}
-        //   content={item.content}
-        //   expandedIndex={expandedIndex}
-        //   triangle={triangle}
-        //   handleExpanded={handleExpanded}
-        // />
+        //   onClick={() => {
+        //     handleExpand(item.id);
+        //   }}
+        // >
+        //   <div>
+        //     <div>
+        //       <Link to="/drawer-list">
+        //         <Icon
+        //           icon="mingcute:drawer-line"
+        //           color="black"
+        //           width="30"
+        //           height="30"
+        //         />
+        //       </Link>
+        //       {item.name} {triangle}
+        //     </div>
+        //   </div>
+        //   <div>
+        //     {isExpanded ? (
+        //       item["sub-drawer"] === true ? (
+        //         <div>{findSubDrawers(item.id, Array(data.drawers))} </div>
+        //       ) : (
+        //         <>{findScribbles(item.id, data.scribbles)}</>
+        //       )
+        //     ) : null}
+        //   </div>
+        // </div>
+
+      
       );
     }
   });

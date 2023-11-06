@@ -4,21 +4,27 @@ import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function AccordionItem({ name, content, id, expandedIndex, isExpanded, handleExpanded, triangle }) {
-//  const [isExpanded, setIsExpanded] = useState(false);
-
-  // const handleClick = () => {
-  //   handleExpanded(id)
-  // };
-
-  // const triangle = (
-  //   <span id={id} onClick={handleClick}>
-  //     {isExpanded ? <GoTriangleLeft /> : <GoTriangleDown />}
-  //   </span>
-  // );
-
+export default function AccordionItem({
+  name,
+  content,
+  id,
+  expandedIndex,
+  isExpanded,
+  handleExpand,
+  triangle,
+  findSubDrawers,
+  findScribbles,
+  data,
+  item,
+}) {
   return (
-    <div className="AccordionItem"  onClick={handleClick}>
+    <div
+      className="AccordionItem"
+      key={item.id}
+      onClick={() => {
+        handleExpand(item.id);
+      }}
+    >
       <div>
         <div>
           <Link to="/drawer-list">
@@ -26,14 +32,20 @@ export default function AccordionItem({ name, content, id, expandedIndex, isExpa
               icon="mingcute:drawer-line"
               color="black"
               width="30"
-              height="30"  
+              height="30"
             />
           </Link>
-          {name} {triangle}
+          {item.name} {triangle}
         </div>
       </div>
       <div>
-        {isExpanded ? <div>{content}</div> : <div>Sample scribble</div>}
+        {isExpanded ? (
+          item["sub-drawer"] === true ? (
+            <div>{findSubDrawers(item.id, Array(data["drawers"]))} </div>
+          ) : (
+            <>{findScribbles(item.id, data["scribbles"])}</>
+          )
+        ) : null}
       </div>
     </div>
   );
