@@ -11,6 +11,8 @@
 .no-scribble {
   color: blueviolet;
   text-indent: 100px;
+  display:none;
+
 }
 
 .individual-scribble {
@@ -23,4 +25,8 @@ a {
 
 .sub-drawer-header {
   border: 2px solid lightseagreen;
+}
+
+.sub-drawer-scribble-list {
+  display:none;
 }

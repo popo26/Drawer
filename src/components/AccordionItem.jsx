@@ -39,7 +39,7 @@ export default function AccordionItem({
       <div>
         {isExpanded ? (
           item["sub-drawer"] === true ? (
-            <div>{findSubDrawers(item.id, Array(data["drawers"]))} </div>
+            <div >{findSubDrawers(item.id, Array(data["drawers"]))} </div>
           ) : (
             <>{findScribbles(item.id, data["scribbles"])}</>
           )

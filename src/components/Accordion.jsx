@@ -11,6 +11,8 @@ export default function Accordion({
   setExpandedIndex,
   handleExpand,
 }) {
+  // const [isExpanded2, setIsExpanded2] =  useState(false)
+
   // const findScribbles = (array, scribbles) => {
   //   let scribbleArray = [];
   //   const scbs = Object.values(scribbles);
@@ -62,18 +64,45 @@ export default function Accordion({
         }
       }
     }
+
+    // //thinking in process
+    // return newArray.map((item) => {
+    //   const scribbleList = findScribbles(item.id, data["scribbles"]);
+
+    //   // const renderedList2 = data["drawers"].map((item) => {
+    //       const isExpanded2 = item.id === expandedIndex;
+
+    //       const triangle = (
+    //         <span> {isExpanded2 ? <GoTriangleDown /> : <GoTriangleLeft />}</span>
+    //       );
+
+    //  return (
+    //     <div key={item.id} className="sub-drawer-header" onClick={()=>handleExpand(item.id)}>
+    //       <h3 className="sub-drawer">{item.name}
+    //       {triangle}
+    //       </h3>
+    //       {scribbleList.length === 0 ? (
+    //         <h6 className="no-scribble">No Scribbles</h6>
+    //       ) : (
+    //         <div>{scribbleList}</div>
+    //       )}
+    //     </div>
+    //   )
+    // });
+
     return newArray.map((item) => {
       const scribbleList = findScribbles(item.id, data["scribbles"]);
       return (
         <div key={item.id} className="sub-drawer-header">
-          <h3 className="sub-drawer">{item.name}
-          <Link to={null}><Icon icon="ion:trash-outline" color="black" width="20" /></Link>
-          <Link to={null}><Icon icon="mingcute:drawer-line" color="black" width="22" /></Link>
+          <h3 className="sub-drawer">
+            {item.name}
+            {/* <Link to={null}><Icon icon="ion:trash-outline" color="black" width="20" /></Link>
+          <Link to={null}><Icon icon="mingcute:drawer-line" color="black" width="22" /></Link> */}
           </h3>
           {scribbleList.length === 0 ? (
             <h6 className="no-scribble">No Scribbles</h6>
           ) : (
-            <div>{scribbleList}</div>
+            <div className="sub-drawer-scribble-list">{scribbleList}</div>
           )}
         </div>
       );

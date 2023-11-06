@@ -61,7 +61,7 @@ export default function AppRoutes() {
             element={<ScribbleListPage data={data} />}
           ></Route>
           <Route path="/password-reset" element={<PasswordResetPage />}></Route>
-          <Route path="/create" element={<CreateDrawerPage />}></Route>
+          <Route path="/create" element={<CreateDrawerPage data={data} />}></Route>
           <Route
             path="/drawer-list"
             element={<DrawerListPage data={data} />}

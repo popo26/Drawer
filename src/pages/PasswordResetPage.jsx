@@ -7,7 +7,6 @@ export default function PasswordResetPage() {
   const [isSent, setIsSent] = useState(false);
 
   const handleChange = (e) => {
-    e.preventDefault();
     console.log(e.target.value);
     setEmail(e.target.value);
   };
