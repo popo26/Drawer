@@ -1,10 +1,10 @@
 import Search from "../components/Search";
 import "../css/SearchPage.css";
 
-export default function SearchPage() {
+export default function SearchPage({data}) {
   return (
     <div className="SearchPage">
-      <Search />
+      <Search data={data}/>
     </div>
   );
 }

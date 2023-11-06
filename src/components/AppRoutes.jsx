@@ -53,7 +53,7 @@ export default function AppRoutes() {
               />
             }
           ></Route>
-          <Route path="/search" element={<SearchPage />}></Route>
+          <Route path="/search" element={<SearchPage data={data}/>}></Route>
           <Route path="/scribble" element={<ScribblePage />}></Route>
           <Route path="/profile" element={<ProfilePage />}></Route>
           <Route

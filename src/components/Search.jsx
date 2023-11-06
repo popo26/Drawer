@@ -1,11 +1,39 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function Search() {
+export default function Search({ data }) {
   const [searchItem, setSearchItem] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+
+  //Testing out search results with userId1
+  const searchKeywordInDb = () => {
+    let searchResultArray = [];
+    //console.log("Data ", data)
+    let dataValues = Object.values(data);
+    for (let x in dataValues) {
+      //console.log(dataValues[x])
+      for (let y in dataValues[x]) {
+        //console.log(dataValues[x][y])
+        if (
+          dataValues[x][y]["userId"] === 1 &&
+          dataValues[x][y]["type"] == "scribble" &&
+          dataValues[x][y]["title"]
+            .toLowerCase()
+            .includes(searchItem.toLowerCase())
+        ) {
+          searchResultArray.push(dataValues[x][y]);
+        }
+      }
+    }
+    return searchResultArray;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Clicked");
+    const result = searchKeywordInDb();
+    setSearchResult(result);
+    // return result;
   };
 
   const handleChange = (e) => {
@@ -26,7 +54,29 @@ export default function Search() {
         <button>Search</button>
       </form>
 
-      <div>List of search results</div>
+      <div>
+        {/* {searchResult.map((item) => {
+          return searchResult.length < 1 ? (
+            <p>No result</p>
+          ) : (
+            <Link to={null} key={item.id}>
+              <p>
+                {item.id} {item.title}
+              </p>
+            </Link>
+          );
+        })} */}
+
+        {searchResult.map((item) => {
+          return (
+            <Link to={null} key={item.id}>
+              <p>
+                {item.id}: {item.title}
+              </p>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }
