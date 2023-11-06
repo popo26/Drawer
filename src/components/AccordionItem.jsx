@@ -13,6 +13,9 @@ export default function AccordionItem({
   data,
   item,
 }) {
+
+  // const r = `/drawer-list/${item.id}`
+
   return (
     <div
       className="AccordionItem"
@@ -23,7 +26,7 @@ export default function AccordionItem({
     >
       <div>
         <div className="accordion-header">
-            <Link to="/drawer-list">
+            <Link to={`/drawer-list/${item.id}`}>
               <Icon
                 icon="mingcute:drawer-line"
                 color="black"

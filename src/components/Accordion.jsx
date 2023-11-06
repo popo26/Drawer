@@ -44,10 +44,21 @@ export default function Accordion({
       }
     }
     return scribbleArray.map((item) => (
-      <Link key={item.id} to={null}>
+      <Link key={item.id} to={`/scribble/${item.id}`}>
         <p className="individual-scribble">{item.title} </p>
       </Link>
     ));
+
+    // return scribbleArray.map((item) => {
+    //   console.log(item);
+    //   return (
+    //     <div key={item.id}>
+    //       <Link to={`/scribble/${item.id}`}>
+    //         <p className="individual-scribble">{item.title} </p>
+    //       </Link>
+    //     </div>
+    //   );
+    // });
   };
 
   // ++++++++++++++ Find Sub Drawers +++++++++++++++++++++++++++++++++++++++++++++
@@ -99,11 +110,13 @@ export default function Accordion({
             {/* <Link to={null}><Icon icon="ion:trash-outline" color="black" width="20" /></Link>
           <Link to={null}><Icon icon="mingcute:drawer-line" color="black" width="22" /></Link> */}
           </h3>
+          <div>
           {scribbleList.length === 0 ? (
             <h6 className="no-scribble">No Scribbles</h6>
           ) : (
             <div className="sub-drawer-scribble-list">{scribbleList}</div>
           )}
+          </div>
         </div>
       );
     });
@@ -113,7 +126,6 @@ export default function Accordion({
   const renderedList = data["drawers"].map((item) => {
     if (!item.drawerId) {
       const isExpanded = item.id === expandedIndex;
-
       const triangle = (
         <span> {isExpanded ? <GoTriangleDown /> : <GoTriangleLeft />}</span>
       );

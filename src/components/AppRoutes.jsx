@@ -22,6 +22,7 @@ import ProfilePage from "../pages/ProfilePage";
 import ScribbleListPage from "../pages/ScribbleListPage";
 import HomePage from "../pages/HomePage";
 import DrawerListPage from "../pages/DrawerListPage";
+import PerScribblePage from "../pages/PerScribblePage";
 
 export default function AppRoutes() {
   const [expandedIndex, setExpandedIndex] = useState(-1);
@@ -53,18 +54,29 @@ export default function AppRoutes() {
               />
             }
           ></Route>
-          <Route path="/search" element={<SearchPage data={data}/>}></Route>
+          <Route path="/search" element={<SearchPage data={data} />}></Route>
           <Route path="/scribble" element={<ScribblePage />}></Route>
           <Route path="/profile" element={<ProfilePage />}></Route>
           <Route
             path="/stray"
             element={<ScribbleListPage data={data} />}
           ></Route>
-          <Route path="/password-reset" element={<PasswordResetPage />}></Route>
-          <Route path="/create" element={<CreateDrawerPage data={data} />}></Route>
           <Route
-            path="/drawer-list"
-            element={<DrawerListPage data={data} />}
+            path="/scribble/:id"
+            element={<PerScribblePage data={data}/>}
+            
+          ></Route>
+
+          <Route path="/password-reset" element={<PasswordResetPage />}></Route>
+          <Route
+            path="/create"
+            element={<CreateDrawerPage data={data} />}
+          ></Route>
+          <Route
+            path="/drawer-list/:id"
+            element={
+              <DrawerListPage data={data} expandedIndex={expandedIndex} />
+            }
           ></Route>
         </Routes>
         <Link to="/scribble">

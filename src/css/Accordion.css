@@ -11,7 +11,7 @@
 .no-scribble {
   color: blueviolet;
   text-indent: 100px;
-  display:none;
+  display:block;
 
 }
 
@@ -28,5 +28,5 @@ a {
 }
 
 .sub-drawer-scribble-list {
-  display:none;
+  display:block;
 }

@@ -2,9 +2,11 @@ import { useState } from "react";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import "../css/CreateDrawerPage.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateDrawerPage({data}) {
   const [drawerName, setDrawerName] = useState("");
+  const navigate = useNavigate();
 
   //working! POST
   const createNewDrawer = () => {
@@ -57,8 +59,9 @@ export default function CreateDrawerPage({data}) {
           drawerName={drawerName}
         />
         <br />
-        <Button href={null} btnName="Cancel" />
       </form>
+      <button onClick={() => navigate(-1)}>Cancel</button>
+
     </div>
   );
 }
