@@ -23,6 +23,7 @@ import ScribbleListPage from "../pages/ScribbleListPage";
 import HomePage from "../pages/HomePage";
 import DrawerListPage from "../pages/DrawerListPage";
 import PerScribblePage from "../pages/PerScribblePage";
+import SortPage from "../pages/SortPage";
 
 export default function AppRoutes() {
   const [expandedIndex, setExpandedIndex] = useState(-1);
@@ -63,8 +64,11 @@ export default function AppRoutes() {
           ></Route>
           <Route
             path="/scribble/:id"
-            element={<PerScribblePage data={data}/>}
-            
+            element={<PerScribblePage data={data} />}
+          ></Route>
+          <Route
+            path="/sort"
+            element={<SortPage data={data} />}
           ></Route>
 
           <Route path="/password-reset" element={<PasswordResetPage />}></Route>

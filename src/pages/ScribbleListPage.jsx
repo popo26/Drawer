@@ -17,7 +17,7 @@ export default function ScribbleListPage({ data }) {
           >
             <Icon icon="ion:trash-outline" color="black" width="20" />
           </a>
-          <Icon icon="mingcute:drawer-line" color="black" width="22" />
+          <Link to="/sort"><Icon icon="mingcute:drawer-line" color="black" width="22" /></Link>
         </p>
       ))
   

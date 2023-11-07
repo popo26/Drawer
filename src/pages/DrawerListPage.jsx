@@ -45,9 +45,9 @@ export default function DrawerListPage({ data, expandedIndex }) {
           <div key={item.id} className="sub-drawer-header">
             <h3 className="sub-drawer">
               {item.name}
-              <Link to={null}>
-                <Icon icon="ion:trash-outline" color="black" width="20" />
-              </Link>
+             
+                <Icon onClick={()=>alert("Are you sure to delete this sub-drawer?")} icon="ion:trash-outline" color="black" width="20" />
+           
               <Link to={null}>
                 <Icon icon="mingcute:drawer-line" color="black" width="22" />
               </Link>
@@ -70,7 +70,7 @@ export default function DrawerListPage({ data, expandedIndex }) {
         <div key={item.id}>
           <h2>
             ID:{item.id}, {item.name}
-            <Icon icon="ion:trash-outline" color="black" width="20" />
+            <Icon onClick={()=>alert("Are you sure to delete whole folder?")} icon="ion:trash-outline" color="black" width="20" />
             <Icon icon="mingcute:drawer-line" color="black" width="22" />
           </h2>
           {item["sub-drawer"] === true ? (

@@ -55,23 +55,11 @@ export default function Search({ data }) {
       </form>
 
       <div>
-        {/* {searchResult.map((item) => {
-          return searchResult.length < 1 ? (
-            <p>No result</p>
-          ) : (
-            <Link to={null} key={item.id}>
-              <p>
-                {item.id} {item.title}
-              </p>
-            </Link>
-          );
-        })} */}
-
         {searchResult.map((item) => {
           return (
-            <Link to={null} key={item.id}>
+            <Link to={`/scribble/${item.id}`} key={item.id}>
               <p>
-                {item.id}: {item.title}
+                ID{item.id}: {item.title}
               </p>
             </Link>
           );
