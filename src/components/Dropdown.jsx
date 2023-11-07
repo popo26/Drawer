@@ -2,10 +2,10 @@ import { useState, cloneElement } from "react";
 import "../css/Dropdown.css";
 
 // export default function Dropdown({ trigger, menu }) {
-export default function Dropdown({ data }) {
+export default function Dropdown({ data, selectedDrawerId, setSelectedDrawerId }) {
   const [open, setOpen] = useState(false);
   const [currentDropdown, setCurrentDropDown] = useState("Existing Drawers");
-  const [selectedDrawerId, setSelectedDrawerId] = useState("");
+  // const [selectedDrawerId, setSelectedDrawerId] = useState("");
 
   const handleOpen = () => {
     setOpen(!open);

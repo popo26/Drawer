@@ -24,6 +24,7 @@ import HomePage from "../pages/HomePage";
 import DrawerListPage from "../pages/DrawerListPage";
 import PerScribblePage from "../pages/PerScribblePage";
 import SortPage from "../pages/SortPage";
+import SortPreviewPage from "../pages/SortPreviewPage";
 
 export default function AppRoutes() {
   const [expandedIndex, setExpandedIndex] = useState(-1);
@@ -69,6 +70,10 @@ export default function AppRoutes() {
           <Route
             path="/sort"
             element={<SortPage data={data} />}
+          ></Route>
+             <Route
+            path="/sort-preview"
+            element={<SortPreviewPage data={data} />}
           ></Route>
 
           <Route path="/password-reset" element={<PasswordResetPage />}></Route>
