@@ -64,9 +64,10 @@
     {
       "userId": 1,
       "id": 8,
-      "name": "Ramon",
+      "name": "test",
       "type": "drawer",
-      "sub-drawer": false
+      "sub-drawer": false,
+      "drawerId": 7
     }
   ],
   "scribbles": [

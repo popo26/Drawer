@@ -1,13 +1,18 @@
 import { Icon } from "@iconify/react";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function ScribbleListPage({ data }) {
   //   console.log(data[0]["stray"]);
   const navigate = useNavigate();
+
+  const [selectedScribbleId, setSelectedScribbleId] = useState("");
+
   const strayScribbles = data["scribbles"];
 
-  const renderedList = strayScribbles.map((item) => (
-    item.stray === true && (
+  const renderedList = strayScribbles.map(
+    (item) =>
+      item.stray === true && (
         <p key={item.id}>
           <Link to={`/scribble/${item.id}`}>
             ID:{item.id}, {item.title}
@@ -17,10 +22,20 @@ export default function ScribbleListPage({ data }) {
           >
             <Icon icon="ion:trash-outline" color="black" width="20" />
           </a>
-          <Link to="/sort"><Icon icon="mingcute:drawer-line" color="black" width="22" /></Link>
+          <Icon
+            icon="mingcute:drawer-line"
+            color="black"
+            width="22"
+            onClick={() => {
+              // setSelectedScribbleId(item.id);
+              // console.log(selectedScribbleId)
+              // navigate("/sort", { scribbleId: { selectedScribbleId } })}}
+              //console.log(item.id)
+              // navigate("/sort", { state: {selectedScribbleId} })}}
+              navigate("/sort", { state: {id:item.id} })}}
+          />
         </p>
-      ))
-  
+      )
   );
 
   // const renderedList = strayScribbles.map((item) => {
