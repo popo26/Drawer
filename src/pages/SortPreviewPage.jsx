@@ -12,15 +12,90 @@ export default function SortPreviewPage({ data }) {
 
   console.log("State", state);
 
-  const addToNewSubDrawer = (passedId) => {
-    console.log("PUT")
-    console.log("scribble length: ", Object.values(data["scribbles"]).length);
-    let dataPost = {
-      drawerId: passedId,
-      id: state.selectedScribbleId,
-      stray: false,
-    };
-    fetch("http://localhost:3000/scribbles", {
+  //   const addToNewSubDrawer = (passedId) => {
+  //     console.log("PUT");
+  //     console.log("scribble length: ", Object.values(data["scribbles"]).length);
+  //     let dataPost = {
+  //       drawerId: passedId,
+  //       id: state.selectedScribbleId,
+  //       stray: false,
+  //     };
+  //     fetch("http://localhost:3000/scribbles", {
+  //       method: "PUT",
+  //       mode: "cors",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(dataPost),
+  //     })
+  //       .then((response) => console.log(response.json()))
+  //       .catch((error) => console.error(error.message));
+  //   };
+
+  //   const createNewSubDrawer = () => {
+  //     console.log("POST");
+  //     console.log("drawer length: ", Object.values(data["drawers"]).length);
+  //     let dataPost = {
+  //       userId: 1,
+  //       id: Object.values(data["drawers"]).length + 1,
+  //       name: newSubDrawerName,
+  //       type: "drawer",
+  //       "sub-drawer": false,
+  //       drawerId: state.selectedDrawerId,
+  //     };
+
+  //     fetch("http://localhost:3000/drawers", {
+  //       method: "POST",
+  //       mode: "cors",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(dataPost),
+  //     }).then((response) => {
+  //       console.log(response.json());
+  //     });
+  //     fetch(`http://localhost:3000/scribbles/${state.selectedScribbleId}`, {
+  //       method: "PUT",
+  //       mode: "cors",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         drawerId: Object.values(data["drawers"]).length + 1,
+  //         userId: 1,
+  //         title: "HARD CODED",
+  //         content: "HTTP//:HARDCODED",
+  //         type: "scribble",
+  //         // id: state.selectedScribbleId,
+  //         stray: false,
+  //       }),
+  //     }).then((response) => console.log(response.json()));
+  //   };
+
+  const updateParentDrawerBoolean = (passedId) => {
+    console.log("PUT2");
+    let dataPost;
+    const x = data["drawers"].filter((item) => item.id == passedId);
+    //Something wrong with here
+    console.log("x[0][drawerId]", x[0]["drawerId"]);
+    if (x[0]["drawerId"]) {
+      dataPost = {
+        drawerId:x[0]["drawerId"],
+        userId: 1,
+        name: "UPDATED-SUB",
+        type: "drawer",
+        ["sub-drawer"]: true,
+      }
+      } else {
+        dataPost = {
+            userId: 1,
+            name: "UPDATED-SUB",
+            type: "drawer",
+            ["sub-drawer"]: true,
+          }
+      }
+
+    fetch(`http://localhost:3000/scribbles/${passedId}`, {
       method: "PUT",
       mode: "cors",
       headers: {
@@ -29,14 +104,37 @@ export default function SortPreviewPage({ data }) {
       body: JSON.stringify(dataPost),
     })
       .then((response) => console.log(response.json()))
-    //   .then(addToNewSubDrawer(Object.values(data["drawers"]).length + 1)
-    //   )
+      .catch((error) => console.error(error.message));
+  };
+
+  const addToNewSubDrawer = (passedId) => {
+    console.log("PUT");
+    //console.log("scribble length: ", Object.values(data["scribbles"]).length);
+    let dataPost = {
+      //   drawerId: Object.values(data["drawers"]).length + 1,
+      drawerId: passedId,
+      userId: 1,
+      title: "HARD CODED",
+      content: "HTTP//:HARDCODED",
+      type: "scribble",
+      // id: state.selectedScribbleId,
+      stray: false,
+    };
+    fetch(`http://localhost:3000/scribbles/${state.selectedScribbleId}`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataPost),
+    })
+      .then((response) => console.log(response.json()))
       .catch((error) => console.error(error.message));
   };
 
   const createNewSubDrawer = () => {
-    console.log("POST")
-    console.log("drawer length: ", Object.values(data["drawers"]).length);
+    console.log("POST");
+    //console.log("drawer length: ", Object.values(data["drawers"]).length);
     let dataPost = {
       userId: 1,
       id: Object.values(data["drawers"]).length + 1,
@@ -53,22 +151,24 @@ export default function SortPreviewPage({ data }) {
       },
       body: JSON.stringify(dataPost),
     })
-      .then((response) => console.log(response.json()))
+      .then((response) => {
+        console.log(response.json());
+      })
       .catch((error) => console.error(error.message));
 
-    // addToNewSubDrawer(Object.values(data["drawers"]).length + 1);
+    addToNewSubDrawer(Object.values(data["drawers"]).length + 1);
+    updateParentDrawerBoolean(state.selectedDrawerId);
   };
 
   const handleChange = (value) => {
-    console.log(value);
+    //console.log(value);
     setNewSubDrawerName(value);
   };
 
   const handleCreate = (value) => {
-    console.log("Create btn clicked", value);
+    //console.log("Create btn clicked", value);
     createNewSubDrawer();
     // addToNewSubDrawer(Object.values(data["drawers"]).length + 1);
-
   };
 
   const renderedList = data["drawers"]
@@ -84,8 +184,7 @@ export default function SortPreviewPage({ data }) {
   const FindSubDrawers = () => {
     const x = data["drawers"].filter(
       (item) => item.id == state.selectedDrawerId
-    // (item) => item.id == state.passingData.selectedDrawerId
-
+      // (item) => item.id == state.passingData.selectedDrawerId
     );
     //console.log(x);
     const renderedChildren =
