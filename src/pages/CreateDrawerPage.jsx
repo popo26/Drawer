@@ -12,11 +12,14 @@ export default function CreateDrawerPage({data}) {
   const createNewDrawer = () => {
     console.log("drawer length: ", Object.values(data['drawers']).length)
     let dataPost = {
+      "rootId":Object.values(data['drawers']).length + 1,
       "userId": 1,
       "id":Object.values(data['drawers']).length + 1,
       "name": drawerName,
       "type": "drawer",
-      "sub-drawer": false
+      "sub-drawer": false,
+      "root":true,
+      "level":1,
     }
     fetch("http://localhost:3000/drawers", {
       method: "POST",

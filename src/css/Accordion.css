@@ -3,9 +3,31 @@
   padding: 20px;
 }
 
-.sub-drawer {
+.sub-drawer-name {
   color: blue;
+}
+
+.indent-2{
   text-indent: 50px;
+}
+
+.indent-3{
+  text-indent: 100px;
+}
+
+.scrb-indent1{
+  text-indent: 30px;
+
+}
+
+.scrb-indent2{
+  text-indent: 70px;
+
+}
+
+.scrb-indent3{
+  text-indent: 120px;
+
 }
 
 .no-scribble {
@@ -16,17 +38,19 @@
 }
 
 .individual-scribble {
-  text-indent: 100px;
+  /* text-indent: 100px; */
 }
 
 a {
   text-decoration: none;
 }
 
-.sub-drawer-header {
+.sub-drawer-div {
   border: 2px solid lightseagreen;
 }
 
 .sub-drawer-scribble-list {
   display:block;
 }
+
+

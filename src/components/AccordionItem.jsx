@@ -16,6 +16,8 @@ export default function AccordionItem({
 
   // const r = `/drawer-list/${item.id}`
 
+//console.log("Accordion Item", item.id)
+
   return (
     <div
       className="AccordionItem"
@@ -39,7 +41,26 @@ export default function AccordionItem({
             </h1>
         </div>
       </div>
+
       <div>
+        {isExpanded ? (
+          item["sub-drawer"] === true ? (
+            <div >
+              <div className="no-subfolder">
+              {findScribbles(item.id, data["scribbles"])}
+              </div>
+              <div>
+              {findSubDrawers(item.id, Array(data["drawers"]))} 
+              </div>
+            </div>
+          ) : (
+            <div>{findScribbles(item.id, data["scribbles"])}</div>
+          )
+        ) : null}
+      </div>
+
+
+      {/* <div>
         {isExpanded ? (
           item["sub-drawer"] === true ? (
             <div >{findSubDrawers(item.id, Array(data["drawers"]))} </div>
@@ -47,7 +68,7 @@ export default function AccordionItem({
             <>{findScribbles(item.id, data["scribbles"])}</>
           )
         ) : null}
-      </div>
+      </div> */}
     </div>
   );
 }

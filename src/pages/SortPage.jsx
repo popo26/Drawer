@@ -12,31 +12,31 @@ export default function SortPage({ data }) {
   const { state } = useLocation();
   const [selectedScribbleId, setSelectedScribbleId] = useState("");
 
-    // console.log("scribble ID",state.id);
+  // console.log("scribble ID",state.id);
   //   const scribbleId = state.id
   // console.log("Scribble state", state.id)
   // const passingData = {selectedDrawerId:selectedDrawerId}
   // let passingData = {...state, selectedDrawerId}
   // console.log("PassingData",passingData)
 
-//   window.onload = () => {
-//     setSelectedScribbleId(state.id);
-//   };
+  //   window.onload = () => {
+  //     setSelectedScribbleId(state.id);
+  //   };
 
-console.log("State", state)
+  console.log("State", state);
 
-//Need to set state.id somewhere then chose screen click
-useEffect(()=>{
-const screen = document.getElementById("page");
-screen.addEventListener("click", function(){
-    setSelectedScribbleId(state.id)
-})
-}, [])
+  //Need to set state.id somewhere then chose screen click
+  useEffect(() => {
+    const screen = document.getElementById("page");
+    screen.addEventListener("click", function () {
+      setSelectedScribbleId(state.id);
+    });
+  }, []);
 
-console.log("Sccribleid", selectedScribbleId);
+  console.log("Sccribleid is", selectedScribbleId);
+  // console.log("root ID",Object.values(data["drawers"])[state.selectedDrawerId]['rootId'])
 
-
-// console.log(selectedScribbleId)
+  // console.log(selectedScribbleId)
 
   //   const handleMenuOne = () => {
   //     // do something
@@ -105,7 +105,7 @@ console.log("Sccribleid", selectedScribbleId);
           data={data}
           selectedDrawerId={selectedDrawerId}
           setSelectedDrawerId={setSelectedDrawerId}
-        //   onClick={()=>{setSelectedScribbleId(state.id)}}
+          //   onClick={()=>{setSelectedScribbleId(state.id)}}
         />
 
         {/* <Dropdown
@@ -120,8 +120,8 @@ console.log("Sccribleid", selectedScribbleId);
       {/* <Button href="/sort-preview" btnName="Next" handleNewDrawerCreate={handleNext}/> */}
       <button
         onClick={(e) => {
-            e.preventDefault()
-            // setSelectedScribbleId(state.id)
+          e.preventDefault();
+          // setSelectedScribbleId(state.id)
           let passingData = { selectedScribbleId, selectedDrawerId };
           console.log("PassingData", passingData);
 

@@ -10,92 +10,46 @@ export default function SortPreviewPage({ data }) {
   const { state } = useLocation();
   const [newSubDrawerName, setNewSubDrawerName] = useState("");
 
-  console.log("State", state);
+  console.log("State", state.selectedDrawerId);
+  console.log("RootId",Object.values(data["drawers"]))
+  // console.log("Selected one",Object.values(data["drawers"])["id"] = state.selectedDrawerId)
+  // console.log("Selected ID",state.selectedDrawerId)
+  const u = data['drawers'].filter((item)=> item.id == state.selectedDrawerId)
+  console.log("U id", u[0]['rootId'])
+  console.log("length", u.length)
 
-  //   const addToNewSubDrawer = (passedId) => {
-  //     console.log("PUT");
-  //     console.log("scribble length: ", Object.values(data["scribbles"]).length);
-  //     let dataPost = {
-  //       drawerId: passedId,
-  //       id: state.selectedScribbleId,
-  //       stray: false,
-  //     };
-  //     fetch("http://localhost:3000/scribbles", {
-  //       method: "PUT",
-  //       mode: "cors",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(dataPost),
-  //     })
-  //       .then((response) => console.log(response.json()))
-  //       .catch((error) => console.error(error.message));
-  //   };
-
-  //   const createNewSubDrawer = () => {
-  //     console.log("POST");
-  //     console.log("drawer length: ", Object.values(data["drawers"]).length);
-  //     let dataPost = {
-  //       userId: 1,
-  //       id: Object.values(data["drawers"]).length + 1,
-  //       name: newSubDrawerName,
-  //       type: "drawer",
-  //       "sub-drawer": false,
-  //       drawerId: state.selectedDrawerId,
-  //     };
-
-  //     fetch("http://localhost:3000/drawers", {
-  //       method: "POST",
-  //       mode: "cors",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(dataPost),
-  //     }).then((response) => {
-  //       console.log(response.json());
-  //     });
-  //     fetch(`http://localhost:3000/scribbles/${state.selectedScribbleId}`, {
-  //       method: "PUT",
-  //       mode: "cors",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         drawerId: Object.values(data["drawers"]).length + 1,
-  //         userId: 1,
-  //         title: "HARD CODED",
-  //         content: "HTTP//:HARDCODED",
-  //         type: "scribble",
-  //         // id: state.selectedScribbleId,
-  //         stray: false,
-  //       }),
-  //     }).then((response) => console.log(response.json()));
-  //   };
-
-  const updateParentDrawerBoolean = (passedId) => {
+  const updateParentDrawerBoolean = (parentDrawerId) => {
     console.log("PUT2");
     let dataPost;
-    const x = data["drawers"].filter((item) => item.id == passedId);
+    const x = data["drawers"].filter((item) => item.id == parentDrawerId);
     //Something wrong with here
-    console.log("x[0][drawerId]", x[0]["drawerId"]);
+    // console.log("x[0][drawerId]", x[0]["drawerId"]);
     if (x[0]["drawerId"]) {
       dataPost = {
-        drawerId:x[0]["drawerId"],
+        rootId: parentDrawerId,
+        drawerId: x[0]["drawerId"],
         userId: 1,
-        name: "UPDATED-SUB",
+        name: "Bagger",
         type: "drawer",
         ["sub-drawer"]: true,
-      }
-      } else {
-        dataPost = {
-            userId: 1,
-            name: "UPDATED-SUB",
-            type: "drawer",
-            ["sub-drawer"]: true,
-          }
-      }
+        // level:Object.values(data["drawers"])[parentDrawerId]["level"],
+        // root:Object.values(data["drawers"])[parentDrawerId]["root"]
+        level:x[0]["level"],
+        root:x[0]["root"]
+      };
+    } else {
+      dataPost = {
+        rootId: parentDrawerId,
+        userId: 1,
+        name: "Bomb",
+        type: "drawer",
+        ["sub-drawer"]: true,
+        level:1,
+        root:true
+      };
+    }
 
-    fetch(`http://localhost:3000/scribbles/${passedId}`, {
+    fetch(`http://localhost:3000/drawers/${parentDrawerId}`, {
       method: "PUT",
       mode: "cors",
       headers: {
@@ -107,8 +61,9 @@ export default function SortPreviewPage({ data }) {
       .catch((error) => console.error(error.message));
   };
 
-  const addToNewSubDrawer = (passedId) => {
+  const addScribbleToNewSubDrawer = (passedId) => {
     console.log("PUT");
+    const parentDrawerObject = data["drawers"].filter((item) => item.id == state.selectedDrawerId);
     //console.log("scribble length: ", Object.values(data["scribbles"]).length);
     let dataPost = {
       //   drawerId: Object.values(data["drawers"]).length + 1,
@@ -117,8 +72,9 @@ export default function SortPreviewPage({ data }) {
       title: "HARD CODED",
       content: "HTTP//:HARDCODED",
       type: "scribble",
-      // id: state.selectedScribbleId,
+      id: state.selectedScribbleId,
       stray: false,
+      level:parentDrawerObject[0]["level"]+1,
     };
     fetch(`http://localhost:3000/scribbles/${state.selectedScribbleId}`, {
       method: "PUT",
@@ -132,16 +88,25 @@ export default function SortPreviewPage({ data }) {
       .catch((error) => console.error(error.message));
   };
 
+ 
+
+
   const createNewSubDrawer = () => {
     console.log("POST");
-    //console.log("drawer length: ", Object.values(data["drawers"]).length);
+    const selectedDrawerObject = data['drawers'].filter((item)=> item.id == state.selectedDrawerId);
+
     let dataPost = {
+      rootId: selectedDrawerObject[0]['rootId'],
+      // rootId: data["drawers"][state.selectedDrawerId]["rootId"],
       userId: 1,
       id: Object.values(data["drawers"]).length + 1,
       name: newSubDrawerName,
       type: "drawer",
       "sub-drawer": false,
       drawerId: state.selectedDrawerId,
+      root: false,
+      // level:Object.values(data["drawers"])[state.selectedDrawerId]["level"],
+      level:selectedDrawerObject[0]['level']+1
     };
     fetch("http://localhost:3000/drawers", {
       method: "POST",
@@ -156,73 +121,67 @@ export default function SortPreviewPage({ data }) {
       })
       .catch((error) => console.error(error.message));
 
-    addToNewSubDrawer(Object.values(data["drawers"]).length + 1);
+    addScribbleToNewSubDrawer(Object.values(data["drawers"]).length+1);
     updateParentDrawerBoolean(state.selectedDrawerId);
   };
 
   const handleChange = (value) => {
-    //console.log(value);
     setNewSubDrawerName(value);
   };
 
   const handleCreate = (value) => {
-    //console.log("Create btn clicked", value);
     createNewSubDrawer();
-    // addToNewSubDrawer(Object.values(data["drawers"]).length + 1);
   };
 
   const renderedList = data["drawers"]
     .filter((item) => item.id == state.selectedDrawerId)
-    // .filter((item) => item.id == state.passingData.selectedDrawerId)
-
     .map((item) => (
       <h4 className="sort-preview-drawer" key={item.id}>
         {item.name}
       </h4>
     ));
 
+  const scribblies = (x) => {
+    return data["scribbles"]
+      .filter((scrb) => scrb.drawerId == x[0].id)
+      .map((scrb) => (
+        <p
+          key={scrb.id}
+          className={"sort-preview-scribbles scrb-indent" + scrb.level}
+        >
+          ID:{scrb.id}:{scrb.title}
+          <span>-- [scribble]</span>
+        </p>
+      ));
+  };
+
+  const subDrawers = (x) => {
+    return data["drawers"]
+      .filter((sub) => sub.drawerId == x[0].id)
+      .map((sub) => (
+        <p
+          key={sub.id}
+          className={"sort-preview-sub-drawers indent-" + sub.level}
+        >
+          ID:{sub.id}:{sub.name}
+          <span>-- [Sub-Drawer]</span>
+        </p>
+      ));
+  };
+
   const FindSubDrawers = () => {
     const x = data["drawers"].filter(
       (item) => item.id == state.selectedDrawerId
-      // (item) => item.id == state.passingData.selectedDrawerId
     );
-    //console.log(x);
     const renderedChildren =
-      x[0]["sub-drawer"] === true
-        ? data["drawers"]
-            .filter((sub) => sub.drawerId == x[0].id)
-            .map((sub) => (
-              <p key={sub.id} className="sort-preview-sub-drawers">
-                ID:{sub.id}:{sub.name}
-                <span>-- [Sub-Drawer]</span>
-              </p>
-            ))
-        : data["scribbles"]
-            .filter((scrb) => scrb.drawerId == x[0].id)
-            .map((scrb) => (
-              <p key={scrb.id} className="sort-preview-scribbles">
-                ID:{scrb.id}:{scrb.title}
-                <span>-- [scribble]</span>
-              </p>
-            ));
-
-    // const renderedChildren = () => {
-    //     console.log("X subdrawer", x[0]['sub-drawer'])
-    //   if (x[0]['sub-drawer'] === true) {
-    //     for (let y in data["drawers"]) {
-    //       if (data["drawers"][y].drawerId == x[0].id) {
-    //         console.log(data["drawers"][y]);
-    //       }
-    //     }
-    //   } else {
-    //     for (let z in data["scribbles"]) {
-    //       if (data["scribbles"][z].drawerId == x[0].id) {
-    //         console.log(data["scribbles"][z]);
-    //       }
-    //     }
-    //   }
-    // };
-    // renderedChildren()
+      x[0]["sub-drawer"] === true ? (
+        <>
+          {scribblies(x)}
+          {subDrawers(x)}
+        </>
+      ) : (
+        <>{scribblies(x)}</>
+      );
 
     return renderedChildren;
   };
@@ -231,8 +190,6 @@ export default function SortPreviewPage({ data }) {
     <div>
       <p>Sort Preview - Selected Drawer ID: {state.selectedDrawerId}</p>
       <p>Scribble ID: {state.selectedScribbleId}</p>
-
-      {/* <p>Sort Preview - Selected Drawer ID: {state.passingData.selectedDrawerId}</p> */}
 
       <div>{renderedList}</div>
       {/* <div>{findSubDrawers()}</div> */}
