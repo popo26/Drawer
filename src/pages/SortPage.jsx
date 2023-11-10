@@ -37,23 +37,16 @@ export default function SortPage({
     const scribbleObject = data["scribbles"].filter(
       (item) => item.id == selectedScribbleId
     );
-    // const parentDrawerObject = data["drawers"].filter(
-    //   (item) => item.id == selectedDrawerId
-    // );
-    //console.log("scribble length: ", Object.values(data["scribbles"]).length);
+
     let dataPost = {
-      //   drawerId: Object.values(data["drawers"]).length + 1,
       rootDrawerId: passedId,
       drawerId: passedId,
       userId: 1,
-      // title: "HARD CODED",
-      // content: "HTTP//:HARDCODED",
       title: scribbleObject[0]["title"],
       content: scribbleObject[0]["content"],
       type: "scribble",
       id: selectedScribbleId,
       stray: false,
-      // level:parentDrawerObject[0]["level"]+1,
       level: 1,
     };
     fetch(`http://localhost:3000/scribbles/${selectedScribbleId}`, {
@@ -68,7 +61,6 @@ export default function SortPage({
       .catch((error) => console.error(error.message));
   };
 
-  //need revise
   const createNewDrawer = () => {
     console.log("drawer length: ", Object.values(data["drawers"]).length);
     let dataPost = {
@@ -96,7 +88,6 @@ export default function SortPage({
   const handleChange = (value) => {
     console.log(value);
     //somehow need a spot to set this state
-    // setSelectedScribbleId(state.id)
     setDrawerName(value);
   };
 
@@ -140,7 +131,6 @@ export default function SortPage({
           // setSelectedScribbleId(state.id)
           let passingData = { selectedScribbleId, selectedDrawerId };
           console.log("PassingData", passingData);
-
           navigate("/sort-preview", { state: passingData });
         }}
       >

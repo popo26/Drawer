@@ -15,7 +15,7 @@ export default function CreateDrawerPage({data, drawerName, setDrawerName}) {
       "rootId":Object.values(data['drawers']).length + 1,
       "userId": 1,
       "id":Object.values(data['drawers']).length + 1,
-      "name": drawerName,
+      "name": drawerName.toUpperCase(),
       "type": "drawer",
       "sub-drawer": false,
       "root":true,

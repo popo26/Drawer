@@ -20,6 +20,56 @@ export default function SortDrawerPreviewPage({
 
   console.log("State", state);
 
+
+  const updateParentDrawerBoolean = (parentDrawerId) => {
+    console.log("PUT2");
+    let dataPost;
+    const x = data["drawers"].filter((item) => item.id == parentDrawerId);
+    //Something wrong with here
+    // console.log("x[0][drawerId]", x[0]["drawerId"]);
+    if (x[0]["drawerId"]) {
+      dataPost = {
+        rootId: parentDrawerId,
+        drawerId: x[0]["drawerId"],
+        userId: 1,
+        // name: "Bagger",
+        // type: "drawer",
+        name: x[0]["name"],
+        type: "drawer",
+        ["sub-drawer"]: true,
+        // level:Object.values(data["drawers"])[parentDrawerId]["level"],
+        // root:Object.values(data["drawers"])[parentDrawerId]["root"]
+        level: x[0]["level"],
+        root: x[0]["root"],
+      };
+    } else {
+      dataPost = {
+        rootId: parentDrawerId,
+        userId: 1,
+        // name: "Bomb",
+        name: x[0]["name"],
+        type: "drawer",
+        ["sub-drawer"]: true,
+        level: 1,
+        root: true,
+      };
+    }
+
+    fetch(`http://localhost:3000/drawers/${parentDrawerId}`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataPost),
+    })
+      .then((response) => console.log(response.json()))
+      .catch((error) => console.error(error.message));
+  };
+
+
+
+
   const moveAllChildrenToNewDrawer = (parentDrawerId, newTopLevelDrawerId) => {
     console.log("PUT - move Children");
     const drawerToBeMovedObject = data["drawers"].filter(
@@ -136,6 +186,7 @@ export default function SortDrawerPreviewPage({
     // addScribbleToNewSubDrawer(state.selectedDrawerId, selectedDrawerObject[0]['level'])
     moveDrawerToNewDrawer(selectedDrawerId);
     moveAllChildrenToNewDrawer(drawerToBeMoved, selectedDrawerId);
+    updateParentDrawerBoolean(selectedDrawerId);
   };
 
   //   const handleChange = (value) => {

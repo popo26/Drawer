@@ -1,46 +1,112 @@
-import { useState, cloneElement } from "react";
+import { useState } from "react";
 import "../css/Dropdown.css";
+import { Icon } from "@iconify/react";
 
-// export default function Dropdown({ trigger, menu }) {
-export default function Dropdown({ data, selectedDrawerId, setSelectedDrawerId }) {
+export default function Dropdown({
+  data,
+  selectedDrawerId,
+  setSelectedDrawerId,
+}) {
   const [open, setOpen] = useState(false);
   const [currentDropdown, setCurrentDropDown] = useState("Existing Drawers");
-  // const [selectedDrawerId, setSelectedDrawerId] = useState("");
 
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  const existingDrawersList = data["drawers"].map((item) => {
-    return item["drawerId"] ? (
-      <li
-        key={item.id}
-        onClick={() => {
-          setCurrentDropDown(item.name);
-          setSelectedDrawerId(item.id);
-          console.log("SelectedId", item.id)
+  // const existingDrawersList = data["drawers"].map((item) => {
+  //   return item["drawerId"] ? (
+  //     <li
+  //       key={item.id}
+  //       onClick={() => {
+  //         setCurrentDropDown(item.name);
+  //         setSelectedDrawerId(item.id);
+  //         console.log("SelectedId", item.id);
+  //       }}
+  //       className={"indent-" + item.level}
+  //     >
+  //       <a className="dropdown-item" href="#">
+  //         {item.name}
+  //       </a>
+  //     </li>
+  //   ) : (
+  //     <li
+  //       key={item.id}
+  //       onClick={() => {
+  //         setCurrentDropDown(item.name);
+  //         setSelectedDrawerId(item.id);
+  //         console.log("SelectedId", item.id);
+  //       }}
+  //     >
+  //       <a className="dropdown-item" href="#">
+  //         {item.name}
+  //       </a>
+  //     </li>
+  //   );
+  // });
 
-        }}
-        className={"indent-"+item.level}
-      >
-        <a className="dropdown-item" href="#">
-          {item.name}
-        </a>
-      </li>
-    ) : (
-      <li
+  //TRY2
+  // ++++++++++++++ Find Sub Drawers +++++++++++++++++++++++++++++++++++++++++++++
+  const findSubDrawers = (id, array) => {
+    let newArray = [];
+    let values = Object.values(array);
+
+    for (let x in values) {
+      for (let y in values[x]) {
+        if (values[x][y].drawerId && values[x][y].rootId == id) {
+          newArray.push(values[x][y]);
+        }
+      }
+      return newArray.map((item) => {
+        return (
+          <li
+            key={item.id}
+            className="sub-drawer-header"
+            onClick={() => {
+              setCurrentDropDown(item.name);
+              setSelectedDrawerId(item.id);
+            }}
+          >
+            <p 
+            className={"sub-drawer indent-" + item.level}
+            // key={item.id}
+            // className="sub-drawer-header"
+            // onClick={() => {
+            //   setCurrentDropDown(item.name);
+            //   setSelectedDrawerId(item.id);
+            // }}
+            >{item.name}</p>
+          </li> 
+        );
+      });
+    }
+  };
+
+  const existingDrawersList = data["drawers"].map((item) => {
+    if (item.root === true) {
+      return (
+        <>
+        <li 
         key={item.id}
+        // className={"sub-drawer indent-" + item.level}
+        // className="sub-drawer-header"
         onClick={() => {
           setCurrentDropDown(item.name);
           setSelectedDrawerId(item.id);
-          console.log("SelectedId", item.id)
         }}
-      >
-        <a className="dropdown-item" href="#">
-          {item.name}
-        </a>
-      </li>
-    );
+        >
+          <a>{item.name}</a>
+          </li>
+          <li>
+          {item["sub-drawer"] === true ? (
+            // <a>
+              <a>{findSubDrawers(item.id, Array(data["drawers"]))} </a>
+            // </a>
+          ) : null}
+        </li>
+        </>
+      );
+    }
   });
 
   return (
@@ -57,25 +123,6 @@ export default function Dropdown({ data, selectedDrawerId, setSelectedDrawerId }
         </button>
         <ul className="dropdown-menu">{existingDrawersList}</ul>
       </div>
-
-      {/* experiment wiht blog */}
-      {/* {cloneElement(trigger, {
-        onClick:handleOpen,
-      })}
-      {open ? (
-        <ul>
-          {menu.map((menuItem, index) => (
-            <li key={index} className="menu-item">
-              {cloneElement(menuItem, {
-                onClick: () => {
-                  menuItem.props.onClick();
-                  setOpen(false);
-                },
-              })}
-            </li>
-          ))}
-        </ul>
-      ) : null} */}
     </div>
   );
 }
