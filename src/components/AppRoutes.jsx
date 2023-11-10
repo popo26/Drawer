@@ -34,6 +34,8 @@ export default function AppRoutes() {
   const [drawerName, setDrawerName] = useState("");
   const [selectedScribbleId, setSelectedScribbleId] = useState("");
   const [selectedDrawerId, setSelectedDrawerId] = useState("");
+  const [drawerToBeMoved, setDrawerToBeMoved] = useState("");
+
 
   const data = fakedata;
 
@@ -118,6 +120,8 @@ export default function AppRoutes() {
                 setSelectedScribbleId={setSelectedScribbleId}
                 selectedDrawerId={selectedDrawerId}
                 setSelectedDrawerId={setSelectedDrawerId}
+                drawerToBeMoved={drawerToBeMoved}
+                setDrawerToBeMoved={setDrawerToBeMoved}
               />
             }
           ></Route>
@@ -130,6 +134,8 @@ export default function AppRoutes() {
                 setSelectedScribbleId={setSelectedScribbleId}
                 selectedDrawerId={selectedDrawerId}
                 setSelectedDrawerId={setSelectedDrawerId}
+                drawerToBeMoved={drawerToBeMoved}
+                setDrawerToBeMoved={setDrawerToBeMoved}
               />
             }
           ></Route>

@@ -5,7 +5,15 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import Dropdown from "../components/Dropdown";
 
-export default function SortPage({ data, drawerName, setDrawerName, selectedScribbleId, setSelectedScribbleId, selectedDrawerId, setSelectedDrawerId }) {
+export default function SortPage({
+  data,
+  drawerName,
+  setDrawerName,
+  selectedScribbleId,
+  setSelectedScribbleId,
+  selectedDrawerId,
+  setSelectedDrawerId,
+}) {
   const navigate = useNavigate();
   // const [newDrawerName, setNewDrawerName] = useState("");
   // const [selectedDrawerId, setSelectedDrawerId] = useState("");
@@ -26,16 +34,22 @@ export default function SortPage({ data, drawerName, setDrawerName, selectedScri
 
   const addScribbleToNewSubDrawer = (passedId) => {
     console.log("PUT");
+    const scribbleObject = data["scribbles"].filter(
+      (item) => item.id == selectedScribbleId
+    );
     // const parentDrawerObject = data["drawers"].filter(
     //   (item) => item.id == selectedDrawerId
     // );
     //console.log("scribble length: ", Object.values(data["scribbles"]).length);
     let dataPost = {
       //   drawerId: Object.values(data["drawers"]).length + 1,
+      rootDrawerId: passedId,
       drawerId: passedId,
       userId: 1,
-      title: "HARD CODED",
-      content: "HTTP//:HARDCODED",
+      // title: "HARD CODED",
+      // content: "HTTP//:HARDCODED",
+      title: scribbleObject[0]["title"],
+      content: scribbleObject[0]["content"],
       type: "scribble",
       id: selectedScribbleId,
       stray: false,

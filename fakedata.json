@@ -11,20 +11,19 @@
   ],
   "drawers": [
     {
-      "rootId": 19,
+      "rootId": 1,
       "userId": 1,
-      "drawerId": 10,
       "id": 1,
       "name": "React",
       "type": "drawer",
       "sub-drawer": true,
-      "root": false,
-      "level": 2
+      "root": true,
+      "level": 1
     },
     {
-      "rootId": 18,
+      "rootId": 1,
       "userId": 1,
-      "drawerId": 18,
+      "drawerId": 1,
       "id": 4,
       "name": "Example folder",
       "type": "drawer",
@@ -33,9 +32,9 @@
       "level": 2
     },
     {
-      "rootId": 17,
+      "rootId": 1,
       "userId": 1,
-      "drawerId": 17,
+      "drawerId": 1,
       "id": 5,
       "name": "Example folder2",
       "type": "drawer",
@@ -44,51 +43,47 @@
       "level": 2
     },
     {
-      "rootId": 14,
+      "rootId": 2,
       "userId": 1,
-      "drawerId": 14,
       "id": 2,
       "name": "C#",
       "type": "drawer",
       "sub-drawer": false,
-      "root": false,
-      "level": 2
+      "root": true,
+      "level": 1
     },
     {
-      "rootId": 16,
+      "rootId": 3,
       "userId": 1,
-      "drawerId": 16,
       "id": 3,
       "name": "TYPESCRIPT",
       "type": "drawer",
       "sub-drawer": false,
-      "root": false,
-      "level": 2
+      "root": true,
+      "level": 1
     },
     {
-      "rootId": 15,
+      "rootId": 6,
       "userId": 1,
-      "drawerId": 15,
       "id": 6,
       "name": "Ruby",
       "type": "drawer",
       "sub-drawer": false,
-      "root": false,
-      "level": 2
+      "root": true,
+      "level": 1
     },
     {
-      "rootId": 13,
+      "rootId": 7,
       "userId": 1,
-      "drawerId": 13,
       "id": 7,
       "name": "Swift",
       "type": "drawer",
       "sub-drawer": true,
-      "root": false,
-      "level": 2
+      "root": true,
+      "level": 1
     },
     {
-      "rootId": 13,
+      "rootId": 7,
       "userId": 1,
       "drawerId": 7,
       "id": 8,
@@ -99,121 +94,20 @@
       "level": 2
     },
     {
-      "rootId": 12,
+      "rootId": 7,
       "userId": 1,
-      "drawerId": 12,
+      "drawerId": 8,
       "id": 9,
       "name": "Sub Sub drawer Swift folder",
       "type": "drawer",
       "sub-drawer": false,
       "root": false,
-      "level": 2
-    },
-    {
-      "rootId": 19,
-      "userId": 1,
-      "drawerId": 19,
-      "id": 10,
-      "name": "TEST",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": false,
-      "level": 2
-    },
-    {
-      "rootId": 11,
-      "userId": 1,
-      "id": 11,
-      "name": "TEST2",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": true,
-      "level": 1
-    },
-    {
-      "rootId": 12,
-      "userId": 1,
-      "id": 12,
-      "name": "TEST3",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": true,
-      "level": 1
-    },
-    {
-      "rootId": 13,
-      "userId": 1,
-      "id": 13,
-      "name": "TEST4",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": true,
-      "level": 1
-    },
-    {
-      "rootId": 14,
-      "userId": 1,
-      "id": 14,
-      "name": "TEST5",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": true,
-      "level": 1
-    },
-    {
-      "rootId": 15,
-      "userId": 1,
-      "id": 15,
-      "name": "TEST6",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": true,
-      "level": 1
-    },
-    {
-      "rootId": 16,
-      "userId": 1,
-      "id": 16,
-      "name": "TEST7",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": true,
-      "level": 1
-    },
-    {
-      "rootId": 17,
-      "userId": 1,
-      "id": 17,
-      "name": "TEST8",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": true,
-      "level": 1
-    },
-    {
-      "rootId": 18,
-      "userId": 1,
-      "id": 18,
-      "name": "TEST9",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": true,
-      "level": 1
-    },
-    {
-      "rootId": 19,
-      "userId": 1,
-      "id": 19,
-      "name": "TEST10",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": true,
-      "level": 1
+      "level": 3
     }
   ],
   "scribbles": [
     {
-      "rootDrawerId": 19,
+      "rootDrawerId":1,
       "userId": 1,
       "drawerId": 4,
       "id": 1,
@@ -224,7 +118,7 @@
       "level": 2
     },
     {
-      "rootDrawerId": 19,
+      "rootDrawerId":1,
       "userId": 1,
       "drawerId": 4,
       "id": 2,
@@ -235,7 +129,7 @@
       "level": 2
     },
     {
-      "rootDrawerId": 14,
+      "rootDrawerId":2,
       "userId": 1,
       "drawerId": 2,
       "id": 3,
@@ -243,10 +137,10 @@
       "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
       "type": "scribble",
       "stray": false,
-      "level": 2
+      "level": 1
     },
     {
-      "rootDrawerId": 14,
+      "rootDrawerId":2,
       "userId": 1,
       "drawerId": 2,
       "id": 4,
@@ -254,10 +148,10 @@
       "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
       "type": "scribble",
       "stray": false,
-      "level": 2
+      "level": 1
     },
     {
-      "rootDrawerId": 14,
+      "rootDrawerId":2,
       "userId": 1,
       "drawerId": 2,
       "id": 5,
@@ -265,10 +159,10 @@
       "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
       "type": "scribble",
       "stray": false,
-      "level": 2
+      "level": 1
     },
     {
-      "rootDrawerId": 11,
+      "rootDrawerId":3,
       "userId": 1,
       "drawerId": 3,
       "id": 6,
@@ -276,10 +170,10 @@
       "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
       "type": "scribble",
       "stray": false,
-      "level": 2
+      "level": 1
     },
     {
-      "rootDrawerId": 16,
+      "rootDrawerId":3,
       "userId": 1,
       "drawerId": 3,
       "id": 7,
@@ -287,18 +181,18 @@
       "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
       "type": "scribble",
       "stray": false,
-      "level": 3
+      "level": 1
     },
     {
-      "rootDrawerId": 16,
-      "userId": 1,
+      "rootDrawerId":3,
       "drawerId": 3,
-      "id": 8,
+      "userId": 1,
       "title": "Typescript examples",
       "content": "Nunc lobortis varius augue et scelerisque. Vivamus dapibus ullamcorper pretium. Aliquam est augue, scelerisque in pharetra laoreet, dictum non quam. Nam efficitur euismod ultricies. Duis eu odio orci. Vestibulum rutrum lacinia convallis. Etiam ut quam commodo, vehicula augue consectetur, volutpat leo. Praesent elementum justo eros, vel tincidunt ligula auctor non. Proin iaculis lacus id felis vulputate, eget gravida erat pulvinar",
       "type": "scribble",
       "stray": false,
-      "level": 3
+      "id": 8,
+      "level": 1
     },
     {
       "userId": 1,
@@ -334,51 +228,51 @@
       "content": "HTTP//:HARDCODED",
       "type": "scribble",
       "stray": true,
-      "level": 1
+      "level":1
     },
     {
-      "rootDrawerId": 19,
-      "userId": 1,
+      "rootDrawerId":1,
       "drawerId": 4,
-      "id": 13,
+      "userId": 1,
       "title": "React examples",
       "content": "Nunc lobortis varius augue et scelerisque. Vivamus dapibus ullamcorper pretium. Aliquam est augue, scelerisque in pharetra laoreet, dictum non quam. Nam efficitur euismod ultricies. Duis eu odio orci. Vestibulum rutrum lacinia convallis. Etiam ut quam commodo, vehicula augue consectetur, volutpat leo. Praesent elementum justo eros, vel tincidunt ligula auctor non. Proin iaculis lacus id felis vulputate, eget gravida erat pulvinar",
       "type": "scribble",
       "stray": false,
+      "id": 13,
       "level": 2
     },
     {
-      "rootDrawerId": 13,
-      "userId": 1,
+      "rootDrawerId":7,
       "drawerId": 7,
-      "id": 14,
+      "userId": 1,
       "title": "Swift root scribble",
       "content": "Nunc lobortis varius augue et scelerisque. Vivamus dapibus ullamcorper pretium. Aliquam est augue, scelerisque in pharetra laoreet, dictum non quam. Nam efficitur euismod ultricies. Duis eu odio orci. Vestibulum rutrum lacinia convallis. Etiam ut quam commodo, vehicula augue consectetur, volutpat leo. Praesent elementum justo eros, vel tincidunt ligula auctor non. Proin iaculis lacus id felis vulputate, eget gravida erat pulvinar",
       "type": "scribble",
       "stray": false,
-      "level": 2
+      "id": 14,
+      "level": 1
     },
     {
-      "rootDrawerId": 13,
-      "userId": 1,
+      "rootDrawerId":7,
       "drawerId": 8,
-      "id": 15,
+      "userId": 1,
       "title": "Swift scribble in sub drawer",
       "content": "Nunc lobortis varius augue et scelerisque. Vivamus dapibus ullamcorper pretium. Aliquam est augue, scelerisque in pharetra laoreet, dictum non quam. Nam efficitur euismod ultricies. Duis eu odio orci. Vestibulum rutrum lacinia convallis. Etiam ut quam commodo, vehicula augue consectetur, volutpat leo. Praesent elementum justo eros, vel tincidunt ligula auctor non. Proin iaculis lacus id felis vulputate, eget gravida erat pulvinar",
       "type": "scribble",
       "stray": false,
+      "id": 15,
       "level": 2
     },
     {
-      "rootDrawerId": 19,
-      "userId": 1,
+      "rootDrawerId":1,
       "drawerId": 1,
-      "id": 16,
+      "userId": 1,
       "title": "React root scribble",
       "content": "Nunc lobortis varius augue et scelerisque. Vivamus dapibus ullamcorper pretium. Aliquam est augue, scelerisque in pharetra laoreet, dictum non quam. Nam efficitur euismod ultricies. Duis eu odio orci. Vestibulum rutrum lacinia convallis. Etiam ut quam commodo, vehicula augue consectetur, volutpat leo. Praesent elementum justo eros, vel tincidunt ligula auctor non. Proin iaculis lacus id felis vulputate, eget gravida erat pulvinar",
       "type": "scribble",
       "stray": false,
-      "level": 2
+      "id": 16,
+      "level": 1
     }
   ]
 }

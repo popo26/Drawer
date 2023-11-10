@@ -5,75 +5,117 @@ import { useState } from "react";
 import "../css/SortPreviewPage.css";
 import Button from "../components/Button";
 
-export default function SortDrawerPreviewPage({ data, selectedScribbleId, setSelectedScribbleId, selectedDrawerId, setSelectedDrawerId }) {
+export default function SortDrawerPreviewPage({
+  data,
+  selectedScribbleId,
+  setSelectedScribbleId,
+  selectedDrawerId,
+  setSelectedDrawerId,
+  drawerToBeMoved,
+  setDrawerToBeMoved,
+}) {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [newSubDrawerName, setNewSubDrawerName] = useState("");
 
-  console.log("State", state.selectedDrawerId);
-  
+  console.log("State", state);
 
-  const updateParentDrawerBoolean = (parentDrawerId) => {
-    console.log("PUT2");
-    let dataPost;
-    const x = data["drawers"].filter((item) => item.id == parentDrawerId);
-    //Something wrong with here
-    // console.log("x[0][drawerId]", x[0]["drawerId"]);
-    if (x[0]["drawerId"]) {
-      dataPost = {
-        rootId: parentDrawerId,
-        drawerId: x[0]["drawerId"],
-        userId: 1,
-        name: "Bagger",
-        type: "drawer",
-        ["sub-drawer"]: true,
-        // level:Object.values(data["drawers"])[parentDrawerId]["level"],
-        // root:Object.values(data["drawers"])[parentDrawerId]["root"]
-        level:x[0]["level"],
-        root:x[0]["root"]
-      };
-    } else {
-      dataPost = {
-        rootId: parentDrawerId,
-        userId: 1,
-        name: "Bomb",
-        type: "drawer",
-        ["sub-drawer"]: true,
-        level:1,
-        root:true
-      };
+  const moveAllChildrenToNewDrawer = (parentDrawerId, newTopLevelDrawerId) => {
+    console.log("PUT - move Children");
+    const drawerToBeMovedObject = data["drawers"].filter(
+      //   (item) => item.id == drawerToBeMoved
+      (item) => item.id == parentDrawerId
+    );
+
+    const newTopLevelDrawerObject = data["drawers"].filter(
+      (item) => item.id == newTopLevelDrawerId
+    );
+
+    const allDrawers = data["drawers"];
+    const allScribbles = data["scribbles"];
+
+    for (let x of allDrawers) {
+      if (x.drawerId === parentDrawerId) {
+        let dataPost = {
+          rootId: newTopLevelDrawerId,
+          userId: 1,
+          drawerId: x.drawerId,
+          id: x.id,
+          name: x.name,
+          type: "drawer",
+          ["sub-drawer"]: x["sub-drawer"],
+          root: false,
+          level: drawerToBeMovedObject[0]["level"] + 1,
+        };
+        //console.log("You are in Move Children fx");
+        //console.log("FETCH PATH",`http://localhost:3000/drawers/${x.id}`)
+
+        fetch(`http://localhost:3000/drawers/${x.id}`, {
+          method: "PUT",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataPost),
+        })
+          .then((response) => console.log(response.json()))
+          .catch((error) => console.error(error.message));
+      }
     }
 
-    fetch(`http://localhost:3000/drawers/${parentDrawerId}`, {
-      method: "PUT",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dataPost),
-    })
-      .then((response) => console.log(response.json()))
-      .catch((error) => console.error(error.message));
+    for (let x of allScribbles) {
+      if (x.rootDrawerId === parentDrawerId) {
+        let dataPost = {
+          rootDrawerId: newTopLevelDrawerId,
+          userId: 1,
+          drawerId: x.drawerId,
+          id: x.id,
+          title: x.title,
+          content: x.content,
+          type: "scribble",
+          stray: false,
+          level: drawerToBeMovedObject[0]["level"] + 1,
+        };
+        fetch(`http://localhost:3000/scribbles/${x.id}`, {
+          method: "PUT",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataPost),
+        })
+          .then((response) => console.log(response.json()))
+          .catch((error) => console.error(error.message));
+      }
+    }
   };
 
-  const addScribbleToNewSubDrawer = (passedId, selectedDrawerLevel) => {
-    console.log("PUT");
-    //const parentDrawerObject = data["drawers"].filter((item) => item.id == state.selectedDrawerId);
-    //console.log("scribble length: ", Object.values(data["scribbles"]).length);
+  const parentDrawerObject = data["drawers"].filter(
+    (item) => item.id == Object.values(data["drawers"]).length
+  );
+  //console.log("drawer length",Object.values(data["drawers"]).length)
+  //console.log(parentDrawerObject[0]['level'])
+
+  const moveDrawerToNewDrawer = (passedId) => {
+    //console.log("PUT - move Drawer To New Drawer");
+    const drawerToBeMovedObject = data["drawers"].filter(
+      (item) => item.id == drawerToBeMoved
+    );
+    const parentDrawerObject = data["drawers"].filter(
+      (item) => item.id == passedId
+    );
     let dataPost = {
-      //   drawerId: Object.values(data["drawers"]).length + 1,
+      rootId: passedId,
+      userId: 1,
       drawerId: passedId,
-      userId: 1,
-      title: "HARD CODED",
-      content: "HTTP//:HARDCODED",
-      type: "scribble",
-      id: state.selectedScribbleId,
-      stray: false,
-      // level:parentDrawerObject[0]["level"]+1,
-      level:selectedDrawerLevel
-
+      id: drawerToBeMovedObject[0]["id"],
+      name: drawerToBeMovedObject[0]["name"],
+      type: "drawer",
+      ["sub-drawer"]: drawerToBeMovedObject[0]["sub-drawer"],
+      root: false,
+      level: 2,
     };
-    fetch(`http://localhost:3000/scribbles/${state.selectedScribbleId}`, {
+    fetch(`http://localhost:3000/drawers/${drawerToBeMoved}`, {
       method: "PUT",
       mode: "cors",
       headers: {
@@ -85,62 +127,24 @@ export default function SortDrawerPreviewPage({ data, selectedScribbleId, setSel
       .catch((error) => console.error(error.message));
   };
 
- 
 
 
-  const createNewSubDrawer = () => {
-    console.log("POST");
-    const selectedDrawerObject = data['drawers'].filter((item)=> item.id == state.selectedDrawerId);
-
-    let dataPost = {
-      rootId: selectedDrawerObject[0]['rootId'],
-      // rootId: data["drawers"][state.selectedDrawerId]["rootId"],
-      userId: 1,
-      id: Object.values(data["drawers"]).length + 1,
-      name: newSubDrawerName,
-      type: "drawer",
-      "sub-drawer": false,
-      drawerId: state.selectedDrawerId,
-      root: false,
-      // level:Object.values(data["drawers"])[state.selectedDrawerId]["level"],
-      level:selectedDrawerObject[0]['level']+1
-    };
-    fetch("http://localhost:3000/drawers", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dataPost),
-    })
-      .then((response) => {
-        console.log(response.json());
-      })
-      .catch((error) => console.error(error.message));
-
-    addScribbleToNewSubDrawer(Object.values(data["drawers"]).length+1, selectedDrawerObject[0]['level']+1);
-    updateParentDrawerBoolean(state.selectedDrawerId);
+  const handleMoveHere = () => {
+    // const selectedDrawerObject = data["drawers"].filter(
+    //   (item) => item.id == state.selectedDrawerId
+    // );
+    // addScribbleToNewSubDrawer(state.selectedDrawerId, selectedDrawerObject[0]['level'])
+    moveDrawerToNewDrawer(selectedDrawerId);
+    moveAllChildrenToNewDrawer(drawerToBeMoved, selectedDrawerId);
   };
 
-  // console.log("RootId",Object.values(data["drawers"]))
-  // // console.log("Selected one",Object.values(data["drawers"])["id"] = state.selectedDrawerId)
-  // // console.log("Selected ID",state.selectedDrawerId)
-  // const u = data['drawers'].filter((item)=> item.id == state.selectedDrawerId)
-  // console.log("U id", u[0]['rootId'])
-  // console.log("length", u.length)
+  //   const handleChange = (value) => {
+  //     setNewSubDrawerName(value);
+  //   };
 
-  const handleSaveHere=()=>{
-    const selectedDrawerObject = data['drawers'].filter((item)=> item.id == state.selectedDrawerId);
-    addScribbleToNewSubDrawer(state.selectedDrawerId, selectedDrawerObject[0]['level'])
-  }
-
-  const handleChange = (value) => {
-    setNewSubDrawerName(value);
-  };
-
-  const handleCreate = (value) => {
-    createNewSubDrawer();
-  };
+  //   const handleCreate = (value) => {
+  //     createNewSubDrawer();
+  //   };
 
   const renderedList = data["drawers"]
     .filter((item) => item.id == state.selectedDrawerId)
@@ -206,8 +210,8 @@ export default function SortDrawerPreviewPage({ data, selectedScribbleId, setSel
       <FindSubDrawers />
 
       <div>
-        <button onClick={handleSaveHere}>Move Here</button>
-        <h6>Or create new sub-drawer</h6>
+        <button onClick={handleMoveHere}>Move Here</button>
+        {/* <h6>Or create new sub-drawer</h6>
         <InputField
           type="text"
           name="create-new-sub-drawer"
@@ -222,7 +226,7 @@ export default function SortDrawerPreviewPage({ data, selectedScribbleId, setSel
           btnName="Create & Move"
           handleNewDrawerCreate={handleCreate}
           drawerName={newSubDrawerName}
-        />
+        /> */}
       </div>
       <div>
         <Icon
