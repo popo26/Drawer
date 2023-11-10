@@ -5,25 +5,14 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import Dropdown from "../components/Dropdown";
 
-export default function SortPage({ data }) {
+export default function SortPage({ data, drawerName, setDrawerName, selectedScribbleId, setSelectedScribbleId, selectedDrawerId, setSelectedDrawerId }) {
   const navigate = useNavigate();
-  const [newDrawerName, setNewDrawerName] = useState("");
-  const [selectedDrawerId, setSelectedDrawerId] = useState("");
+  // const [newDrawerName, setNewDrawerName] = useState("");
+  // const [selectedDrawerId, setSelectedDrawerId] = useState("");
   const { state } = useLocation();
-  const [selectedScribbleId, setSelectedScribbleId] = useState("");
+  // const [selectedScribbleId, setSelectedScribbleId] = useState("");
 
-  // console.log("scribble ID",state.id);
-  //   const scribbleId = state.id
-  // console.log("Scribble state", state.id)
-  // const passingData = {selectedDrawerId:selectedDrawerId}
-  // let passingData = {...state, selectedDrawerId}
-  // console.log("PassingData",passingData)
-
-  //   window.onload = () => {
-  //     setSelectedScribbleId(state.id);
-  //   };
-
-  console.log("State", state);
+  //console.log("State", state);
 
   //Need to set state.id somewhere then chose screen click
   useEffect(() => {
@@ -33,30 +22,50 @@ export default function SortPage({ data }) {
     });
   }, []);
 
-  console.log("Sccribleid is", selectedScribbleId);
-  // console.log("root ID",Object.values(data["drawers"])[state.selectedDrawerId]['rootId'])
+  //console.log("Sccribleid is", selectedScribbleId);
 
-  // console.log(selectedScribbleId)
-
-  //   const handleMenuOne = () => {
-  //     // do something
-  //     console.log('clicked one');
-  //   };
-
-  //   const handleMenuTwo = () => {
-  //     // do something
-  //     console.log('clicked 2');
-  //   };
+  const addScribbleToNewSubDrawer = (passedId) => {
+    console.log("PUT");
+    // const parentDrawerObject = data["drawers"].filter(
+    //   (item) => item.id == selectedDrawerId
+    // );
+    //console.log("scribble length: ", Object.values(data["scribbles"]).length);
+    let dataPost = {
+      //   drawerId: Object.values(data["drawers"]).length + 1,
+      drawerId: passedId,
+      userId: 1,
+      title: "HARD CODED",
+      content: "HTTP//:HARDCODED",
+      type: "scribble",
+      id: selectedScribbleId,
+      stray: false,
+      // level:parentDrawerObject[0]["level"]+1,
+      level: 1,
+    };
+    fetch(`http://localhost:3000/scribbles/${selectedScribbleId}`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataPost),
+    })
+      .then((response) => console.log(response.json()))
+      .catch((error) => console.error(error.message));
+  };
 
   //need revise
   const createNewDrawer = () => {
     console.log("drawer length: ", Object.values(data["drawers"]).length);
     let dataPost = {
+      rootId: Object.values(data["drawers"]).length + 1,
       userId: 1,
       id: Object.values(data["drawers"]).length + 1,
-      name: drawerName,
+      name: drawerName.toUpperCase(),
       type: "drawer",
       "sub-drawer": false,
+      root: true,
+      level: 1,
     };
     fetch("http://localhost:3000/drawers", {
       method: "POST",
@@ -66,13 +75,15 @@ export default function SortPage({ data }) {
       },
       body: JSON.stringify(dataPost),
     }).then((response) => console.log(response.json()));
+
+    addScribbleToNewSubDrawer(Object.values(data["drawers"]).length + 1);
   };
 
   const handleChange = (value) => {
     console.log(value);
     //somehow need a spot to set this state
     // setSelectedScribbleId(state.id)
-    setNewDrawerName(value);
+    setDrawerName(value);
   };
 
   const handleCreate = (value) => {
@@ -88,7 +99,7 @@ export default function SortPage({ data }) {
           name="create-new-drawer"
           id="create-new-drawer"
           placeholder="Enter new drawer name"
-          value={newDrawerName}
+          value={drawerName}
           handleNewDrawerChange={handleChange}
         />
         <br />
@@ -96,7 +107,7 @@ export default function SortPage({ data }) {
           href={null}
           btnName="Create & Save"
           handleNewDrawerCreate={handleCreate}
-          drawerName={newDrawerName}
+          drawerName={drawerName}
         />
 
         <h6>Or choose from existing drawer</h6>
@@ -107,15 +118,6 @@ export default function SortPage({ data }) {
           setSelectedDrawerId={setSelectedDrawerId}
           //   onClick={()=>{setSelectedScribbleId(state.id)}}
         />
-
-        {/* <Dropdown
-          //   open={open}
-          trigger={<button>Dropdown</button>}
-          menu={[
-            <button onClick={handleMenuOne}>Menu 1</button>,
-            <button onClick={handleMenuTwo}>Menu 2</button>,
-          ]}
-        /> */}
       </div>
       {/* <Button href="/sort-preview" btnName="Next" handleNewDrawerCreate={handleNext}/> */}
       <button

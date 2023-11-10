@@ -25,10 +25,16 @@ import DrawerListPage from "../pages/DrawerListPage";
 import PerScribblePage from "../pages/PerScribblePage";
 import SortPage from "../pages/SortPage";
 import SortPreviewPage from "../pages/SortPreviewPage";
+import SortDrawerPage from "../pages/SortDrawerPage";
+import SortDrawerPreviewPage from "../pages/SortDrawerPreviewPage";
 
 export default function AppRoutes() {
   const [expandedIndex, setExpandedIndex] = useState(-1);
   //   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [drawerName, setDrawerName] = useState("");
+  const [selectedScribbleId, setSelectedScribbleId] = useState("");
+  const [selectedDrawerId, setSelectedDrawerId] = useState("");
+
   const data = fakedata;
 
   const handleClickExpand = (passedIndex) => {
@@ -61,7 +67,13 @@ export default function AppRoutes() {
           <Route path="/profile" element={<ProfilePage />}></Route>
           <Route
             path="/stray"
-            element={<ScribbleListPage data={data} />}
+            element={
+              <ScribbleListPage
+                data={data}
+                selectedScribbleId={selectedScribbleId}
+                setSelectedScribbleId={setSelectedScribbleId}
+              />
+            }
           ></Route>
           <Route
             path="/scribble/:id"
@@ -69,22 +81,81 @@ export default function AppRoutes() {
           ></Route>
           <Route
             path="/sort"
-            element={<SortPage data={data} />}
+            element={
+              <SortPage
+                data={data}
+                drawerName={drawerName}
+                setDrawerName={setDrawerName}
+                selectedScribbleId={selectedScribbleId}
+                setSelectedScribbleId={setSelectedScribbleId}
+                selectedDrawerId={selectedDrawerId}
+                setSelectedDrawerId={setSelectedDrawerId}
+              />
+            }
           ></Route>
-             <Route
+          <Route
             path="/sort-preview"
-            element={<SortPreviewPage data={data} />}
+            element={
+              <SortPreviewPage
+                data={data}
+                selectedScribbleId={selectedScribbleId}
+                setSelectedScribbleId={setSelectedScribbleId}
+                selectedDrawerId={selectedDrawerId}
+                setSelectedDrawerId={setSelectedDrawerId}
+              />
+            }
           ></Route>
+
+
+<Route
+            path="/sort-drawer"
+            element={
+              <SortDrawerPage
+                data={data}
+                drawerName={drawerName}
+                setDrawerName={setDrawerName}
+                selectedScribbleId={selectedScribbleId}
+                setSelectedScribbleId={setSelectedScribbleId}
+                selectedDrawerId={selectedDrawerId}
+                setSelectedDrawerId={setSelectedDrawerId}
+              />
+            }
+          ></Route>
+          <Route
+            path="/sort-drawer-preview"
+            element={
+              <SortDrawerPreviewPage
+                data={data}
+                selectedScribbleId={selectedScribbleId}
+                setSelectedScribbleId={setSelectedScribbleId}
+                selectedDrawerId={selectedDrawerId}
+                setSelectedDrawerId={setSelectedDrawerId}
+              />
+            }
+          ></Route>
+
+
 
           <Route path="/password-reset" element={<PasswordResetPage />}></Route>
           <Route
             path="/create"
-            element={<CreateDrawerPage data={data} />}
+            element={
+              <CreateDrawerPage
+                data={data}
+                drawerName={drawerName}
+                setDrawerName={setDrawerName}
+              />
+            }
           ></Route>
           <Route
             path="/drawer-list/:id"
             element={
-              <DrawerListPage data={data} expandedIndex={expandedIndex} />
+              <DrawerListPage 
+              data={data} 
+              expandedIndex={expandedIndex} 
+              selectedDrawerId={selectedDrawerId}
+              setSelectedDrawerId={setSelectedDrawerId}
+              />
             }
           ></Route>
         </Routes>

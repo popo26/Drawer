@@ -49,8 +49,12 @@ a {
   border: 2px solid lightseagreen;
 }
 
-.sub-drawer-scribble-list {
+/* .sub-drawer-scribble-list {
   display:block;
+} */
+
+.triangle {
+  float:left
 }
 
 

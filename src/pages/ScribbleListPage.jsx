@@ -2,11 +2,11 @@ import { Icon } from "@iconify/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export default function ScribbleListPage({ data }) {
+export default function ScribbleListPage({ data, selectedScribbleId, setSelectedScribbleId }) {
   //   console.log(data[0]["stray"]);
   const navigate = useNavigate();
 
-  const [selectedScribbleId, setSelectedScribbleId] = useState("");
+  // const [selectedScribbleId, setSelectedScribbleId] = useState("");
 
   const strayScribbles = data["scribbles"];
 

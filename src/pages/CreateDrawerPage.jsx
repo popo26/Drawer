@@ -4,8 +4,8 @@ import Button from "../components/Button";
 import "../css/CreateDrawerPage.css";
 import { useNavigate } from "react-router-dom";
 
-export default function CreateDrawerPage({data}) {
-  const [drawerName, setDrawerName] = useState("");
+export default function CreateDrawerPage({data, drawerName, setDrawerName}) {
+  // const [drawerName, setDrawerName] = useState("");
   const navigate = useNavigate();
 
   //working! POST

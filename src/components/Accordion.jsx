@@ -1,6 +1,6 @@
 import AccordionItem from "./AccordionItem";
 import "../css/Accordion.css";
-import { GoTriangleLeft, GoTriangleDown } from "react-icons/go";
+import { GoTriangleRight, GoTriangleDown } from "react-icons/go";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
@@ -11,26 +11,6 @@ export default function Accordion({
   setExpandedIndex,
   handleExpand,
 }) {
-  // const [isExpanded2, setIsExpanded2] =  useState(false)
-
-  // const findScribbles = (array, scribbles) => {
-  //   let scribbleArray = [];
-  //   const scbs = Object.values(scribbles);
-  //   //console.log(scribbles)
-  //   for (let x in scbs) {
-  //     // console.log(scbs[x].drawerId)
-  //     for (let y in array) {
-  //       if (scbs[x].drawerId == array[y].id) {
-  //         //console.log("Scribble ID, ", scbs[x].id)
-  //         //console.log(scbs[x])
-  //         scribbleArray.push(scbs[x]);
-  //       }
-  //     }
-  //   }
-
-  //   return scribbleArray.map(item => <a key={item.id}><h5>{item.title} </h5></a>);
-  // };
-
 
   // ++++++++++++++ Find Scribbles +++++++++++++++++++++++++++++++++++++++++++++
   const findScribbles = (id, scribbles) => {
@@ -87,29 +67,6 @@ export default function Accordion({
         </div>
       );
     });
-
-    // return newArray.map((item) => {
-    //   const scribbleList = findScribbles(item.id, data["scribbles"]);
-    //   return (
-    //     <div key={item.id} className="sub-drawer-header">
-    //       <h3 className="sub-drawer">{item.name}</h3>
-    //       <div>
-    //         {scribbleList.length === 0 ? (
-    //           <h6 className="no-scribble">No Scribbles</h6>
-    //         ) : (
-    //           <div className="sub-drawer-scribble-list">{scribbleList}</div>
-    //         )}
-    //       </div>
-    //       <div>
-    //         {scribbleList.length  ? (
-    //           <h6 className="no-scribble">No Scribbles</h6>
-    //         ) : (
-    //           <div className="sub-drawer-scribble-list">{scribbleList}</div>
-    //         )}
-    //       </div>
-    //     </div>
-    //   );
-    // });
   };
 
   // ++++++++++++++ Render Whole List +++++++++++++++++++++++++++++++++++++++++++++
@@ -117,7 +74,7 @@ export default function Accordion({
     if (!item.drawerId) {
       const isExpanded = item.id === expandedIndex;
       const triangle = (
-        <span> {isExpanded ? <GoTriangleDown /> : <GoTriangleLeft />}</span>
+        <div className="triangle"> {isExpanded ? <GoTriangleDown /> : <GoTriangleRight />}</div>
       );
 
       return (

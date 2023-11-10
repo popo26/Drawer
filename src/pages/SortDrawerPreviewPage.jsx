@@ -5,7 +5,7 @@ import { useState } from "react";
 import "../css/SortPreviewPage.css";
 import Button from "../components/Button";
 
-export default function SortPreviewPage({ data, selectedScribbleId, setSelectedScribbleId, selectedDrawerId, setSelectedDrawerId }) {
+export default function SortDrawerPreviewPage({ data, selectedScribbleId, setSelectedScribbleId, selectedDrawerId, setSelectedDrawerId }) {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [newSubDrawerName, setNewSubDrawerName] = useState("");
@@ -197,15 +197,16 @@ export default function SortPreviewPage({ data, selectedScribbleId, setSelectedS
 
   return (
     <div>
-      <p>Sort Preview - Selected Drawer ID: {state.selectedDrawerId}</p>
-      <p>Scribble ID: {state.selectedScribbleId}</p>
+      <h1>SORT DRAWER PREVIEW </h1>
+      <h3>Selected Drawer ID: {state.selectedDrawerId}</h3>
+      {/* <p>Scribble ID: {state.selectedScribbleId}</p> */}
 
       <div>{renderedList}</div>
       {/* <div>{findSubDrawers()}</div> */}
       <FindSubDrawers />
 
       <div>
-        <button onClick={handleSaveHere}>Save Here</button>
+        <button onClick={handleSaveHere}>Move Here</button>
         <h6>Or create new sub-drawer</h6>
         <InputField
           type="text"
@@ -218,7 +219,7 @@ export default function SortPreviewPage({ data, selectedScribbleId, setSelectedS
         <br />
         <Button
           href={null}
-          btnName="Create & Save"
+          btnName="Create & Move"
           handleNewDrawerCreate={handleCreate}
           drawerName={newSubDrawerName}
         />
