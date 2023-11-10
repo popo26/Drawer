@@ -59,24 +59,15 @@ export default function Dropdown({
       }
       return newArray.map((item) => {
         return (
-          <li
+            <p 
+            className={"sub-drawer indent-" + item.level}
+            style={{cursor:"pointer"}}
             key={item.id}
-            className="sub-drawer-header"
             onClick={() => {
               setCurrentDropDown(item.name);
               setSelectedDrawerId(item.id);
             }}
-          >
-            <p 
-            className={"sub-drawer indent-" + item.level}
-            // key={item.id}
-            // className="sub-drawer-header"
-            // onClick={() => {
-            //   setCurrentDropDown(item.name);
-            //   setSelectedDrawerId(item.id);
-            // }}
             >{item.name}</p>
-          </li> 
         );
       });
     }
@@ -86,24 +77,20 @@ export default function Dropdown({
     if (item.root === true) {
       return (
         <>
-        <li 
+        <div 
         key={item.id}
-        // className={"sub-drawer indent-" + item.level}
-        // className="sub-drawer-header"
         onClick={() => {
           setCurrentDropDown(item.name);
           setSelectedDrawerId(item.id);
         }}
         >
-          <a>{item.name}</a>
-          </li>
-          <li>
+          <p style={{cursor:"pointer"}}>{item.name}</p>
+          </div>
+          <div>
           {item["sub-drawer"] === true ? (
-            // <a>
-              <a>{findSubDrawers(item.id, Array(data["drawers"]))} </a>
-            // </a>
+              <>{findSubDrawers(item.id, Array(data["drawers"]))} </>
           ) : null}
-        </li>
+        </div>
         </>
       );
     }
@@ -121,7 +108,9 @@ export default function Dropdown({
         >
           {currentDropdown}
         </button>
-        <ul className="dropdown-menu">{existingDrawersList}</ul>
+        {/* <ul className="dropdown-menu">{existingDrawersList}</ul> */}
+        <div className="dropdown-menu">{existingDrawersList}</div>
+
       </div>
     </div>
   );

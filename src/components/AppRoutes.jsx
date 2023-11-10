@@ -161,6 +161,8 @@ export default function AppRoutes() {
               expandedIndex={expandedIndex} 
               selectedDrawerId={selectedDrawerId}
               setSelectedDrawerId={setSelectedDrawerId}
+              drawerToBeMoved={drawerToBeMoved}
+              setDrawerToBeMoved={setDrawerToBeMoved}
               />
             }
           ></Route>

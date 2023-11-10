@@ -29,7 +29,15 @@ export default function SortDrawerPage({
   useEffect(() => {
     // const drawerToBeMoved = selectedDrawerId;
     // setDrawerToBeMoved(drawerToBeMoved);
-    setDrawerToBeMoved(selectedDrawerId);
+    setDrawerToBeMoved(state.drawerToBeMoved);
+    setSelectedDrawerId("")
+
+    return () => { 
+      console.log("cleanup")
+      // setSelectedDrawerId("")
+    // const drawer = selectedDrawerId;
+    // setDrawerToBeMoved(state.selectedDrawerId);
+  }
   }, []);
 
   //   const parentDrawerObject = data["drawers"].filter(
@@ -205,13 +213,15 @@ export default function SortDrawerPage({
   const handleCreate = (value) => {
     //console.log("Create btn clicked", value);
     createNewDrawer();
+    setDrawerName("")
 
   };
 
   return (
     <div id="page">
       <h1>SORT DRAWER PAGE</h1>
-      <h4>Selected DrawerId : {selectedDrawerId}</h4>
+      <h4>Drawer to be moved : {drawerToBeMoved}</h4>
+      <h4>Selected drawer Id : {selectedDrawerId}</h4>
       <div>
         <InputField
           type="text"

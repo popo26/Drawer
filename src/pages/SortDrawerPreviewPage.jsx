@@ -253,8 +253,8 @@ export default function SortDrawerPreviewPage({
   return (
     <div>
       <h1>SORT DRAWER PREVIEW </h1>
-      <h3>Selected Drawer ID: {state.selectedDrawerId}</h3>
-      {/* <p>Scribble ID: {state.selectedScribbleId}</p> */}
+      <h3>Selected Drawer ID: {selectedDrawerId}</h3>
+      <p>Drawer To Be Moved ID: {drawerToBeMoved}</p>
 
       <div>{renderedList}</div>
       {/* <div>{findSubDrawers()}</div> */}

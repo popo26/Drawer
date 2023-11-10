@@ -22,12 +22,15 @@ export default function SortPage({
 
   //console.log("State", state);
 
-  //Need to set state.id somewhere then chose screen click
+  //To persist selected Scribble ID so browser refresh won't wipe it
   useEffect(() => {
-    const screen = document.getElementById("page");
-    screen.addEventListener("click", function () {
-      setSelectedScribbleId(state.id);
-    });
+    // const screen = document.getElementById("page");
+    // screen.addEventListener("click", function () {
+    //   setSelectedScribbleId(state.id);
+    // });
+    setSelectedScribbleId(state.id);
+    setSelectedDrawerId("") //this is still bit in quesion
+
   }, []);
 
   //console.log("Sccribleid is", selectedScribbleId);
@@ -94,10 +97,13 @@ export default function SortPage({
   const handleCreate = (value) => {
     console.log("Create btn clicked", value);
     createNewDrawer();
+    setDrawerName("")
   };
 
   return (
     <div id="page">
+      <h4>Scribble ID: {selectedScribbleId}</h4>
+      <h4>Selected Drawer Id: {selectedDrawerId}</h4>
       <div>
         <InputField
           type="text"
@@ -113,7 +119,9 @@ export default function SortPage({
           btnName="Create & Save"
           handleNewDrawerCreate={handleCreate}
           drawerName={drawerName}
+          // onClick={()=>{navigate("/home")}}
         />
+
 
         <h6>Or choose from existing drawer</h6>
 

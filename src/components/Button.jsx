@@ -5,6 +5,7 @@ export default function Button({btnName, href, color, drawerName, handleNewDrawe
 const handleClick =(e) => {
   e.preventDefault();
   handleNewDrawerCreate(drawerName)
+  
 }
 
   return <>

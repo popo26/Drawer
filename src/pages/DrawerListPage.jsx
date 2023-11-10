@@ -1,19 +1,33 @@
 import "../css/DrawerListPage.css";
 import { Icon } from "@iconify/react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function DrawerListPage({
   data,
   expandedIndex,
   selectedDrawerId,
   setSelectedDrawerId,
+  drawerToBeMoved,
+  setDrawerToBeMoved
 }) {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [drawerNameToEdit, setDrawerNameToEdit]=useState("");
+  const [isContentEditable, setIsContentEditable]=useState(false)
+
 
   // console.log("Passed ID", id);
   // console.log("passed data", data);
   // console.log("passed expandedIndex", expandedIndex);
+
+  const handleEdit=(e)=>{
+    console.log("Edit clicked");
+    setIsContentEditable(!isContentEditable);
+    console.log(e.target.value)
+    setDrawerNameToEdit(e.target.value)
+
+  }
 
   // ++++++++++++++ Find Scribbles +++++++++++++++++++++++++++++++++++++++++++++
   const findScribbles = (id, scribbles) => {
@@ -55,7 +69,7 @@ export default function DrawerListPage({
         const scribbleList = findScribbles(item.id, data["scribbles"]);
         return (
           <div key={item.id} className="sub-drawer-header">
-            <h3 className={"sub-drawer indent-" + item.level}>
+            <h3 className={"sub-drawer indent-" + item.level} >
               {item.name}
 
               <Icon
@@ -71,9 +85,12 @@ export default function DrawerListPage({
               > */}
                <button 
                onClick={() => {
-                selectedDrawerId = item.id
-                setSelectedDrawerId(selectedDrawerId)
-                let passingData = { selectedDrawerId };
+                // selectedDrawerId = item.id
+                // setSelectedDrawerId(selectedDrawerId)
+                // let passingData = { selectedDrawerId };
+                drawerToBeMoved = item.id
+                setDrawerToBeMoved(drawerToBeMoved)
+                let passingData = { drawerToBeMoved };
                 console.log("PassingData", passingData);
                 navigate("/sort-drawer", { state: passingData });
               }}
@@ -101,34 +118,31 @@ export default function DrawerListPage({
     if (id == item.id) {
       return (
         <div key={item.id}>
-          <h2>
+          <div>
+          <h2 contentEditable={isContentEditable} style={{display:"inline-block"}} value={drawerNameToEdit}>
             ID:{item.id}, {item.name}
+            </h2>            
             <Icon
-              onClick={() => alert("Are you sure to delete whole folder?")}
+              onClick={() => {alert("Are you sure to delete whole folder?")}}
               icon="ion:trash-outline"
               color="black"
               width="20"
             />
-            {/* <Link
-              to={`/sort-preview`}
-              onClick={() => setSelectedDrawerId(item.id)}
-            > */}
-            <button 
-               onClick={() => {
-                selectedDrawerId = item.id
-                setSelectedDrawerId(selectedDrawerId)
-                // e.preventDefault();
-                // setSelectedScribbleId(state.id)
-                let passingData = { selectedDrawerId };
+              <Icon 
+              icon="mingcute:drawer-line" 
+              color="black" 
+              width="22" 
+              onClick={() => {
+                drawerToBeMoved = item.id
+                setDrawerToBeMoved(drawerToBeMoved)
+                let passingData = { selectedDrawerId, drawerToBeMoved };
                 console.log("PassingData", passingData);
-      
                 navigate("/sort-drawer", { state: passingData });
               }}
-            >
-              <Icon icon="mingcute:drawer-line" color="black" width="22" />
-              </button>
-            {/* </Link> */}
-          </h2>
+              />
+            <Icon icon="uiw:edit" color="black" width="22" onClick={handleEdit} />
+            </div>
+        
           {item["sub-drawer"] === true ? (
             <div>
               <div className="no-subfolder">

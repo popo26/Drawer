@@ -10,6 +10,7 @@ export default function InputField({
   const handleChange = (e) => {
     let value = e.target.value;
     handleNewDrawerChange(value);
+    
   };
 
   return (

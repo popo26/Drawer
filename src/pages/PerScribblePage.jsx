@@ -26,16 +26,18 @@ export default function PerScribblePage({data}){
         <div>
         <Icon icon="icon-park-outline:back" color="black" width="30" onClick={()=> navigate(-1)}  />
         <Icon icon="uiw:edit" color="black" width="30"  />
-        <Icon icon="ion:trash-outline" color="black" width="30" />
+        <Icon icon="ion:trash-outline" color="black" width="30" onClick={()=>alert("Sure to delete this scribble?")} />
 
-        <Link to={`/drawer-list/${id}`}>
+        
+
               <Icon
                 icon="mingcute:drawer-line"
                 color="black"
                 width="30"
                 height="30"
+                onClick={()=>navigate("/sort", { state: {id:id} })}
+
               />
-            </Link>
         </div>
         </div>
     )
