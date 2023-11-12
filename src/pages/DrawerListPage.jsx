@@ -17,6 +17,7 @@ export default function DrawerListPage({
   const navigate = useNavigate();
   const [drawerNameToEdit, setDrawerNameToEdit] = useState("");
   const [drawerIdToEdit, setDrawerIdToEdit] = useState("");
+  const [isEditing, setIsEditing] = useState(false)
 
   //const [isContentEditableDisabled, setIsContentEditableDisabled] = useState(true);
   const [isContentEditable, setIsContentEditable] = useState(false);
@@ -40,6 +41,7 @@ export default function DrawerListPage({
 }
 
   const handleSelectedDrawer = (clickedId) => {
+    setIsEditing(true)
     test(clickedId)
     const drawerName = data["drawers"].filter((item) => item.id == clickedId);
     setDrawerNameToEdit(drawerName[0]["name"]);
@@ -62,6 +64,7 @@ export default function DrawerListPage({
 
   const update = () => {
     updateDrawerName(drawerIdToEdit);
+    setIsEditing(false)
   };
 
   const save = (id) => {
@@ -202,18 +205,16 @@ export default function DrawerListPage({
               onClick={(e) => handleEdit(e, item.id)}
             /> */}
             {/* temp */}
+            {
+            isEditing && 
             <Icon
-              icon="material-symbols:update"
-              color="black"
-              width="48"
-              height="48"
-              onClick={update}
-              // onClick={()=>update(item.id)}
-              // onClick={()=>{
-              //   save(item.id)
-              //   return ()=>update
-              // }}
-            />
+            icon="material-symbols:update"
+            color="black"
+            width="22"
+            onClick={update}
+          />
+            }
+        
             {/* <button onClick={() => save(item.id)}>Save</button> */}
             {/* </Link> */}
             {/* </h3> */}
@@ -347,7 +348,16 @@ export default function DrawerListPage({
               onClick={(e) => handleEdit(e, item.id)}
             /> */}
             {/* temp */}
+            {
+            isEditing && 
             <Icon
+            icon="material-symbols:update"
+            color="black"
+            width="22"
+            onClick={update}
+          />
+            }
+            {/* <Icon
               icon="material-symbols:update"
               color="black"
               width="48"
@@ -357,8 +367,7 @@ export default function DrawerListPage({
               //   return ()=>update
               // }}
               onClick={update}
-              
-            />
+            /> */}
             {/* <button onClick={() => save(item.id)}>Save</button> */}
           </div>
 
