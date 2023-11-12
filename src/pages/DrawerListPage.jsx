@@ -16,57 +16,106 @@ export default function DrawerListPage({
   const { id } = useParams();
   const navigate = useNavigate();
   const [drawerNameToEdit, setDrawerNameToEdit] = useState("");
+  const [drawerIdToEdit, setDrawerIdToEdit] = useState("");
+
+  //const [isContentEditableDisabled, setIsContentEditableDisabled] = useState(true);
   const [isContentEditable, setIsContentEditable] = useState(false);
 
-  // console.log("Passed ID", id);
-  // console.log("passed data", data);
-  // console.log("passed expandedIndex", expandedIndex);
+  // const text = useRef(drawerNameToEdit);
+  const text = useRef(drawerNameToEdit);
+  //console.log("array ref", text)
+
+  console.log("Text current", text.current.innerText);
+  console.log("Updated draewr name", drawerNameToEdit);
+  console.log("Clicked drawer name", drawerNameToEdit);
+  console.log("Clicked drawer Id", drawerIdToEdit);
+
+ //experiement
+ const test= (id) => {
+  document.getElementById(`targetDrawerId${id}`).addEventListener("input", function(){
+    setDrawerNameToEdit(
+      document.getElementById(`targetDrawerId${id}`).innerText
+    );
+  })
+}
 
   const handleSelectedDrawer = (clickedId) => {
+    test(clickedId)
     const drawerName = data["drawers"].filter((item) => item.id == clickedId);
     setDrawerNameToEdit(drawerName[0]["name"]);
+    setDrawerIdToEdit(drawerName[0]["id"]);
+    text.current = document.getElementById(
+      `targetDrawerId${clickedId}`
+    ).innerText;
   };
 
-  console.log("Clicked ID", drawerNameToEdit)
+  // const update = (id) => {
+  //   save(id)
+  //   return()=>updateDrawerName(drawerIdToEdit);
+  // };
+
+  // const save = (id) => {
+  //   setDrawerNameToEdit(
+  //     document.getElementById(`targetDrawerId${id}`).innerText
+  //   );
+  // };
+
+  const update = () => {
+    updateDrawerName(drawerIdToEdit);
+  };
+
+  const save = (id) => {
+    setDrawerNameToEdit(
+      document.getElementById(`targetDrawerId${id}`).innerText
+    );
+  };
+
+  // const handleChange3 = (id) => {
+
+  //   //can't access changed value with e.target.value
+  //   text.current = document.getElementById(`targetDrawerId${id}`).innerText;
+  //   // setDrawerNameToEdit(
+  //   //   document.getElementById(`targetDrawerId${id}`).innerText
+  //   // );
+  // };
+
+ 
 
   const onContentChange = useCallback((evt) => {
     const sanitizeConf = {
       allowedTags: ["b", "i", "a", "p"],
       allowedAttributes: { a: ["href"] },
     };
-
     setDrawerNameToEdit(
       sanitizeHtml(evt.currentTarget.innerHTML, sanitizeConf)
+      // sanitizeHtml(evt.target.value, sanitizeConf)
     );
-
-    //PUT request to add
+    console.log("Changed drawer name", drawerNameToEdit);
   }, []);
 
-  useEffect(() => {
-    const drawerName = data["drawers"].filter((item) => item.id == id);
-    setDrawerNameToEdit(drawerName[0]["name"]);
+  // useEffect(() => {
+  //   const drawerName = data["drawers"].filter((item) => item.id == id);
+  //   setDrawerNameToEdit(drawerName[0]["name"]);
 
-    return () => {
-      console.log("cleanup");
-    };
-  }, []);
+  //   return () => {
+  //     console.log("cleanup");
+  //   };
+  // }, []);
 
-  const handleEdit = (e) => {
+  const handleEdit = (e, id) => {
+    handleSelectedDrawer(id);
     console.log("Edit clicked");
-    // setIsContentEditable(!isContentEditable);
+    //setIsContentEditableDisabled(!isContentEditableDisabled);
+    //setIsContentEditable(!isContentEditable);
     console.log(e.target.value);
-    // setDrawerNameToEdit(e.target.value);
   };
 
   // ++++++++++++++ Find Scribbles +++++++++++++++++++++++++++++++++++++++++++++
   const findScribbles = (id, scribbles) => {
     let scribbleArray = [];
     const scbs = Object.values(scribbles);
-    //console.log(scribbles)
     for (let x in scbs) {
       if (scbs[x].drawerId == id) {
-        //console.log("Scribble ID, ", scbs[x].id)
-        //console.log(scbs[x])
         scribbleArray.push(scbs[x]);
       }
     }
@@ -85,11 +134,7 @@ export default function DrawerListPage({
 
     for (let x in values) {
       for (let y in values[x]) {
-        // if (values[x][y].drawerId) {
-        // if (values[x][y].drawerId === id) {
         if (values[x][y].drawerId && values[x][y].rootId == id) {
-          //console.log("DrawerId: ", values[x][y].drawerId);
-          //console.log("ID: ", values[x][y].id);
           newArray.push(values[x][y]);
         }
       }
@@ -102,20 +147,27 @@ export default function DrawerListPage({
               {item.name} */}
 
             <h3
+              id={`targetDrawerId${item.id}`}
               style={{ display: "inline-block" }}
               className={"sub-drawer indent-" + item.level}
               onClick={() => {
                 handleSelectedDrawer(item.id);
               }}
+              contentEditable="true"
+              // contentEditable={isContentEditable}
+              suppressContentEditableWarning={true}
+              //onChange={() => handleChange3(item.id)}
+              ref={text}
             >
-              <ContentEditable
+              {item.name}
+
+              {/* <ContentEditable
                 onChange={onContentChange}
                 // onChange={handleChange2}
                 // html={drawerNameToEdit}
                 html={item.name}
-
                 // value={drawerNameToEdit}
-              />
+              /> */}
             </h3>
 
             <Icon
@@ -143,6 +195,26 @@ export default function DrawerListPage({
             >
               <Icon icon="mingcute:drawer-line" color="black" width="22" />
             </button>
+            {/* <Icon
+              icon="uiw:edit"
+              color="black"
+              width="22"
+              onClick={(e) => handleEdit(e, item.id)}
+            /> */}
+            {/* temp */}
+            <Icon
+              icon="material-symbols:update"
+              color="black"
+              width="48"
+              height="48"
+              onClick={update}
+              // onClick={()=>update(item.id)}
+              // onClick={()=>{
+              //   save(item.id)
+              //   return ()=>update
+              // }}
+            />
+            {/* <button onClick={() => save(item.id)}>Save</button> */}
             {/* </Link> */}
             {/* </h3> */}
             {scribbleList.length === 0 ? (
@@ -160,13 +232,57 @@ export default function DrawerListPage({
     }
   };
 
-  // const text = useRef(null);
+  console.log("Ref", text);
 
+  ///////++++++++Update Drawer Name in DB+++++++++++++
+  const updateDrawerName = (id) => {
+    const drawerToBeUpdated = data["drawers"].filter((item) => item.id == id);
+
+    //setDrawerIdToEdit(id)
+    const newName = text.current.innerText;
+    // const newName = drawerNameToEdit;
+    console.log("newName", newName);
+    setDrawerNameToEdit(text.current.innerText);
+    console.log("You are here");
+    let dataPost = {
+      rootId: drawerToBeUpdated[0]["rootId"],
+      userId: 1,
+      drawerId: drawerToBeUpdated[0]["drawerId"],
+      id: id,
+      name: drawerNameToEdit,
+
+      // name: newName,
+      //name:[text.current.innerText],
+      type: "drawer",
+      ["sub-drawer"]: drawerToBeUpdated[0]["sub-drawer"],
+      root: drawerToBeUpdated[0]["root"],
+      level: drawerToBeUpdated[0]["level"],
+    };
+    fetch(`http://localhost:3000/drawers/${id}`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataPost),
+    })
+      .then((response) => console.log(response.json()))
+      //.then((response) => console.log("newName", newName))
+
+      .catch((error) => console.error(error.message));
+  };
+
+  // //+++++++useREf++++++++++++
+  //const text = useRef(drawerNameToEdit);
+
+  // //+++++++Change Drawer Name++++++++++++
   // const handleChange2 = (evt) => {
   //   text.current = evt.target.value;
+  //   return()=>{
+  //     setDrawerNameToEdit(text.current);
+  //     // updateDrawerName(drawerIdToEdit)
+  //   }
   // };
-
-  console.log("drawer name to edit", drawerNameToEdit);
 
   const renderedList = data["drawers"].map((item) => {
     if (id == item.id) {
@@ -177,22 +293,31 @@ export default function DrawerListPage({
             {item.name}
             </h2>             */}
             <h2
+              // id="drawerName1"
+              id={`targetDrawerId${item.id}`}
               // contentEditable={isContentEditable}
               style={{ display: "inline-block" }}
-              // value={drawerNameToEdit}
-              // ref={text}
               onClick={() => {
                 handleSelectedDrawer(item.id);
               }}
+              contentEditable="true"
+              // contentEditable={isContentEditable}
+              suppressContentEditableWarning={true}
+              // onChange={handleChange3}
+              //onChange={() => handleChange3(item.id)}
+              ref={text}
+              //ref={`text${item.id}`}
             >
-              <ContentEditable
-                onChange={onContentChange}
-                // onChange={handleChange2}
+              {item.name}
+
+              {/* <ContentEditable
+                // onChange={onContentChange}
+                onChange={handleChange2}
                 // html={drawerNameToEdit}
                 html={item.name}
-
+                disabled={isContentEditableDisabled}
                 // value={drawerNameToEdit}
-              />
+              /> */}
             </h2>
             <Icon
               onClick={() => {
@@ -214,12 +339,27 @@ export default function DrawerListPage({
                 navigate("/sort-drawer", { state: passingData });
               }}
             />
-            <Icon
+            {/* <Icon
               icon="uiw:edit"
               color="black"
               width="22"
-              onClick={handleEdit}
+              // onClick={handleEdit}
+              onClick={(e) => handleEdit(e, item.id)}
+            /> */}
+            {/* temp */}
+            <Icon
+              icon="material-symbols:update"
+              color="black"
+              width="48"
+              height="48"
+              // onClick={()=>{
+              //   save(item.id)
+              //   return ()=>update
+              // }}
+              onClick={update}
+              
             />
+            {/* <button onClick={() => save(item.id)}>Save</button> */}
           </div>
 
           {item["sub-drawer"] === true ? (
