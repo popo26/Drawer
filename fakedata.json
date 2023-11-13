@@ -23,44 +23,12 @@
     {
       "rootId": 3,
       "userId": 1,
-      "drawerId": 3,
-      "id": 4,
-      "name": "Example folder",
-      "type": "drawer",
-      "sub-drawer": false,
-      "root": false,
-      "level": 2
-    },
-    {
-      "rootId": 1,
-      "userId": 1,
-      "drawerId": 1,
-      "id": 5,
-      "name": "Example folder2",
-      "type": "drawer",
-      "sub-drawer": false,
-      "root": false,
-      "level": 2
-    },
-    {
-      "rootId": 2,
-      "userId": 1,
-      "id": 2,
-      "name": "C#",
+      "id": 3,
+      "name": "TYPESCRIPT",
       "type": "drawer",
       "sub-drawer": false,
       "root": true,
       "level": 1
-    },
-    {
-      "rootId": 3,
-      "userId": 1,
-      "name": "TYPESCRIPT",
-      "type": "drawer",
-      "sub-drawer": true,
-      "level": 1,
-      "root": true,
-      "id": 3
     },
     {
       "rootId": 6,
@@ -71,116 +39,9 @@
       "sub-drawer": false,
       "root": true,
       "level": 1
-    },
-    {
-      "rootId": 7,
-      "userId": 1,
-      "id": 7,
-      "name": "Swift",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": true,
-      "level": 1
-    },
-    {
-      "rootId": 7,
-      "userId": 1,
-      "drawerId": 7,
-      "id": 8,
-      "name": "Sub drawer Swift folder",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": false,
-      "level": 2
-    },
-    {
-      "rootId": 7,
-      "userId": 1,
-      "drawerId": 8,
-      "id": 9,
-      "name": "Sub Sub drawer Swift folder",
-      "type": "drawer",
-      "sub-drawer": false,
-      "root": false,
-      "level": 3
-    },
-    {
-      "rootId": 10,
-      "userId": 1,
-      "id": 10,
-      "name": "TEST",
-      "type": "drawer",
-      "sub-drawer": false,
-      "root": true,
-      "level": 1
-    },
-    {
-      "rootId": 11,
-      "userId": 1,
-      "id": 11,
-      "name": "TEST3",
-      "type": "drawer",
-      "sub-drawer": false,
-      "root": true,
-      "level": 1
     }
   ],
   "scribbles": [
-    {
-      "rootDrawerId": 1,
-      "userId": 1,
-      "drawerId": 4,
-      "id": 1,
-      "title": "How to study React",
-      "content": "https://freecodecamp/1/react-basics",
-      "type": "scribble",
-      "stray": false,
-      "level": 2
-    },
-    {
-      "rootDrawerId": 1,
-      "userId": 1,
-      "drawerId": 4,
-      "id": 2,
-      "title": "React cheatseat",
-      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
-      "type": "scribble",
-      "stray": false,
-      "level": 2
-    },
-    {
-      "rootDrawerId": 10,
-      "drawerId": 10,
-      "userId": 1,
-      "title": "Example code C#",
-      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
-      "type": "scribble",
-      "id": 3,
-      "stray": false,
-      "level": 1
-    },
-    {
-      "rootDrawerId": 2,
-      "userId": 1,
-      "drawerId": 2,
-      "id": 4,
-      "title": "Unit test with C#",
-      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
-      "type": "scribble",
-      "stray": false,
-      "level": 1
-    },
-    {
-      "rootDrawerId": 2,
-      "userId": 1,
-      "drawerId": 2,
-      "id": 5,
-      "title": "C# basics",
-      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
-      "type": "scribble",
-      "stray": false,
-      "level": 1
-    },
     {
       "rootDrawerId": 3,
       "userId": 1,
@@ -252,39 +113,6 @@
     },
     {
       "rootDrawerId": 1,
-      "drawerId": 4,
-      "userId": 1,
-      "title": "React examples",
-      "content": "Nunc lobortis varius augue et scelerisque. Vivamus dapibus ullamcorper pretium. Aliquam est augue, scelerisque in pharetra laoreet, dictum non quam. Nam efficitur euismod ultricies. Duis eu odio orci. Vestibulum rutrum lacinia convallis. Etiam ut quam commodo, vehicula augue consectetur, volutpat leo. Praesent elementum justo eros, vel tincidunt ligula auctor non. Proin iaculis lacus id felis vulputate, eget gravida erat pulvinar",
-      "type": "scribble",
-      "stray": false,
-      "id": 13,
-      "level": 2
-    },
-    {
-      "rootDrawerId": 7,
-      "drawerId": 7,
-      "userId": 1,
-      "title": "Swift root scribble",
-      "content": "Nunc lobortis varius augue et scelerisque. Vivamus dapibus ullamcorper pretium. Aliquam est augue, scelerisque in pharetra laoreet, dictum non quam. Nam efficitur euismod ultricies. Duis eu odio orci. Vestibulum rutrum lacinia convallis. Etiam ut quam commodo, vehicula augue consectetur, volutpat leo. Praesent elementum justo eros, vel tincidunt ligula auctor non. Proin iaculis lacus id felis vulputate, eget gravida erat pulvinar",
-      "type": "scribble",
-      "stray": false,
-      "id": 14,
-      "level": 1
-    },
-    {
-      "rootDrawerId": 7,
-      "drawerId": 8,
-      "userId": 1,
-      "title": "Swift scribble in sub drawer",
-      "content": "Nunc lobortis varius augue et scelerisque. Vivamus dapibus ullamcorper pretium. Aliquam est augue, scelerisque in pharetra laoreet, dictum non quam. Nam efficitur euismod ultricies. Duis eu odio orci. Vestibulum rutrum lacinia convallis. Etiam ut quam commodo, vehicula augue consectetur, volutpat leo. Praesent elementum justo eros, vel tincidunt ligula auctor non. Proin iaculis lacus id felis vulputate, eget gravida erat pulvinar",
-      "type": "scribble",
-      "stray": false,
-      "id": 15,
-      "level": 2
-    },
-    {
-      "rootDrawerId": 1,
       "drawerId": 1,
       "userId": 1,
       "title": "React root scribble",
@@ -292,63 +120,6 @@
       "type": "scribble",
       "stray": false,
       "id": 16,
-      "level": 1
-    },
-    {
-      "userId": 1,
-      "id": 17,
-      "title": "New",
-      "type": "scribble",
-      "content": "asdf",
-      "stray": true,
-      "level": 1
-    },
-    {
-      "userId": 1,
-      "id": 18,
-      "title": "New2",
-      "type": "scribble",
-      "content": "asdf",
-      "stray": true,
-      "level": 1
-    },
-    {
-      "userId": 1,
-      "id": 19,
-      "title": "asdf",
-      "type": "scribble",
-      "content": "asdf",
-      "stray": true,
-      "level": 1
-    },
-    {
-      "userId": 1,
-      "id": 20,
-      "title": "asdfs",
-      "type": "scribble",
-      "content": "asdf",
-      "stray": true,
-      "level": 1
-    },
-    {
-      "rootDrawerId": 11,
-      "drawerId": 11,
-      "userId": 1,
-      "title": "Super",
-      "content": "asdf",
-      "type": "scribble",
-      "id": 21,
-      "stray": false,
-      "level": 1
-    },
-    {
-      "drawerId": 6,
-      "userId": 1,
-      "title": "Bomb",
-      "content": "",
-      "type": "scribble",
-      "id": 22,
-      "stray": false,
       "level": 1
     }
   ]

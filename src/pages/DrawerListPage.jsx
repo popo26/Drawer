@@ -28,21 +28,112 @@ export default function DrawerListPage({
   console.log("Clicked drawer name", drawerNameToEdit);
   console.log("Clicked drawer Id", drawerIdToEdit);
 
-  //Get feedback from Anthony
+  // ++++++++Delete Drawer and its sub-drawers and scribbles
+
+  const deleteScribbles = (drawerId) => {
+    const associatedScribbles = data["scribbles"].filter(
+      (scrb) => scrb.drawerId === drawerId
+    );
+    for (let t of associatedScribbles) {
+      fetch(`http://localhost:3000/scribbles/${t.id}`, {
+        method: "DELETE",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => console.log(response.json()))
+        .catch((error) => console.error(error.message));
+    }
+  };
+
+  const deleteSelectedDrawer = (id) => {
+    console.log("drawer length: ", Object.values(data["drawers"]).length);
+    fetch(`http://localhost:3000/drawers/${id}`, {
+      method: "DELETE",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => console.log(response.json()))
+      .catch((error) => console.error(error.message));
+    deleteSubDrawers(id);
+  };
+
+  // // for (let x of data["drawers"]) {
+  // //   if (x.root === true) {
+  // //     //delete all rootId
+  // //     console.log(x);
+  // //   } else if (x["sub-drawer"] === true) {
+  // //     //delete all subdrawers whose drawerId is id
+  // //     console.log("subdrawers");
+  // //   }
+  // // }
+
+  const deleteSubDrawers = (id) => {
+    for (let x of data["drawers"]) {
+      if (x.root === true) {
+        //delete all rootId
+        const sameRootIdDrawers = data["drawers"].filter(
+          (item) => item.rootId == id
+        );
+        for (let y of sameRootIdDrawers) {
+          fetch(`http://localhost:3000/drawers/${y.id}`, {
+            method: "DELETE",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => console.log(response.json()))
+            .catch((error) => console.error(error.message));
+          deleteScribbles(y.id);
+        }
+      } else if (x.root === false && x["sub-drawer"] === true) {
+        //delete all subdrawers whose drawerId is id
+        const subDrawers = data["drawers"].filter(
+          (item) => item.drawerId == id
+        );
+        for (let y of subDrawers) {
+          fetch(`http://localhost:3000/drawers/${y.id}`, {
+            method: "DELETE",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => console.log(response.json()))
+            .catch((error) => console.error(error.message));
+          deleteScribbles(y.id);
+        }
+      }
+    }
+  };
+
+  const handleDelete = (id) => {
+    alert(`Are you sure to delete this drawer and all the content? -ID:${id}`);
+    deleteSelectedDrawer(id);
+    navigate("/home");
+  };
+
+  //+++++++++++++++++++Get feedback from Anthony++++++++++++++++++++++++++++++++
   const sanitizeConf = {
     allowedTags: ["b", "i", "em", "strong", "a", "p", "h1"],
-    allowedAttributes: { a: ["href"] }
+    allowedAttributes: { a: ["href"] },
   };
 
   const showUpdateIcon = (id) => {
     const isEditing = id == updateIconIndex;
     if (isEditing) {
-      return <Icon
-        icon="material-symbols:update"
-        color="black"
-        width="22"
-        onClick={update}
-      />;
+      return (
+        <Icon
+          icon="material-symbols:update"
+          color="black"
+          width="22"
+          onClick={update}
+        />
+      );
     }
   };
 
@@ -59,7 +150,7 @@ export default function DrawerListPage({
 
   //experiement
   const test = (id) => {
-//with sanitization - GET FEEDBACK from ANTHONY
+    //with sanitization - GET FEEDBACK from ANTHONY
     // document
     // .getElementById(`targetDrawerId${id}`)
     // .addEventListener("input", function () {
@@ -80,7 +171,7 @@ export default function DrawerListPage({
 
   const handleSelectedDrawer = (clickedId) => {
     handleUpdateIcon(clickedId);
-    console.log("update icon index",updateIconIndex)
+    console.log("update icon index", updateIconIndex);
     setUpdateIconIndex(clickedId);
     test(clickedId);
     const drawerName = data["drawers"].filter((item) => item.id == clickedId);
@@ -131,8 +222,6 @@ export default function DrawerListPage({
       // sanitizeHtml(evt.target.value, sanitizeConf)
     );
   }, []);
-
-
 
   const handleEdit = (e, id) => {
     handleSelectedDrawer(id);
@@ -203,7 +292,7 @@ export default function DrawerListPage({
             </h3>
 
             <Icon
-              onClick={() => alert("Are you sure to delete this sub-drawer?")}
+              onClick={() => handleDelete(item.id)}
               icon="ion:trash-outline"
               color="black"
               width="20"
@@ -303,7 +392,6 @@ export default function DrawerListPage({
       .catch((error) => console.error(error.message));
   };
 
-
   const renderedList = data["drawers"].map((item) => {
     if (id == item.id) {
       return (
@@ -339,9 +427,7 @@ export default function DrawerListPage({
               /> */}
             </h2>
             <Icon
-              onClick={() => {
-                alert("Are you sure to delete whole folder?");
-              }}
+              onClick={() => handleDelete(item.id)}
               icon="ion:trash-outline"
               color="black"
               width="20"
