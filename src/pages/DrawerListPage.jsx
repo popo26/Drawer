@@ -17,7 +17,7 @@ export default function DrawerListPage({
   const navigate = useNavigate();
   const [drawerNameToEdit, setDrawerNameToEdit] = useState("");
   const [drawerIdToEdit, setDrawerIdToEdit] = useState("");
-  const [isEditing, setIsEditing] = useState(false)
+  const [updateIconIndex, setUpdateIconIndex] = useState(-1);
 
   //const [isContentEditableDisabled, setIsContentEditableDisabled] = useState(true);
   const [isContentEditable, setIsContentEditable] = useState(false);
@@ -31,18 +31,45 @@ export default function DrawerListPage({
   console.log("Clicked drawer name", drawerNameToEdit);
   console.log("Clicked drawer Id", drawerIdToEdit);
 
- //experiement
- const test= (id) => {
-  document.getElementById(`targetDrawerId${id}`).addEventListener("input", function(){
-    setDrawerNameToEdit(
-      document.getElementById(`targetDrawerId${id}`).innerText
-    );
-  })
-}
+  const showUpdateIcon = (id) => {
+    const isEditing = id == updateIconIndex;
+    if (isEditing) {
+      return <Icon
+        icon="material-symbols:update"
+        color="black"
+        width="22"
+        onClick={update}
+      />;
+    }
+  };
+  //top
+  const handleUpdateIcon = (passedIndex) => {
+    setUpdateIconIndex((currentExpandedIndex) => {
+      if (currentExpandedIndex === passedIndex) {
+        return -1;
+      } else {
+        return passedIndex;
+      }
+    });
+  };
+
+  //experiement
+  const test = (id) => {
+    document
+      .getElementById(`targetDrawerId${id}`)
+      .addEventListener("input", function () {
+        setDrawerNameToEdit(
+          document.getElementById(`targetDrawerId${id}`).innerText
+        );
+        //showUpdateIcon(id)
+      });
+  };
 
   const handleSelectedDrawer = (clickedId) => {
-    setIsEditing(true)
-    test(clickedId)
+    handleUpdateIcon(clickedId);
+    console.log("update icon index",updateIconIndex)
+    setUpdateIconIndex(clickedId);
+    test(clickedId);
     const drawerName = data["drawers"].filter((item) => item.id == clickedId);
     setDrawerNameToEdit(drawerName[0]["name"]);
     setDrawerIdToEdit(drawerName[0]["id"]);
@@ -64,14 +91,14 @@ export default function DrawerListPage({
 
   const update = () => {
     updateDrawerName(drawerIdToEdit);
-    setIsEditing(false)
+    setUpdateIconIndex(-1);
   };
 
-  const save = (id) => {
-    setDrawerNameToEdit(
-      document.getElementById(`targetDrawerId${id}`).innerText
-    );
-  };
+  // const save = (id) => {
+  //   setDrawerNameToEdit(
+  //     document.getElementById(`targetDrawerId${id}`).innerText
+  //   );
+  // };
 
   // const handleChange3 = (id) => {
 
@@ -81,8 +108,6 @@ export default function DrawerListPage({
   //   //   document.getElementById(`targetDrawerId${id}`).innerText
   //   // );
   // };
-
- 
 
   const onContentChange = useCallback((evt) => {
     const sanitizeConf = {
@@ -205,16 +230,17 @@ export default function DrawerListPage({
               onClick={(e) => handleEdit(e, item.id)}
             /> */}
             {/* temp */}
-            {
-            isEditing && 
-            <Icon
-            icon="material-symbols:update"
-            color="black"
-            width="22"
-            onClick={update}
-          />
-            }
-        
+            {/* {isEditing && (
+              <Icon
+                icon="material-symbols:update"
+                color="black"
+                width="22"
+                onClick={update}
+              />
+            )} */}
+
+            {showUpdateIcon(item.id)}
+
             {/* <button onClick={() => save(item.id)}>Save</button> */}
             {/* </Link> */}
             {/* </h3> */}
@@ -348,15 +374,17 @@ export default function DrawerListPage({
               onClick={(e) => handleEdit(e, item.id)}
             /> */}
             {/* temp */}
-            {
-            isEditing && 
-            <Icon
-            icon="material-symbols:update"
-            color="black"
-            width="22"
-            onClick={update}
-          />
-            }
+            {/* {updateIconIndex && (
+              <Icon
+                icon="material-symbols:update"
+                color="black"
+                width="22"
+                onClick={update}
+              />
+            )} */}
+
+            {showUpdateIcon(item.id)}
+
             {/* <Icon
               icon="material-symbols:update"
               color="black"
