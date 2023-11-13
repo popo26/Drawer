@@ -303,17 +303,6 @@ export default function DrawerListPage({
       .catch((error) => console.error(error.message));
   };
 
-  // //+++++++useREf++++++++++++
-  //const text = useRef(drawerNameToEdit);
-
-  // //+++++++Change Drawer Name++++++++++++
-  // const handleChange2 = (evt) => {
-  //   text.current = evt.target.value;
-  //   return()=>{
-  //     setDrawerNameToEdit(text.current);
-  //     // updateDrawerName(drawerIdToEdit)
-  //   }
-  // };
 
   const renderedList = data["drawers"].map((item) => {
     if (id == item.id) {
@@ -324,7 +313,6 @@ export default function DrawerListPage({
             {item.name}
             </h2>             */}
             <h2
-              // id="drawerName1"
               id={`targetDrawerId${item.id}`}
               // contentEditable={isContentEditable}
               style={{ display: "inline-block" }}

@@ -54,7 +54,8 @@ export default function AppRoutes() {
         <Navbar />
         <Routes>
           <Route
-            index path="/home"
+            index
+            path="/home"
             element={
               <HomePage
                 expandedIndex={expandedIndex}
@@ -64,7 +65,16 @@ export default function AppRoutes() {
             }
           ></Route>
           <Route path="/search" element={<SearchPage data={data} />}></Route>
-          <Route path="/scribble" element={<ScribblePage />}></Route>
+          <Route
+            path="/scribble"
+            element={
+              <ScribblePage
+                data={data}
+                selectedScribbleId={selectedScribbleId}
+                setSelectedScribbleId={setSelectedScribbleId}
+              />
+            }
+          ></Route>
           <Route path="/profile" element={<ProfilePage />}></Route>
           <Route
             path="/stray"

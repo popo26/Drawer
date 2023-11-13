@@ -28,7 +28,9 @@ export default function CreateDrawerPage({data, drawerName, setDrawerName}) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(dataPost),
-    }).then((response) => console.log(response.json()));
+    }).then((response) => console.log(response.json()))
+    .catch((error)=> console.error(error.message));
+    
   };
 
   const handleChange = (value) => {

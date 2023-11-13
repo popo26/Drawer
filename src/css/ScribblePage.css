@@ -2,3 +2,17 @@
     padding:20px;
     border:2px solid black;
 }
+
+ .textarea-wrap {
+overflow:hidden;
+padding: 0 4px 0 12px
+
+}
+
+textarea {
+    width: 100%;
+    height: 300px;
+    border:4px dotted pink;
+    margin-top:20px;
+    outline:none;
+}

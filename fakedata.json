@@ -113,6 +113,16 @@
       "sub-drawer": false,
       "root": true,
       "level": 1
+    },
+    {
+      "rootId": 11,
+      "userId": 1,
+      "id": 11,
+      "name": "TEST3",
+      "type": "drawer",
+      "sub-drawer": false,
+      "root": true,
+      "level": 1
     }
   ],
   "scribbles": [
@@ -282,6 +292,63 @@
       "type": "scribble",
       "stray": false,
       "id": 16,
+      "level": 1
+    },
+    {
+      "userId": 1,
+      "id": 17,
+      "title": "New",
+      "type": "scribble",
+      "content": "asdf",
+      "stray": true,
+      "level": 1
+    },
+    {
+      "userId": 1,
+      "id": 18,
+      "title": "New2",
+      "type": "scribble",
+      "content": "asdf",
+      "stray": true,
+      "level": 1
+    },
+    {
+      "userId": 1,
+      "id": 19,
+      "title": "asdf",
+      "type": "scribble",
+      "content": "asdf",
+      "stray": true,
+      "level": 1
+    },
+    {
+      "userId": 1,
+      "id": 20,
+      "title": "asdfs",
+      "type": "scribble",
+      "content": "asdf",
+      "stray": true,
+      "level": 1
+    },
+    {
+      "rootDrawerId": 11,
+      "drawerId": 11,
+      "userId": 1,
+      "title": "Super",
+      "content": "asdf",
+      "type": "scribble",
+      "id": 21,
+      "stray": false,
+      "level": 1
+    },
+    {
+      "drawerId": 6,
+      "userId": 1,
+      "title": "Bomb",
+      "content": "",
+      "type": "scribble",
+      "id": 22,
+      "stray": false,
       "level": 1
     }
   ]

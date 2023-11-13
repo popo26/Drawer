@@ -5,12 +5,13 @@ export default function InputField({
   id,
   placeholder,
   value,
-  handleNewDrawerChange
+  handleNewDrawerChange,
 }) {
   const handleChange = (e) => {
+    console.log(e.target.value);
     let value = e.target.value;
+    // Change the name - handleNewDrawerChange
     handleNewDrawerChange(value);
-    
   };
 
   return (
