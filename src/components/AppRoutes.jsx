@@ -36,7 +36,6 @@ export default function AppRoutes() {
   const [selectedDrawerId, setSelectedDrawerId] = useState("");
   const [drawerToBeMoved, setDrawerToBeMoved] = useState("");
 
-
   const data = fakedata;
 
   const handleClickExpand = (passedIndex) => {
@@ -55,7 +54,7 @@ export default function AppRoutes() {
         <Navbar />
         <Routes>
           <Route
-            path="/home"
+            index path="/home"
             element={
               <HomePage
                 expandedIndex={expandedIndex}
@@ -108,8 +107,7 @@ export default function AppRoutes() {
             }
           ></Route>
 
-
-<Route
+          <Route
             path="/sort-drawer"
             element={
               <SortDrawerPage
@@ -140,8 +138,6 @@ export default function AppRoutes() {
             }
           ></Route>
 
-
-
           <Route path="/password-reset" element={<PasswordResetPage />}></Route>
           <Route
             path="/create"
@@ -156,13 +152,13 @@ export default function AppRoutes() {
           <Route
             path="/drawer-list/:id"
             element={
-              <DrawerListPage 
-              data={data} 
-              expandedIndex={expandedIndex} 
-              selectedDrawerId={selectedDrawerId}
-              setSelectedDrawerId={setSelectedDrawerId}
-              drawerToBeMoved={drawerToBeMoved}
-              setDrawerToBeMoved={setDrawerToBeMoved}
+              <DrawerListPage
+                data={data}
+                expandedIndex={expandedIndex}
+                selectedDrawerId={selectedDrawerId}
+                setSelectedDrawerId={setSelectedDrawerId}
+                drawerToBeMoved={drawerToBeMoved}
+                setDrawerToBeMoved={setDrawerToBeMoved}
               />
             }
           ></Route>

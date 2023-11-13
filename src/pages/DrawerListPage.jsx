@@ -18,18 +18,21 @@ export default function DrawerListPage({
   const [drawerNameToEdit, setDrawerNameToEdit] = useState("");
   const [drawerIdToEdit, setDrawerIdToEdit] = useState("");
   const [updateIconIndex, setUpdateIconIndex] = useState(-1);
-
   //const [isContentEditableDisabled, setIsContentEditableDisabled] = useState(true);
   const [isContentEditable, setIsContentEditable] = useState(false);
 
-  // const text = useRef(drawerNameToEdit);
   const text = useRef(drawerNameToEdit);
-  //console.log("array ref", text)
 
   console.log("Text current", text.current.innerText);
   console.log("Updated draewr name", drawerNameToEdit);
   console.log("Clicked drawer name", drawerNameToEdit);
   console.log("Clicked drawer Id", drawerIdToEdit);
+
+  //Get feedback from Anthony
+  const sanitizeConf = {
+    allowedTags: ["b", "i", "em", "strong", "a", "p", "h1"],
+    allowedAttributes: { a: ["href"] }
+  };
 
   const showUpdateIcon = (id) => {
     const isEditing = id == updateIconIndex;
@@ -42,6 +45,7 @@ export default function DrawerListPage({
       />;
     }
   };
+
   //top
   const handleUpdateIcon = (passedIndex) => {
     setUpdateIconIndex((currentExpandedIndex) => {
@@ -55,13 +59,22 @@ export default function DrawerListPage({
 
   //experiement
   const test = (id) => {
+//with sanitization - GET FEEDBACK from ANTHONY
+    // document
+    // .getElementById(`targetDrawerId${id}`)
+    // .addEventListener("input", function () {
+    //   setDrawerNameToEdit(
+    //     sanitizeHtml(document.getElementById(`targetDrawerId${id}`).innerText, sanitizeConf
+    //     )
+    //   );
+    // });
+
     document
       .getElementById(`targetDrawerId${id}`)
       .addEventListener("input", function () {
         setDrawerNameToEdit(
           document.getElementById(`targetDrawerId${id}`).innerText
         );
-        //showUpdateIcon(id)
       });
   };
 
@@ -101,7 +114,6 @@ export default function DrawerListPage({
   // };
 
   // const handleChange3 = (id) => {
-
   //   //can't access changed value with e.target.value
   //   text.current = document.getElementById(`targetDrawerId${id}`).innerText;
   //   // setDrawerNameToEdit(
@@ -115,20 +127,12 @@ export default function DrawerListPage({
       allowedAttributes: { a: ["href"] },
     };
     setDrawerNameToEdit(
-      sanitizeHtml(evt.currentTarget.innerHTML, sanitizeConf)
+      sanitizeHtml(evt.currentTarget.innerText, sanitizeConf)
       // sanitizeHtml(evt.target.value, sanitizeConf)
     );
-    console.log("Changed drawer name", drawerNameToEdit);
   }, []);
 
-  // useEffect(() => {
-  //   const drawerName = data["drawers"].filter((item) => item.id == id);
-  //   setDrawerNameToEdit(drawerName[0]["name"]);
 
-  //   return () => {
-  //     console.log("cleanup");
-  //   };
-  // }, []);
 
   const handleEdit = (e, id) => {
     handleSelectedDrawer(id);
