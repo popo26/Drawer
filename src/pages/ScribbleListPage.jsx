@@ -6,6 +6,7 @@ export default function ScribbleListPage({
   data,
   selectedScribbleId,
   setSelectedScribbleId,
+  files
 }) {
   //   console.log(data[0]["stray"]);
   const navigate = useNavigate();
@@ -33,12 +34,21 @@ export default function ScribbleListPage({
     deleteScribble(id);
   };
 
+  console.log("files length", files.length)
+
+  // const attachmentIcon = () => {
+  //   return 
+  // }
+
+
   const renderedList = strayScribbles.map(
     (item) =>
       item.stray === true && (
+        
         <p key={item.id}>
           <Link to={`/scribble/${item.id}`}>
-            ID:{item.id}, {item.title}
+          {item.attachment && <Icon icon="ic:outline-attachment" color="lightpink" width="36" />}            
+          ID:{item.id}, {item.title}
           </Link>{" "}
           <a onClick={() => handleDelete(item.id)}>
             <Icon icon="ion:trash-outline" color="black" width="20" />
@@ -48,11 +58,6 @@ export default function ScribbleListPage({
             color="black"
             width="22"
             onClick={() => {
-              // setSelectedScribbleId(item.id);
-              // console.log(selectedScribbleId)
-              // navigate("/sort", { scribbleId: { selectedScribbleId } })}}
-              //console.log(item.id)
-              // navigate("/sort", { state: {selectedScribbleId} })}}
               navigate("/sort", { state: { id: item.id } });
             }}
           />

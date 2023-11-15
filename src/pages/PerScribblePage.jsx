@@ -1,7 +1,43 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { useDropzone } from "react-dropzone";
+import Dropzone from "react-dropzone";
+import {useEffect} from 'react';
+import FileDrop from "../components/FileDrop";
 
-export default function PerScribblePage({ data }) {
+
+const thumbsContainer = {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  marginTop: 16,
+};
+
+const thumb = {
+  display: "inline-flex",
+  borderRadius: 2,
+  border: "1px solid #eaeaea",
+  marginBottom: 8,
+  marginRight: 8,
+  width: 100,
+  height: 100,
+  padding: 4,
+  boxSizing: "border-box",
+};
+
+const thumbInner = {
+  display: "flex",
+  minWidth: 0,
+  overflow: "hidden",
+};
+
+const img = {
+  display: "block",
+  width: "auto",
+  height: "100%",
+};
+
+export default function PerScribblePage({ data, files }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -13,6 +49,9 @@ export default function PerScribblePage({ data }) {
       scribbleData = x;
     }
   }
+
+//   const test = files.map(item=>item.preview)
+//   console.log("files", test)
 
   const deleteScribble = (id) => {
     console.log("drawer length: ", Object.values(data["scribbles"]).length);
@@ -28,24 +67,70 @@ export default function PerScribblePage({ data }) {
   };
 
   const handleDelete = (id) => {
-
     alert(`Are you sure to delete this scribble? -ID:${id}`);
     deleteScribble(id);
     const scribbleToBeDeleted = data["scribbles"].filter(
       (item) => item.id == id
     );
     console.log("stray", scribbleToBeDeleted);
-    (scribbleToBeDeleted[0].stray == true) ? navigate("/stray") : navigate("/home");
+    scribbleToBeDeleted[0].stray == true
+      ? navigate("/stray")
+      : navigate("/home");
   };
+
+  //   const renderedAttachments = () => {
+  //     const displayedScribble = data["scribbles"].filter(item => item.id === id)
+  //     const linkedAttachments = displayedScribble.files.map(item=>item.name)
+  //     return linkedAttachments
+  //   }
+
+//   console.log(
+//     data["scribbles"].find((item) => item.id == id).files.map((x) => x.name)
+//   );
+
+
+  const renderedAttachments = data["scribbles"]
+    .find((item) => item.id == id)
+    .files.map((x) => x.preview);
+
+  const thumbs = data["scribbles"]
+    .find((item) => item.id == id)
+    .files.map((file) => (
+      <div style={thumb} key={file.name}>
+        <div style={thumbInner}>
+          <img
+            src={file.preview}
+            style={img}
+            // Revoke data uri after image is loaded
+            onLoad={() => {
+              URL.revokeObjectURL(file.preview);
+            }}
+            
+          />
+        </div>
+      </div>
+    ));
+
+  
+
+    // useEffect(() => {
+    //     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+    //     return () => data["scribbles"]
+    //     .find((item) => item.id == id)
+    //     .files.forEach((file) => URL.revokeObjectURL(file.preview));
+    //   }, []);
 
   return (
     <div>
       <div>Per Scribble Page - ID {id}</div>
+  
       <div>
         <h2>
           {scribbleData.id}, {scribbleData.title}
         </h2>
         <section>{scribbleData.content}</section>
+        <aside>{renderedAttachments}</aside>
+        <aside style={thumbsContainer}>{thumbs}</aside>
       </div>
       <div>
         <Icon
@@ -69,6 +154,7 @@ export default function PerScribblePage({ data }) {
           height="30"
           onClick={() => navigate("/sort", { state: { id: id } })}
         />
+
       </div>
     </div>
   );

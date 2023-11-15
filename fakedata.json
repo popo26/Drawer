@@ -21,6 +21,38 @@
       "level": 1
     },
     {
+      "rootId": 1,
+      "userId": 1,
+      "drawerId": 1,
+      "id": 4,
+      "name": "Example folder",
+      "type": "drawer",
+      "sub-drawer": false,
+      "root": false,
+      "level": 2
+    },
+    {
+      "rootId": 1,
+      "userId": 1,
+      "drawerId": 1,
+      "id": 5,
+      "name": "Example folder2",
+      "type": "drawer",
+      "sub-drawer": false,
+      "root": false,
+      "level": 2
+    },
+    {
+      "rootId": 2,
+      "userId": 1,
+      "id": 2,
+      "name": "C#",
+      "type": "drawer",
+      "sub-drawer": false,
+      "root": true,
+      "level": 1
+    },
+    {
       "rootId": 3,
       "userId": 1,
       "id": 3,
@@ -39,9 +71,96 @@
       "sub-drawer": false,
       "root": true,
       "level": 1
+    },
+    {
+      "rootId": 7,
+      "userId": 1,
+      "id": 7,
+      "name": "Swift",
+      "type": "drawer",
+      "sub-drawer": true,
+      "root": true,
+      "level": 1
+    },
+    {
+      "rootId": 7,
+      "userId": 1,
+      "drawerId": 7,
+      "id": 8,
+      "name": "Sub drawer Swift folder",
+      "type": "drawer",
+      "sub-drawer": true,
+      "root": false,
+      "level": 2
+    },
+    {
+      "rootId": 7,
+      "userId": 1,
+      "drawerId": 8,
+      "id": 9,
+      "name": "Sub Sub drawer Swift folder",
+      "type": "drawer",
+      "sub-drawer": false,
+      "root": false,
+      "level": 3
     }
   ],
   "scribbles": [
+    {
+      "rootDrawerId": 1,
+      "userId": 1,
+      "drawerId": 4,
+      "id": 1,
+      "title": "How to study React",
+      "content": "https://freecodecamp/1/react-basics",
+      "type": "scribble",
+      "stray": false,
+      "level": 2
+    },
+    {
+      "rootDrawerId": 1,
+      "userId": 1,
+      "drawerId": 4,
+      "id": 2,
+      "title": "React cheatseat",
+      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
+      "type": "scribble",
+      "stray": false,
+      "level": 2
+    },
+    {
+      "rootDrawerId": 2,
+      "userId": 1,
+      "drawerId": 2,
+      "id": 3,
+      "title": "Example code C#",
+      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
+      "type": "scribble",
+      "stray": false,
+      "level": 1
+    },
+    {
+      "rootDrawerId": 2,
+      "userId": 1,
+      "drawerId": 2,
+      "id": 4,
+      "title": "Unit test with C#",
+      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
+      "type": "scribble",
+      "stray": false,
+      "level": 1
+    },
+    {
+      "rootDrawerId": 2,
+      "userId": 1,
+      "drawerId": 2,
+      "id": 5,
+      "title": "C# basics",
+      "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
+      "type": "scribble",
+      "stray": false,
+      "level": 1
+    },
     {
       "rootDrawerId": 3,
       "userId": 1,
@@ -113,6 +232,39 @@
     },
     {
       "rootDrawerId": 1,
+      "drawerId": 4,
+      "userId": 1,
+      "title": "React examples",
+      "content": "Nunc lobortis varius augue et scelerisque. Vivamus dapibus ullamcorper pretium. Aliquam est augue, scelerisque in pharetra laoreet, dictum non quam. Nam efficitur euismod ultricies. Duis eu odio orci. Vestibulum rutrum lacinia convallis. Etiam ut quam commodo, vehicula augue consectetur, volutpat leo. Praesent elementum justo eros, vel tincidunt ligula auctor non. Proin iaculis lacus id felis vulputate, eget gravida erat pulvinar",
+      "type": "scribble",
+      "stray": false,
+      "id": 13,
+      "level": 2
+    },
+    {
+      "rootDrawerId": 7,
+      "drawerId": 7,
+      "userId": 1,
+      "title": "Swift root scribble",
+      "content": "Nunc lobortis varius augue et scelerisque. Vivamus dapibus ullamcorper pretium. Aliquam est augue, scelerisque in pharetra laoreet, dictum non quam. Nam efficitur euismod ultricies. Duis eu odio orci. Vestibulum rutrum lacinia convallis. Etiam ut quam commodo, vehicula augue consectetur, volutpat leo. Praesent elementum justo eros, vel tincidunt ligula auctor non. Proin iaculis lacus id felis vulputate, eget gravida erat pulvinar",
+      "type": "scribble",
+      "stray": false,
+      "id": 14,
+      "level": 1
+    },
+    {
+      "rootDrawerId": 7,
+      "drawerId": 8,
+      "userId": 1,
+      "title": "Swift scribble in sub drawer",
+      "content": "Nunc lobortis varius augue et scelerisque. Vivamus dapibus ullamcorper pretium. Aliquam est augue, scelerisque in pharetra laoreet, dictum non quam. Nam efficitur euismod ultricies. Duis eu odio orci. Vestibulum rutrum lacinia convallis. Etiam ut quam commodo, vehicula augue consectetur, volutpat leo. Praesent elementum justo eros, vel tincidunt ligula auctor non. Proin iaculis lacus id felis vulputate, eget gravida erat pulvinar",
+      "type": "scribble",
+      "stray": false,
+      "id": 15,
+      "level": 2
+    },
+    {
+      "rootDrawerId": 1,
       "drawerId": 1,
       "userId": 1,
       "title": "React root scribble",
@@ -121,6 +273,78 @@
       "stray": false,
       "id": 16,
       "level": 1
+    },
+    {
+      "userId": 1,
+      "id": 17,
+      "title": "With Attachment",
+      "type": "scribble",
+      "content": "asdf",
+      "stray": true,
+      "level": 1,
+      "attachment": true,
+      "files": [
+        {
+          "name": "UserStories.drawio.png",
+          "preview": "blob:http://localhost:5173/3b5f6b29-53e4-4d67-9382-92d6c07fa0ae",
+          "size": 173596,
+          "type": "image/png"
+        },
+        {
+          "name": "MoveDrawer.drawio.png",
+          "preview": "blob:http://localhost:5173/6458f6ce-0942-422f-9ba2-50d65e21f62b",
+          "size": 162423,
+          "type": "image/png"
+        },
+        {
+          "name": "CreateScribble.drawio.png",
+          "preview": "blob:http://localhost:5173/6516b48d-5f93-4072-b106-e57ef6cd43e1",
+          "size": 173537,
+          "type": "image/png"
+        },
+        {
+          "name": "React Hierarchy.drawio.png",
+          "preview": "blob:http://localhost:5173/19564f74-e8fa-41ae-baff-6a2f7aafdf2f",
+          "size": 205560,
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "userId": 1,
+      "id": 18,
+      "title": "Untitled",
+      "type": "scribble",
+      "content": "",
+      "stray": true,
+      "level": 1,
+      "attachment": true,
+      "files": [
+        {
+          "name": "SortScribbles.drawio.png",
+          "preview": "blob:http://localhost:5173/b5fd944d-2677-41bd-8a35-c380f59fc266",
+          "size": 146513,
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "userId": 1,
+      "id": 19,
+      "title": "Untitled",
+      "type": "scribble",
+      "content": "",
+      "stray": true,
+      "level": 1,
+      "attachment": true,
+      "files": [
+        {
+          "name": "SortScribbles.drawio.png",
+          "preview": "blob:http://localhost:5173/3c9b5072-09f5-43ea-b49f-76969a221a99",
+          "size": 146513,
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }

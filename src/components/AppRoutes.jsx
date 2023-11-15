@@ -35,6 +35,7 @@ export default function AppRoutes() {
   const [selectedScribbleId, setSelectedScribbleId] = useState("");
   const [selectedDrawerId, setSelectedDrawerId] = useState("");
   const [drawerToBeMoved, setDrawerToBeMoved] = useState("");
+  const [files, setFiles] = useState([]);
 
   const data = fakedata;
 
@@ -72,6 +73,8 @@ export default function AppRoutes() {
                 data={data}
                 selectedScribbleId={selectedScribbleId}
                 setSelectedScribbleId={setSelectedScribbleId}
+                files={files}
+                setFiles={setFiles}
               />
             }
           ></Route>
@@ -83,12 +86,13 @@ export default function AppRoutes() {
                 data={data}
                 selectedScribbleId={selectedScribbleId}
                 setSelectedScribbleId={setSelectedScribbleId}
+                files={files}
               />
             }
           ></Route>
           <Route
             path="/scribble/:id"
-            element={<PerScribblePage data={data} />}
+            element={<PerScribblePage data={data} files={files} />}
           ></Route>
           <Route
             path="/sort"

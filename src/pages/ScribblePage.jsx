@@ -4,24 +4,47 @@ import "../css/ScribblePage.css";
 import { Icon } from "@iconify/react";
 import { useNavigate, Link } from "react-router-dom";
 import InputField from "../components/InputField";
+import FileDrop from "../components/FileDrop";
 
-export default function ScribblePage({data, selectedScribbleId, setSelectedScribbleId}) {
+export default function ScribblePage({
+  data,
+  selectedScribbleId,
+  setSelectedScribbleId,
+  files,
+  setFiles
+}) {
   const navigate = useNavigate();
   // const [scribbleId, setScribbleId] = useState("");
   const [scribbleContent, setScribbleContent] = useState("");
   const [scribbleTitle, setScribbleTitle] = useState("");
 
+  console.log(files.length)
+
   const createNewScribble = () => {
     console.log("scribble length: ", Object.values(data["scribbles"]).length);
+    const attachmentBool = files.length < 1 ? false : true;
+    //files default extraction include only path and preview so add more info here
+    let filesInfo = [];
+    for (let x of files){
+      const perFile = {}
+      perFile["name"] = x.name
+      perFile["preview"] = x.preview
+      perFile["size"] = x.size
+      perFile["type"] = x.type
+      filesInfo.push(perFile)
+    }
     let dataPost = {
       userId: 1,
       // id: Object.values(data["scribbles"]).length + 1,
-      id:selectedScribbleId,
+      id: selectedScribbleId,
       title: scribbleTitle ? scribbleTitle : "Untitled",
       type: "scribble",
       content: scribbleContent,
       stray: true,
       level: 1,
+      attachment: attachmentBool,
+      files:filesInfo
+
     };
     fetch("http://localhost:3000/scribbles", {
       method: "POST",
@@ -42,19 +65,17 @@ export default function ScribblePage({data, selectedScribbleId, setSelectedScrib
 
   const handleTitleChange = (value) => {
     setScribbleTitle(value);
-    setSelectedScribbleId(Object.values(data["scribbles"]).length + 1)
+    setSelectedScribbleId(Object.values(data["scribbles"]).length + 1);
   };
 
   const handleSubmitScribble = () => {
     createNewScribble();
   };
 
-  
-
   return (
     <div className="ScribblePage">
       <div>
-        <Icon icon="ic:outline-attachment" color="black" width="36" />
+        {/* <Icon icon="ic:outline-attachment" color="black" width="36" /> */}
         {/* <Link to="/sort" > */}
         <Icon
           icon="mingcute:drawer-line"
@@ -62,10 +83,9 @@ export default function ScribblePage({data, selectedScribbleId, setSelectedScrib
           width="30"
           height="30"
           onClick={() => {
-            createNewScribble()
-            navigate("/sort", {  state: {id:selectedScribbleId} })
+            createNewScribble();
+            navigate("/sort", { state: { id: selectedScribbleId } });
           }}
-
         />
         {/* </Link> */}
       </div>
@@ -79,6 +99,8 @@ export default function ScribblePage({data, selectedScribbleId, setSelectedScrib
         // Change the name - handleNewDrawerChange
         handleNewDrawerChange={handleTitleChange}
       />
+      <FileDrop files={files} setFiles={setFiles} />
+
       <br />
       <div className="textarea-wrap">
         <textarea
@@ -91,6 +113,7 @@ export default function ScribblePage({data, selectedScribbleId, setSelectedScrib
           Scribble here
         </textarea>
       </div>
+      <div contentEditable="true" className="screenshot"></div>
       <br />
       {/* <Button href="#" btnName="Just Save" color="yellow" /> */}
       <button onClick={handleSubmitScribble}>Just Save</button>
