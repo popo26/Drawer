@@ -35,32 +35,63 @@ const img = {
   height: "100%",
 };
 
-// function FileDrop() {
-//     const [files, setFiles] = useState([]);
-//     const onDrop = useCallback((acceptedFiles) => {
-//       acceptedFiles.forEach((file) => {
-//         const reader = new FileReader()
+// function FileDrop({files, setFiles}) {
+//   //const [files, setFiles] = useState([]);
+//   const onDrop = useCallback(
+//     (acceptedFiles) => {
+//       setFiles(
+//         acceptedFiles.map((file) =>
+//           Object.assign(file, {
+//             preview: URL.createObjectURL(file),
+//           })
+//         )
+//       );
 
-//         reader.onabort = () => console.log('file reading was aborted')
-//         reader.onerror = () => console.log('file reading has failed')
-//         reader.onload = () => {
-//         // Do whatever you want with the file contents
-//           const binaryStr = reader.result
-//           console.log(binaryStr)
-//         }
-//         reader.readAsArrayBuffer(file)
-//       })
+//       const form = new FormData();
+//       form.append("fileUpload", acceptedFiles[0]);
+//       console.log("form", form)
 
-//     }, [])
-//     const {getRootProps, getInputProps} = useDropzone({onDrop})
+//       fetch("http://localhost:3000/upload", {
+//         method: "POST",
+//         body: form,
+//       });
+//     },
+//     [setFiles]
+//   );
 
-//     return (
-//       <div {...getRootProps()}>
-//         <input {...getInputProps()} />
+//   const { getRootProps, getInputProps, isDragActive } = useDropzone({
+//     onDrop,
+//     accept: "image/*",
+//   });
+
+//   useEffect(
+//     () => () => {
+//       files.forEach((file) => URL.revokeObjectURL(file.preview));
+//     },
+//     [files]
+//   );
+
+//   return (
+//     <div {...getRootProps()}>
+//       <input {...getInputProps()} />
+//       {isDragActive ? (
+//         <p>Drop the files here ...</p>
+//       ) : (
 //         <p>Drag 'n' drop some files here, or click to select files</p>
-//       </div>
-//     )
-//   }
+//       )}
+
+//       {files.map((file, index) => (
+//         <div key={file.name}>
+//           <img
+//             src={file.preview}
+//             style={{ width: "100px", height: "100px" }}
+//             alt=""
+//           />
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
 
 //////+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -73,9 +104,9 @@ function FileDrop({ files, setFiles }) {
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: {
-      "image/png": [],
-      "image/jpg": [],
-      "image/jpeg": [],
+      "image/*": ["png", "jpg"],
+    //   "image/jpg": [],
+    //   "image/jpeg": [],
     },
     onDrop: (acceptedFiles) => {
       setFiles(
@@ -95,21 +126,19 @@ function FileDrop({ files, setFiles }) {
           src={file.preview}
           style={img}
           // Revoke data uri after image is loaded
-          onLoad={() => {
-            // const x = new FileReader();
-            // x.readAsDataURL(file.preview);
-            URL.revokeObjectURL(file.preview);
-          }}
+        //   onLoad={() => {
+        //     URL.revokeObjectURL(file.preview);
+        //   }}
         />
       </div>
     </div>
   ));
 
   //   const removeButton = Dropzone.createElement("<button>Remove file</button>");
-  useEffect(() => {
-    // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-    return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
-  }, []);
+//   useEffect(() => {
+//     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+//     return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
+//   }, []);
 
   return (
     <section className="container">

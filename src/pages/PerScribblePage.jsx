@@ -102,26 +102,27 @@ export default function PerScribblePage({ data, files, setFiles }) {
 
   const thumbs = data["scribbles"]
     .find((item) => item.id == id)
-    .files.map((file) => (  
+    .files.map((file) => (
       <div style={thumb} key={file.name}>
         <div style={thumbInner}>
           <img
             src={file.preview}
             style={img}
             // Revoke data uri after image is loaded
-            onLoad={() => {
-                // const x = new FileReader;
-                // x.readAsDataURL(file.preview)
-              URL.revokeObjectURL(file.preview);
-            }}
+            // onLoad={() => {
+            //   URL.revokeObjectURL(file.preview);
+            // }}
           />
         </div>
-        <div>{file.name}</div>
-
+        {/* <div>{file.name}</div> */}
       </div>
     ));
 
-    //blob:http://localhost:5173/87cd54c7-a2cf-450d-a73d-ccca1464e51b
+ 
+
+
+
+  //blob:http://localhost:5173/87cd54c7-a2cf-450d-a73d-ccca1464e51b
 
   // useEffect(() => {
   //     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
@@ -129,6 +130,7 @@ export default function PerScribblePage({ data, files, setFiles }) {
   //     .find((item) => item.id == id)
   //     .files.forEach((file) => URL.revokeObjectURL(file.preview));
   //   }, []);
+
 
   return (
     <div>
@@ -139,7 +141,7 @@ export default function PerScribblePage({ data, files, setFiles }) {
           {scribbleData.id}, {scribbleData.title}
         </h2>
         <section>{scribbleData.content}</section>
-        <aside>{renderedAttachments}</aside>
+        {/* <aside>{renderedAttachments}</aside> */}
         <aside style={thumbsContainer}>{thumbs}</aside>
 
       </div>
@@ -165,7 +167,7 @@ export default function PerScribblePage({ data, files, setFiles }) {
           height="30"
           onClick={() => navigate("/sort", { state: { id: id } })}
         />
-        <FileDrop files={files} setFiles={setFiles} />
+        {/* <FileDrop files={files} setFiles={setFiles} /> */}
       </div>
     </div>
   );

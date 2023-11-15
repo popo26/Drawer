@@ -27,6 +27,7 @@ import SortPage from "../pages/SortPage";
 import SortPreviewPage from "../pages/SortPreviewPage";
 import SortDrawerPage from "../pages/SortDrawerPage";
 import SortDrawerPreviewPage from "../pages/SortDrawerPreviewPage";
+import TestPage from "../pages/TestPage";
 
 export default function AppRoutes() {
   const [expandedIndex, setExpandedIndex] = useState(-1);
@@ -92,7 +93,9 @@ export default function AppRoutes() {
           ></Route>
           <Route
             path="/scribble/:id"
-            element={<PerScribblePage data={data} files={files} setFiles={setFiles} />}
+            element={
+              <PerScribblePage data={data} files={files} setFiles={setFiles} />
+            }
           ></Route>
           <Route
             path="/sort"
@@ -173,6 +176,19 @@ export default function AppRoutes() {
                 setSelectedDrawerId={setSelectedDrawerId}
                 drawerToBeMoved={drawerToBeMoved}
                 setDrawerToBeMoved={setDrawerToBeMoved}
+              />
+            }
+          ></Route>
+{/* TEST */}
+          <Route
+            path="/test"
+            element={
+              <TestPage
+                data={data}
+                selectedScribbleId={selectedScribbleId}
+                setSelectedScribbleId={setSelectedScribbleId}
+                files={files}
+                setFiles={setFiles}
               />
             }
           ></Route>

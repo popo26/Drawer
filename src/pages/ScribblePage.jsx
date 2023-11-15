@@ -1,38 +1,39 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Button from "../components/Button";
 import "../css/ScribblePage.css";
 import { Icon } from "@iconify/react";
 import { useNavigate, Link } from "react-router-dom";
 import InputField from "../components/InputField";
 import FileDrop from "../components/FileDrop";
+import { useDropzone } from "react-dropzone";
 
 export default function ScribblePage({
   data,
   selectedScribbleId,
   setSelectedScribbleId,
   files,
-  setFiles
+  setFiles,
 }) {
   const navigate = useNavigate();
   // const [scribbleId, setScribbleId] = useState("");
   const [scribbleContent, setScribbleContent] = useState("");
   const [scribbleTitle, setScribbleTitle] = useState("");
 
-
   const createNewScribble = () => {
     console.log("scribble length: ", Object.values(data["scribbles"]).length);
     const attachmentBool = files.length < 1 ? false : true;
     //files default extraction include only path and preview so add more info here
-    console.log("files", files)
+    console.log("files", files);
+
     let filesInfo = [];
-    for (let x of files){
-      const perFile = {}
-      perFile["name"] = x.name
-      perFile["preview"] = x.preview
-      console.log('url', x)
-      perFile["size"] = x.size
-      perFile["type"] = x.type
-      filesInfo.push(perFile)
+    for (let x of files) {
+      const perFile = {};
+      perFile["path"] = x.path;
+      perFile["name"] = x.name;
+      perFile["preview"] = x.preview;
+      perFile["size"] = x.size;
+      perFile["type"] = x.type;
+      filesInfo.push(perFile);
     }
     let dataPost = {
       userId: 1,
@@ -44,8 +45,8 @@ export default function ScribblePage({
       stray: true,
       level: 1,
       attachment: attachmentBool,
-      files:filesInfo
-
+      files: filesInfo,
+      // files:form
     };
     fetch("http://localhost:3000/scribbles", {
       method: "POST",
