@@ -18,6 +18,7 @@ export default function ScribblePage({
   // const [scribbleId, setScribbleId] = useState("");
   const [scribbleContent, setScribbleContent] = useState("");
   const [scribbleTitle, setScribbleTitle] = useState("");
+  const [tempFiles, setTempFiles] = useState([]);
 
   const createNewScribble = () => {
     console.log("scribble length: ", Object.values(data["scribbles"]).length);
@@ -72,7 +73,30 @@ export default function ScribblePage({
 
   const handleSubmitScribble = () => {
     createNewScribble();
+    setTempFiles([])
   };
+
+  // const deleteAttachment = (blob) => {
+  //   fetch(`http://localhost:3000/scribbles/${id}`, {
+  //     method: "DELETE",
+  //     mode: "cors",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     // body: JSON.stringify(dataPost),
+  //   })
+  //     .then((response) => console.log(response.json()))
+  //     .catch((error) => console.error(error.message));
+  // };
+
+  // const handleDelete = (blob) => {
+  //   alert(`Are you sure to delete? -ID:${blob}`);
+  //   deleteAttachment(blob);
+  // };
+
+  // const handleDeleteAttachment = (passedBlob) => {
+  //   deleteAttachment(passedBlob);
+  // };
 
   return (
     <div className="ScribblePage">
@@ -101,7 +125,12 @@ export default function ScribblePage({
         // Change the name - handleNewDrawerChange
         handleNewDrawerChange={handleTitleChange}
       />
-      <FileDrop files={files} setFiles={setFiles} />
+      <FileDrop
+        files={files}
+        setFiles={setFiles}
+        tempFiles={tempFiles}
+        setTempFiles={setTempFiles}
+      />
 
       <br />
       <div className="textarea-wrap">

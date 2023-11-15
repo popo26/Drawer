@@ -95,7 +95,9 @@ const img = {
 
 //////+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-function FileDrop({ files, setFiles }) {
+function FileDrop({ files, setFiles, tempFiles, setTempFiles }) {
+  // const [tempFiles, setTempFiles] = useState([]);
+
   //   const [files, setFiles] = useState([]);
   //   const { getRootProps, getInputProps } = useDropzone({
   //     accept: {
@@ -104,41 +106,76 @@ function FileDrop({ files, setFiles }) {
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: {
-      "image/*": ["png", "jpg"],
-    //   "image/jpg": [],
-    //   "image/jpeg": [],
+      //   "image/*": ["png", "jpg"],
+      "image/jpg": [],
+      "image/jpeg": [],
+      "image/png": [],
     },
     onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
+      //const newFiles = [...tempFiles];
+      // setTempFiles([...newFiles, acceptedFiles]);
+
+      const newFiles = acceptedFiles.map((file) => {
+        return {
+          file,
+          preview: URL.createObjectURL(file),
+        };
+      });
+      let newTempFilesState = [...tempFiles.concat(newFiles)];
+      let newFilesState = [...tempFiles.concat(newFiles)];
+
+      setTempFiles(newTempFilesState);
+      setFiles(newFilesState)
+    //   setFiles(
+    //     acceptedFiles.map((file) =>
+    //       Object.assign(file, {
+    //         preview: URL.createObjectURL(file),
+    //       })
+    //     )
+    //   );
     },
   });
 
-  const thumbs = files.map((file) => (
-    <div style={thumb} key={file.name}>
+
+  const handleDelete = (e, blob) => {
+    e.stopPropagation();
+    console.log("current files", files);
+    const newFiles = files.filter((item) => item.preview != blob);
+    setFiles(newFiles);
+    setTempFiles(newFiles);
+  };
+  console.log("acceptedFiles", acceptedFiles);
+
+  console.log("fffilesFIleDrop", files);
+
+  //tempFiles so that after added to DB it disappear from attachment field. files for throughout App
+  const thumbs = tempFiles.map((file) => (
+    <div style={thumb} key={file.preview}>
       <div style={thumbInner}>
         <img
           src={file.preview}
           style={img}
           // Revoke data uri after image is loaded
-        //   onLoad={() => {
-        //     URL.revokeObjectURL(file.preview);
-        //   }}
+          //   onLoad={() => {
+          //     URL.revokeObjectURL(file.preview);
+          //   }}
         />
+      </div>
+      <div className="remove-div">
+        <button
+          className="remove-btn"
+          onClick={(e) => handleDelete(e, file.preview)}
+        >
+          X
+        </button>
       </div>
     </div>
   ));
 
-  //   const removeButton = Dropzone.createElement("<button>Remove file</button>");
-//   useEffect(() => {
-//     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-//     return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
-//   }, []);
+  //   useEffect(() => {
+  //     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+  //     return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
+  //   }, []);
 
   return (
     <section className="container">

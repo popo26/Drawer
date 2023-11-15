@@ -36,7 +36,9 @@ const img = {
   height: "100%",
 };
 
-export default function PerScribblePage({ data, files, setFiles }) {
+// export default function PerScribblePage({ data, files, setFiles }) {
+    export default function PerScribblePage({ data }) {
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -48,12 +50,6 @@ export default function PerScribblePage({ data, files, setFiles }) {
       scribbleData = x;
     }
   }
-
-  //   const x = new FileReader;
-  //   x.onload = function() {
-  // console.log("x", x)
-  //   }
-  //   x.readAsDataURL()
 
   const deleteScribble = (id) => {
     console.log("drawer length: ", Object.values(data["scribbles"]).length);
@@ -80,56 +76,135 @@ export default function PerScribblePage({ data, files, setFiles }) {
       : navigate("/home");
   };
 
-  //   const renderedAttachments = () => {
-  //     const displayedScribble = data["scribbles"].filter(item => item.id === id)
-  //     const linkedAttachments = displayedScribble.files.map(item=>item.name)
-  //     return linkedAttachments
-  //   }
-
-  //   console.log(
-  //     data["scribbles"].find((item) => item.id == id).files.map((x) => x.name)
-  //   );
-
-  //   const x = new FileReader();
-  //   x.onload = function () {
-  //     console.log("x", x);
-  //   };
-  //   x.readAsDataURL(data["scribbles"].find((item) => item.id == id).files[0]);
-
-  const renderedAttachments = data["scribbles"]
-    .find((item) => item.id == id)
-    .files.map((x) => x.preview);
-
-  const thumbs = data["scribbles"]
-    .find((item) => item.id == id)
-    .files.map((file) => (
-      <div style={thumb} key={file.name}>
-        <div style={thumbInner}>
-          <img
-            src={file.preview}
-            style={img}
-            // Revoke data uri after image is loaded
-            // onLoad={() => {
-            //   URL.revokeObjectURL(file.preview);
-            // }}
-          />
-        </div>
-        {/* <div>{file.name}</div> */}
-      </div>
-    ));
-
- 
+   const deleteAttachment = (id, blob) => {
+    const selectedScribble = data['scribbles'].filter(item=>item.id ==id)
+    const newAttachments = selectedScribble[0].files.filter((item) => item.preview != blob);
+    // setFiles(newAttachments)
+    // console.log("fffiles", files)
+    let filesInfo = [];
+    for (let x of newAttachments) {
+      const perFile = {};
+      perFile["path"] = x.path;
+      perFile["name"] = x.name;
+      perFile["preview"] = x.preview;
+      perFile["size"] = x.size;
+      perFile["type"] = x.type;
+      filesInfo.push(perFile);
+    }
+    let dataPost = {
+        userId: 1,
+        id: id,
+        title: selectedScribble[0].title,
+        type: "scribble",
+        content: selectedScribble[0].content,
+        stray: selectedScribble[0].stray,
+        level: selectedScribble[0].level,
+        attachment: filesInfo.length===0? false: selectedScribble[0].attachment,
+        files: filesInfo,
+      };
+    fetch(`http://localhost:3000/scribbles/${id}`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataPost),
+    })
+      .then((response) => console.log(response.json()))
+      .catch((error) => console.error(error.message));
+  };
 
 
+  const handleDeleteAttachment = (e, blob) => {
+    //e.stopPropagation();
+    // console.log("current files", files);
+    const currentAttachemnts = data['scribbles'].filter(item=>item.id ==id).files
+    // const newAttachments = currentAttachments.filter((item) => item.preview != blob);
+    // setFiles(newFiles);
+    console.log("Delete clicked", data['scribbles'].filter(item=>item.id ==id)[0].files)
+    deleteAttachment(id,blob)
+  };
 
-  //blob:http://localhost:5173/87cd54c7-a2cf-450d-a73d-ccca1464e51b
 
-  // useEffect(() => {
-  //     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-  //     return () => data["scribbles"]
-  //     .find((item) => item.id == id)
-  //     .files.forEach((file) => URL.revokeObjectURL(file.preview));
-  //   }, []);
+//   const renderedAttachments = data["scribbles"]
+//     .find((item) => item.id == id)
+//     .files.map((x) => x.preview);
+
+//   const thumbs = data["scribbles"]
+//     .find((item) => item.id == id)
+//     .files.map((file) => (
+//       <div style={thumb} key={file.preview}>
+//         <div style={thumbInner}>
+//           <img
+//             src={file.preview}
+//             style={img}
+//             // Revoke data uri after image is loaded
+//             // onLoad={() => {
+//             //   URL.revokeObjectURL(file.preview);
+//             // }}
+//           />
+//         </div>
+//         <div className="remove-div">
+//         <button
+//           className="remove-btn"
+//           onClick={(e) => handleDeleteAttachment(e, file.preview)}
+//         >
+//           X
+//         </button>
+//       </div>
+//       </div>
+//     ));
+
+const thumbs = () => {return data["scribbles"]
+.find((item) => item.id == id)
+.files.map((file) => (
+  <div style={thumb} key={file.preview}>
+    <div style={thumbInner}>
+      <img
+        src={file.preview}
+        style={img}
+        // Revoke data uri after image is loaded
+        // onLoad={() => {
+        //   URL.revokeObjectURL(file.preview);
+        // }}
+      />
+    </div>
+    <div className="remove-div">
+    <button
+      className="remove-btn"
+      onClick={(e) => handleDeleteAttachment(e, file.preview)}
+    >
+      X
+    </button>
+  </div>
+  </div>
+))};
+
+    //console.log("fffilesPerScribble", files)
+
+    // useEffect(() => {
+    //     const selectedScribble = data['scribbles'].filter(item=>item.id ==id)
+    //    console.log(files)
+    //    setFiles(
+    //     files.map((file) =>
+    //       Object.assign(file, {
+    //         preview: URL.createObjectURL(file),
+    //       })
+    //     )
+    //   );        
+    // //   return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
+    // }, []);
+
+
+
+//   useEffect(() => {
+//       // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+//       return () => data["scribbles"]
+//       .find((item) => item.id == id)
+//       .files.forEach((file) => URL.revokeObjectURL(file.preview));
+//     }, []);
+
+
 
 
   return (
@@ -142,7 +217,7 @@ export default function PerScribblePage({ data, files, setFiles }) {
         </h2>
         <section>{scribbleData.content}</section>
         {/* <aside>{renderedAttachments}</aside> */}
-        <aside style={thumbsContainer}>{thumbs}</aside>
+        {scribbleData.attachment&&<aside style={thumbsContainer}>{thumbs()}</aside>}
 
       </div>
       <div>

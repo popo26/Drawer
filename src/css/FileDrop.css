@@ -28,3 +28,12 @@
   const rejectStyle = {
     borderColor: '#ff1744'
   }; */
+
+  .remove-div{
+    /* position:relative; */
+  }
+.remove-btn{
+  position:absolute;
+ background-color: #777;
+ color:white;
+}

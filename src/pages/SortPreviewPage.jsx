@@ -75,8 +75,6 @@ export default function SortPreviewPage({
       //   drawerId: Object.values(data["drawers"]).length + 1,
       drawerId: passedId,
       userId: 1,
-      // title: "HARD CODED",
-      // content: "HTTP//:HARDCODED",
       title: scribbleObject[0]["title"],
       content: scribbleObject[0]["content"],
       type: "scribble",
@@ -84,6 +82,8 @@ export default function SortPreviewPage({
       stray: false,
       // level:parentDrawerObject[0]["level"]+1,
       level: selectedDrawerLevel,
+      attachment:scribbleObject[0]["attachment"],
+      files:scribbleObject[0]["files"]
     };
     fetch(`http://localhost:3000/scribbles/${state.selectedScribbleId}`, {
       method: "PUT",

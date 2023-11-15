@@ -51,6 +51,8 @@ export default function SortPage({
       id: selectedScribbleId,
       stray: false,
       level: 1,
+      attachment:scribbleObject[0]["attachment"],
+      files:[scribbleObject[0]["files"]]
     };
     fetch(`http://localhost:3000/scribbles/${selectedScribbleId}`, {
       method: "PUT",
