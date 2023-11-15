@@ -2,7 +2,7 @@ import "../css/DrawerListPage.css";
 import { Icon } from "@iconify/react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useCallback, useRef, useEffect } from "react";
-import sanitizeHtml from "sanitize-html";
+// import sanitizeHtml from "sanitize-html";
 import ContentEditable from "react-contenteditable";
 
 export default function DrawerListPage({
@@ -118,10 +118,10 @@ export default function DrawerListPage({
   };
 
   //+++++++++++++++++++Get feedback from Anthony++++++++++++++++++++++++++++++++
-  const sanitizeConf = {
-    allowedTags: ["b", "i", "em", "strong", "a", "p", "h1"],
-    allowedAttributes: { a: ["href"] },
-  };
+  // const sanitizeConf = {
+  //   allowedTags: ["b", "i", "em", "strong", "a", "p", "h1"],
+  //   allowedAttributes: { a: ["href"] },
+  // };
 
   const showUpdateIcon = (id) => {
     const isEditing = id == updateIconIndex;
@@ -212,16 +212,16 @@ export default function DrawerListPage({
   //   // );
   // };
 
-  const onContentChange = useCallback((evt) => {
-    const sanitizeConf = {
-      allowedTags: ["b", "i", "a", "p"],
-      allowedAttributes: { a: ["href"] },
-    };
-    setDrawerNameToEdit(
-      sanitizeHtml(evt.currentTarget.innerText, sanitizeConf)
-      // sanitizeHtml(evt.target.value, sanitizeConf)
-    );
-  }, []);
+  // const onContentChange = useCallback((evt) => {
+  //   const sanitizeConf = {
+  //     allowedTags: ["b", "i", "a", "p"],
+  //     allowedAttributes: { a: ["href"] },
+  //   };
+  //   setDrawerNameToEdit(
+  //     sanitizeHtml(evt.currentTarget.innerText, sanitizeConf)
+  //     // sanitizeHtml(evt.target.value, sanitizeConf)
+  //   );
+  // }, []);
 
   const handleEdit = (e, id) => {
     handleSelectedDrawer(id);

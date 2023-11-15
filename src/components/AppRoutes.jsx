@@ -92,7 +92,7 @@ export default function AppRoutes() {
           ></Route>
           <Route
             path="/scribble/:id"
-            element={<PerScribblePage data={data} files={files} />}
+            element={<PerScribblePage data={data} files={files} setFiles={setFiles} />}
           ></Route>
           <Route
             path="/sort"

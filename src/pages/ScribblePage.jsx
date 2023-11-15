@@ -18,17 +18,18 @@ export default function ScribblePage({
   const [scribbleContent, setScribbleContent] = useState("");
   const [scribbleTitle, setScribbleTitle] = useState("");
 
-  console.log(files.length)
 
   const createNewScribble = () => {
     console.log("scribble length: ", Object.values(data["scribbles"]).length);
     const attachmentBool = files.length < 1 ? false : true;
     //files default extraction include only path and preview so add more info here
+    console.log("files", files)
     let filesInfo = [];
     for (let x of files){
       const perFile = {}
       perFile["name"] = x.name
       perFile["preview"] = x.preview
+      console.log('url', x)
       perFile["size"] = x.size
       perFile["type"] = x.type
       filesInfo.push(perFile)

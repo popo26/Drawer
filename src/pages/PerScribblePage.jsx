@@ -2,9 +2,8 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useDropzone } from "react-dropzone";
 import Dropzone from "react-dropzone";
-import {useEffect} from 'react';
+import { useEffect } from "react";
 import FileDrop from "../components/FileDrop";
-
 
 const thumbsContainer = {
   display: "flex",
@@ -37,7 +36,7 @@ const img = {
   height: "100%",
 };
 
-export default function PerScribblePage({ data, files }) {
+export default function PerScribblePage({ data, files, setFiles }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -50,8 +49,11 @@ export default function PerScribblePage({ data, files }) {
     }
   }
 
-//   const test = files.map(item=>item.preview)
-//   console.log("files", test)
+  //   const x = new FileReader;
+  //   x.onload = function() {
+  // console.log("x", x)
+  //   }
+  //   x.readAsDataURL()
 
   const deleteScribble = (id) => {
     console.log("drawer length: ", Object.values(data["scribbles"]).length);
@@ -84,10 +86,15 @@ export default function PerScribblePage({ data, files }) {
   //     return linkedAttachments
   //   }
 
-//   console.log(
-//     data["scribbles"].find((item) => item.id == id).files.map((x) => x.name)
-//   );
+  //   console.log(
+  //     data["scribbles"].find((item) => item.id == id).files.map((x) => x.name)
+  //   );
 
+  //   const x = new FileReader();
+  //   x.onload = function () {
+  //     console.log("x", x);
+  //   };
+  //   x.readAsDataURL(data["scribbles"].find((item) => item.id == id).files[0]);
 
   const renderedAttachments = data["scribbles"]
     .find((item) => item.id == id)
@@ -95,7 +102,7 @@ export default function PerScribblePage({ data, files }) {
 
   const thumbs = data["scribbles"]
     .find((item) => item.id == id)
-    .files.map((file) => (
+    .files.map((file) => (  
       <div style={thumb} key={file.name}>
         <div style={thumbInner}>
           <img
@@ -103,27 +110,30 @@ export default function PerScribblePage({ data, files }) {
             style={img}
             // Revoke data uri after image is loaded
             onLoad={() => {
+                // const x = new FileReader;
+                // x.readAsDataURL(file.preview)
               URL.revokeObjectURL(file.preview);
             }}
-            
           />
         </div>
+        <div>{file.name}</div>
+
       </div>
     ));
 
-  
+    //blob:http://localhost:5173/87cd54c7-a2cf-450d-a73d-ccca1464e51b
 
-    // useEffect(() => {
-    //     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-    //     return () => data["scribbles"]
-    //     .find((item) => item.id == id)
-    //     .files.forEach((file) => URL.revokeObjectURL(file.preview));
-    //   }, []);
+  // useEffect(() => {
+  //     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+  //     return () => data["scribbles"]
+  //     .find((item) => item.id == id)
+  //     .files.forEach((file) => URL.revokeObjectURL(file.preview));
+  //   }, []);
 
   return (
     <div>
       <div>Per Scribble Page - ID {id}</div>
-  
+
       <div>
         <h2>
           {scribbleData.id}, {scribbleData.title}
@@ -131,6 +141,7 @@ export default function PerScribblePage({ data, files }) {
         <section>{scribbleData.content}</section>
         <aside>{renderedAttachments}</aside>
         <aside style={thumbsContainer}>{thumbs}</aside>
+
       </div>
       <div>
         <Icon
@@ -154,7 +165,7 @@ export default function PerScribblePage({ data, files }) {
           height="30"
           onClick={() => navigate("/sort", { state: { id: id } })}
         />
-
+        <FileDrop files={files} setFiles={setFiles} />
       </div>
     </div>
   );
