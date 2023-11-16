@@ -250,11 +250,20 @@ export default function SortDrawerPreviewPage({
     return renderedChildren;
   };
 
+  const drawerToBeMovedObj = data["drawers"].filter(
+    (item) => item.id == drawerToBeMoved
+  );
+  console.log("LOOK", drawerToBeMovedObj[0]["name"]);
+  const destinationObj = data["drawers"].filter(
+    (item) => item.id == selectedDrawerId
+  );
+  console.log("LOOK", destinationObj[0]["name"]);
+
+
   return (
     <div>
-      <h1>SORT DRAWER PREVIEW </h1>
-      <h3>Selected Drawer ID: {selectedDrawerId}</h3>
-      <p>Drawer To Be Moved ID: {drawerToBeMoved}</p>
+      <h3>Drawer to be moved: {drawerToBeMovedObj[0]["name"]}---ID {drawerToBeMoved}</h3>
+      <p>To: {selectedDrawerId}</p>
 
       <div>{renderedList}</div>
       {/* <div>{findSubDrawers()}</div> */}
