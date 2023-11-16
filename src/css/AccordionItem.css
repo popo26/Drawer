@@ -1,15 +1,15 @@
-.AccordionItem{
-    border:2px solid grey;
-    text-align: left;
+.AccordionItem {
+  border: 2px solid rgb(210, 208, 208);
+  text-align: left;
 }
 
 .accordion-header {
-display: flex;
-align-items: center;
-
+  display: flex;
+  align-items: center;
+  background-color:rgb(205, 191, 240);
+  /* background:url('../assets/images/green.jpg') */
 }
 
-.no-subfolder{
-    background-color:lightgrey
-  }
-
+.no-subfolder {
+  background-color: lightgrey;
+}

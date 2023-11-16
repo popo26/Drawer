@@ -94,36 +94,15 @@
       "level": 2
     },
     {
-      "rootId": 9,
-      "drawerId": 8,
-      "userId": 1,
-      "name": "Sub Sub drawer Swift folder",
-      "type": "drawer",
-      "sub-drawer": true,
-      "level": 3,
-      "root": false,
-      "id": 9
-    },
-    {
       "rootId": 7,
       "userId": 1,
-      "id": 10,
-      "name": "test",
+      "drawerId": 8,
+      "id": 9,
+      "name": "Sub Sub drawer Swift folder",
       "type": "drawer",
       "sub-drawer": false,
-      "drawerId": 9,
       "root": false,
-      "level": 4
-    },
-    {
-      "rootId": 11,
-      "userId": 1,
-      "id": 11,
-      "name": "TEST",
-      "type": "drawer",
-      "sub-drawer": false,
-      "root": true,
-      "level": 1
+      "level": 3
     }
   ],
   "scribbles": [
@@ -296,28 +275,8 @@
       "level": 1
     },
     {
-      "drawerId": 2,
       "userId": 1,
-      "title": "Untitled",
-      "content": "",
-      "type": "scribble",
       "id": 17,
-      "stray": false,
-      "level": 1,
-      "attachment": true,
-      "files": [
-        {
-          "path": "eight.jpg",
-          "name": "eight.jpg",
-          "preview": "blob:http://localhost:5173/563c9f98-8d18-4d42-ac69-8fb0c46f8da3",
-          "size": 1859353,
-          "type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "userId": 1,
-      "id": 18,
       "title": "Untitled",
       "type": "scribble",
       "content": "",
@@ -326,99 +285,7 @@
       "attachment": true,
       "files": [
         {
-          "path": "eight.jpg",
-          "name": "eight.jpg",
-          "preview": "blob:http://localhost:5173/8f4e1f53-4b5d-4fd3-b5bb-2747b06cb0ab",
-          "size": 1859353,
-          "type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "drawerId": 10,
-      "userId": 1,
-      "title": "Untitled",
-      "content": "",
-      "type": "scribble",
-      "id": 19,
-      "stray": false,
-      "level": 4,
-      "attachment": true,
-      "files": [
-        {
-          "path": "eight.jpg",
-          "name": "eight.jpg",
-          "preview": "blob:http://localhost:5173/8f4e1f53-4b5d-4fd3-b5bb-2747b06cb0ab",
-          "size": 1859353,
-          "type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "userId": 1,
-      "id": 20,
-      "title": "Untitled",
-      "type": "scribble",
-      "content": "",
-      "stray": true,
-      "level": 1,
-      "attachment": true,
-      "files": [
-        {
-          "path": "eight.jpg",
-          "name": "eight.jpg",
-          "preview": "blob:http://localhost:5173/547d96bd-9390-4347-882e-ab59b6828dcc",
-          "size": 1859353,
-          "type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "userId": 1,
-      "id": 21,
-      "title": "Untitled",
-      "type": "scribble",
-      "content": "",
-      "stray": true,
-      "level": 1,
-      "attachment": true,
-      "files": [
-        {
-          "path": "eight.jpg",
-          "name": "eight.jpg",
-          "preview": "blob:http://localhost:5173/9bbaf321-19ef-41d1-b8df-5856927be0fd",
-          "size": 1859353,
-          "type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "userId": 1,
-      "id": 22,
-      "title": "Untitled",
-      "type": "scribble",
-      "content": "",
-      "stray": true,
-      "level": 1,
-      "attachment": true,
-      "files": [
-        {
-          "preview": "blob:http://localhost:5173/424fd89e-72b6-4135-9e62-7c0566f4dd38"
-        },
-        {
-          "preview": "blob:http://localhost:5173/4a400d29-1a15-4e4a-a9e3-a9f16b4f8f8c"
-        },
-        {
-          "preview": "blob:http://localhost:5173/f327e0fb-84df-47fa-89af-9837e8055019"
-        },
-        {
-          "preview": "blob:http://localhost:5173/5e271298-338f-438d-a220-add939472734"
-        },
-        {
-          "preview": "blob:http://localhost:5173/f3c5e71b-7471-4424-b895-9a8225faf020"
-        },
-        {
-          "preview": "blob:http://localhost:5173/844be2db-f5e9-46a5-bb57-b9344fde8d7f"
+          "preview": "blob:http://localhost:5173/facf9c43-ce10-4315-99ff-a1c04db6392e"
         }
       ]
     }

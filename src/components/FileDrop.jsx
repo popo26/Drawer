@@ -35,64 +35,6 @@ const img = {
   height: "100%",
 };
 
-// function FileDrop({files, setFiles}) {
-//   //const [files, setFiles] = useState([]);
-//   const onDrop = useCallback(
-//     (acceptedFiles) => {
-//       setFiles(
-//         acceptedFiles.map((file) =>
-//           Object.assign(file, {
-//             preview: URL.createObjectURL(file),
-//           })
-//         )
-//       );
-
-//       const form = new FormData();
-//       form.append("fileUpload", acceptedFiles[0]);
-//       console.log("form", form)
-
-//       fetch("http://localhost:3000/upload", {
-//         method: "POST",
-//         body: form,
-//       });
-//     },
-//     [setFiles]
-//   );
-
-//   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-//     onDrop,
-//     accept: "image/*",
-//   });
-
-//   useEffect(
-//     () => () => {
-//       files.forEach((file) => URL.revokeObjectURL(file.preview));
-//     },
-//     [files]
-//   );
-
-//   return (
-//     <div {...getRootProps()}>
-//       <input {...getInputProps()} />
-//       {isDragActive ? (
-//         <p>Drop the files here ...</p>
-//       ) : (
-//         <p>Drag 'n' drop some files here, or click to select files</p>
-//       )}
-
-//       {files.map((file, index) => (
-//         <div key={file.name}>
-//           <img
-//             src={file.preview}
-//             style={{ width: "100px", height: "100px" }}
-//             alt=""
-//           />
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
 //////+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function FileDrop({ files, setFiles, tempFiles, setTempFiles }) {
@@ -125,17 +67,17 @@ function FileDrop({ files, setFiles, tempFiles, setTempFiles }) {
       let newFilesState = [...tempFiles.concat(newFiles)];
 
       setTempFiles(newTempFilesState);
-      setFiles(newFilesState)
-    //   setFiles(
-    //     acceptedFiles.map((file) =>
-    //       Object.assign(file, {
-    //         preview: URL.createObjectURL(file),
-    //       })
-    //     )
-    //   );
+      setFiles(newFilesState);
+      //ORIGINAL
+      //   setFiles(
+      //     acceptedFiles.map((file) =>
+      //       Object.assign(file, {
+      //         preview: URL.createObjectURL(file),
+      //       })
+      //     )
+      //   );
     },
   });
-
 
   const handleDelete = (e, blob) => {
     e.stopPropagation();

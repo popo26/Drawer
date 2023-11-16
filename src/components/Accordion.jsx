@@ -35,7 +35,6 @@ export default function Accordion({
   const findSubDrawers = (id, array) => {
     let newArray = [];
     let values = Object.values(array);
-    //console.log("Values", values)
 
     for (let x in values) {
       for (let y in values[x]) {

@@ -1,24 +1,39 @@
 .drawer-list {
-    text-align: left;
+  text-align: left;
 }
 
 .indent-2 {
-    text-indent: 40px;
-  }
-  
-  .indent-3 {
-    text-indent: 80px;
-  }
-  
-  .scrb-indent1 {
-    text-indent: 20px;
-  }
-  
-  .scrb-indent2 {
-    text-indent: 50px;
-  }
-  
-  .scrb-indent3 {
-    text-indent: 90px;
-  }
-  
+  text-indent: 40px;
+}
+
+.indent-3 {
+  text-indent: 80px;
+}
+
+.indent-4 {
+  text-indent: 1200px;
+}
+
+.indent-5 {
+  text-indent: 160px;
+}
+
+.scrb-indent1 {
+  text-indent: 20px;
+}
+
+.scrb-indent2 {
+  text-indent: 50px;
+}
+
+.scrb-indent3 {
+  text-indent: 90px;
+}
+
+.scrb-indent4 {
+  text-indent: 130px;
+}
+
+.scrb-indent5 {
+  text-indent: 170px;
+}

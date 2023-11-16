@@ -1,5 +1,4 @@
 .Accordion {
-  background-color: lightcyan;
   padding: 20px;
 }
 
@@ -7,34 +6,46 @@
   color: blue;
 }
 
-.indent-2{
+.indent-2 {
   text-indent: 50px;
 }
 
-.indent-3{
+.indent-3 {
   text-indent: 100px;
 }
 
-.scrb-indent1{
+.indent-3 {
+  text-indent: 150px;
+}
+
+.indent-4 {
+  text-indent: 200px;
+}
+
+.scrb-indent1 {
   text-indent: 30px;
-
 }
 
-.scrb-indent2{
+.scrb-indent2 {
   text-indent: 70px;
-
 }
 
-.scrb-indent3{
+.scrb-indent3 {
   text-indent: 120px;
+}
 
+.scrb-indent4 {
+  text-indent: 170px;
+}
+
+.scrb-indent5 {
+  text-indent: 220px;
 }
 
 .no-scribble {
   color: blueviolet;
   text-indent: 100px;
-  display:block;
-
+  display: block;
 }
 
 .individual-scribble {
@@ -54,7 +65,5 @@ a {
 } */
 
 .triangle {
-  float:left
+  float: left;
 }
-
-

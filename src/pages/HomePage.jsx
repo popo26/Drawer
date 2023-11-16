@@ -7,7 +7,7 @@ export default function HomePage({expandedIndex, data, handleExpand}) {
     <div>
       <Accordion expandedIndex={expandedIndex} handleExpand={handleExpand} data={data}/>
       {/* <Button btnName="Create New Drawer" href="/create"/> */}
-      <Link to="/create">Create New Drawer</Link>
+      <Link to="/create" className="btn btn-dark btn-lg">Create New Drawer</Link>
     </div>
   );
 }

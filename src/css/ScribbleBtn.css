@@ -1,15 +1,14 @@
 .ScribbleBtn-div{
-    position:absolute;
-    bottom:0;
-    background-color: blanchedalmond;
-    border:2px solid black;
-    
+    position:fixed;
+    bottom:10px;
+    left:10px;
 }
 
 .ScribbleBtn {
-    background: black;
+    background:rgb(180, 236, 69);
     border-radius:20px;
-    color:white;
+    border:4px solid rgb(181, 27, 166);
+    color:rgb(181, 27, 166);
 }
 
 .ScribbleBtn:hover {
