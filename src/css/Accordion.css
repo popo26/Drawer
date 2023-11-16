@@ -3,7 +3,7 @@
 }
 
 .sub-drawer-name {
-  color: blue;
+  color: grey;
 }
 
 .indent-2 {
@@ -57,7 +57,7 @@ a {
 }
 
 .sub-drawer-div {
-  border: 2px solid lightseagreen;
+  border-top: 2px dotted lightseagreen;
 }
 
 /* .sub-drawer-scribble-list {

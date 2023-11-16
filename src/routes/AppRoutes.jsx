@@ -10,12 +10,14 @@ import ScribbleListPage from "../pages/ScribbleListPage";
 import HomePage from "../pages/HomePage";
 import DrawerListPage from "../pages/DrawerListPage";
 import PerScribblePage from "../pages/PerScribblePage";
-import SortPage from "../pages/SortPage";
-import SortPreviewPage from "../pages/SortPreviewPage";
+// import SortPage from "../pages/SortPage";
+// import SortPreviewPage from "../pages/SortPreviewPage";
 import SortDrawerPage from "../pages/SortDrawerPage";
 import SortDrawerPreviewPage from "../pages/SortDrawerPreviewPage";
 import TestPage from "../pages/TestPage";
 import { PageNotFound } from "../pages/PageNotFound";
+import SortScribblePage from "../pages/SortScribblePage";
+import SortScribblePreviewPage from "../pages/SortScribblePreviewPage";
 
 export default function AppRoutes({
   expandedIndex,
@@ -81,7 +83,7 @@ export default function AppRoutes({
         <Route
           path="/sort"
           element={
-            <SortPage
+            <SortScribblePage
               data={data}
               drawerName={drawerName}
               setDrawerName={setDrawerName}
@@ -95,7 +97,7 @@ export default function AppRoutes({
         <Route
           path="/sort-preview"
           element={
-            <SortPreviewPage
+            <SortScribblePreviewPage
               data={data}
               selectedScribbleId={selectedScribbleId}
               setSelectedScribbleId={setSelectedScribbleId}

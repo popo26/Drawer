@@ -1,3 +1,6 @@
+import "../css/InputField.css";
+
+
 export default function InputField({
   htmlFor,
   type,
@@ -15,8 +18,8 @@ export default function InputField({
   };
 
   return (
-    <>
-      <label htmlFor={htmlFor}>{placeholder}:</label>
+    <div className="InputField-main-div">
+      <label className="form-label" htmlFor={htmlFor}>{placeholder}:</label><br/>
       <input
         type={type}
         name={name}
@@ -24,7 +27,8 @@ export default function InputField({
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
+        className="form-control"
       />
-    </>
+    </div>
   );
 }

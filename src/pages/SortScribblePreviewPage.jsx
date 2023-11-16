@@ -5,7 +5,7 @@ import { useState } from "react";
 import "../css/SortPreviewPage.css";
 import Button from "../components/Button";
 
-export default function SortPreviewPage({
+export default function SortScribblePreviewPage({
   data,
   selectedScribbleId,
   setSelectedScribbleId,

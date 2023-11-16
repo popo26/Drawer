@@ -6,10 +6,14 @@
 .accordion-header {
   display: flex;
   align-items: center;
-  background-color:rgb(205, 191, 240);
-  /* background:url('../assets/images/green.jpg') */
+  /* background-color:rgb(205, 191, 240); */
+  background:url('../assets/images/green.jpg');
+}
+
+.sub-drawer-name{
+  background-color:rgb(234, 245, 242)
 }
 
 .no-subfolder {
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
 }
