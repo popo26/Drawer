@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import Dropdown from "../components/Dropdown";
-import "../css/SortDrawerPage.css";
+import "../css/SortPage.css";
 
 export default function SortDrawerPage({
   data,
@@ -245,7 +245,7 @@ export default function SortDrawerPage({
           drawerName={drawerName}
         />
 
-        <h4 className="move-to-existing-msg">Or move it to existing drawer</h4>
+        <h4 className="sort-msg">Or move it to existing drawer</h4>
 
         <Dropdown
           data={data}

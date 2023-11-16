@@ -65,7 +65,7 @@ export default function CreateDrawerPage({data, drawerName, setDrawerName}) {
         />
         <br />
       </form>
-      <button onClick={() => navigate(-1)}>Cancel</button>
+      <button onClick={() => navigate(-1)} className="btn btn-outline-success cancel-btn">Cancel</button>
 
     </div>
   );

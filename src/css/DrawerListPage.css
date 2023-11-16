@@ -1,6 +1,11 @@
 .drawer-list {
   text-align: left;
+ width:100%;
+  margin:auto;
+  padding:30px
 }
+
+
 
 .indent-2 {
   text-indent: 40px;

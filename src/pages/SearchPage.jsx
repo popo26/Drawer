@@ -12,11 +12,11 @@ export default function SearchPage({data}) {
     <div className="SearchPage">
       <Search data={data}/>
 
-      <div>
+      <div className="back-btn">
       <Icon
           icon="icon-park-outline:back"
           color="black"
-          width="30"
+          width="50"
           onClick={() => navigate(-1)}
         />
       </div>

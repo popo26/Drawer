@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "../css/ScribbleListPage.css";
 
 export default function ScribbleListPage({
   data,
@@ -68,13 +69,13 @@ export default function ScribbleListPage({
   return (
     <div>
       <h2>Stray scribbles</h2>
-      <div>{renderedList}</div>
+      <div className="stray-list">{renderedList}</div>
       <div>
         {" "}
         <Icon
           icon="icon-park-outline:back"
           color="black"
-          width="30"
+          width="50"
           onClick={() => navigate(-1)}
         />
       </div>

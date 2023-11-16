@@ -19,7 +19,7 @@ export default function InputField({
 
   return (
     <div className="InputField-main-div">
-      <label className="form-label" htmlFor={htmlFor}>{placeholder}:</label><br/>
+      <label className="form-label" htmlFor={htmlFor}>{placeholder}:</label>
       <input
         type={type}
         name={name}

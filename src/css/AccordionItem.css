@@ -1,5 +1,7 @@
 .AccordionItem {
-  border: 2px solid rgb(210, 208, 208);
+  /* border: 2px solid rgb(210, 208, 208); */
+  border: 6px solid #404040;
+border-radius:10px;
   text-align: left;
 }
 
@@ -7,11 +9,12 @@
   display: flex;
   align-items: center;
   /* background-color:rgb(205, 191, 240); */
-  background:url('../assets/images/green.jpg');
+  /* background:url('../assets/images/green.jpg'); */
+  font-weight:900
 }
 
 .sub-drawer-name{
-  background-color:rgb(234, 245, 242)
+  background-color:rgb(224, 220, 220)
 }
 
 .no-subfolder {

@@ -103,6 +103,16 @@
       "sub-drawer": false,
       "root": false,
       "level": 3
+    },
+    {
+      "rootId": 10,
+      "userId": 1,
+      "id": 10,
+      "name": "TEST",
+      "type": "drawer",
+      "sub-drawer": false,
+      "root": true,
+      "level": 1
     }
   ],
   "scribbles": [

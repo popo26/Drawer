@@ -270,7 +270,9 @@ export default function SortDrawerPreviewPage({
       <FindSubDrawers />
 
       <div>
-        <button onClick={handleMoveHere}>Move Here</button>
+        <button onClick={handleMoveHere} className="btn btn-success move-btn">Move Here</button>
+
+{/* UNDERCONSTRUCTION or NOT REQUIRED */}
         {/* <h6>Or create new sub-drawer</h6>
         <InputField
           type="text"
@@ -278,21 +280,22 @@ export default function SortDrawerPreviewPage({
           id="create-new-sub-drawer"
           placeholder="New sub drawer name"
           value={newSubDrawerName}
-          handleNewDrawerChange={handleChange}
+          //handleNewDrawerChange={handleChange}
         />
         <br />
         <Button
           href={null}
           btnName="Create & Move"
-          handleNewDrawerCreate={handleCreate}
+          //handleNewDrawerCreate={handleCreate}
           drawerName={newSubDrawerName}
         /> */}
+{/* UNDERCONSTRUCTION        */}
       </div>
       <div>
         <Icon
           icon="icon-park-outline:back"
           color="black"
-          width="30"
+          width="50"
           onClick={() => navigate(-1)}
         />
       </div>

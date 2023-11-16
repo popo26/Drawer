@@ -494,13 +494,12 @@ export default function DrawerListPage({
 
   return (
     <div>
-      Drawer List Page
       <div className="drawer-list">{renderedList}</div>
       <div>
         <Icon
           icon="icon-park-outline:back"
           color="black"
-          width="30"
+          width="50"
           onClick={() => navigate(-1)}
         />
       </div>

@@ -125,7 +125,7 @@ export default function SortScribblePage({
         />
 
 
-        <h6>Or choose from existing drawer</h6>
+        <h6 className="sort-msg">Or choose from existing drawer</h6>
 
         <Dropdown
           data={data}
@@ -136,6 +136,7 @@ export default function SortScribblePage({
       </div>
       {/* <Button href="/sort-preview" btnName="Next" handleNewDrawerCreate={handleNext}/> */}
       <button
+      className="btn btn-outline-success next-btn"
         onClick={(e) => {
           e.preventDefault();
           // setSelectedScribbleId(state.id)
@@ -150,7 +151,7 @@ export default function SortScribblePage({
         <Icon
           icon="icon-park-outline:back"
           color="black"
-          width="30"
+          width="50"
           onClick={() => navigate(-1)}
         />
       </div>

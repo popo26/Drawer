@@ -220,12 +220,11 @@ export default function SortScribblePreviewPage({
       <p>Scribble ID: {state.selectedScribbleId}</p>
 
       <div>{renderedList}</div>
-      {/* <div>{findSubDrawers()}</div> */}
       <FindSubDrawers />
 
       <div>
-        <button onClick={handleSaveHere}>Save Here</button>
-        <h6>Or create new sub-drawer</h6>
+        <button className="btn btn-outline-success" onClick={handleSaveHere}>Save Here</button>
+        <h6 className="sort-msg">Or create new sub-drawer</h6>
         <InputField
           type="text"
           name="create-new-sub-drawer"
@@ -242,11 +241,11 @@ export default function SortScribblePreviewPage({
           drawerName={newSubDrawerName}
         />
       </div>
-      <div>
+      <div className="back-btn">
         <Icon
           icon="icon-park-outline:back"
           color="black"
-          width="30"
+          width="50"
           onClick={() => navigate(-1)}
         />
       </div>

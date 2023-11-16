@@ -43,15 +43,17 @@ export default function Search({ data }) {
 
   return (
     <div className="Search">
+    <div className="">
       <form onSubmit={handleSubmit}>
         <input
+        className="search-input"
           onChange={handleChange}
           name="search"
           id="search"
           value={searchItem}
           placeholder="Enter keyword.."
         />
-        <button>Search</button>
+        <button className="btn btn-dark">Search</button>
       </form>
 
       <div>
@@ -65,6 +67,7 @@ export default function Search({ data }) {
           );
         })}
       </div>
+    </div>
     </div>
   );
 }

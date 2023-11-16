@@ -33,3 +33,11 @@
 .scrb-indent3 {
   text-indent: 90px;
 }
+
+.move-btn {
+  margin-bottom:20px;
+}
+
+.back-btn{
+  margin-top:30px;
+}

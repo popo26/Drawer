@@ -11,7 +11,7 @@ export default function Navbar() {
             <Icon
               icon="mingcute:drawer-line"
               color="black"
-              width="60"
+              width="50"
             />
           </NavLink>
 

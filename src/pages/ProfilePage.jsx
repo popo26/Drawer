@@ -14,8 +14,7 @@ export default function ProfilePage() {
 
   return (
     <div>
-      Profile Page
-      <br />
+      
       <InputField
         name="username"
         htmlFor="username"
@@ -23,8 +22,7 @@ export default function ProfilePage() {
         id="username"
         type="text"
       />
-      <button>Change</button>
-      <br />
+      <button className="btn btn-dark">Change</button>
       <InputField
         name="email"
         htmlFor="email"
@@ -32,8 +30,7 @@ export default function ProfilePage() {
         id="email"
         type="email"
       />
-      <button>Change</button>
-      <br />
+      <button className="btn btn-dark">Change</button>
       <InputField
         name="password"
         htmlFor="password"
@@ -42,14 +39,15 @@ export default function ProfilePage() {
         type="password"
       />
       <Link to="/password-reset">
-        <button>Change</button>
+        <button className="btn btn-dark">Change</button>
       </Link>
       <br />
       <div>
         <Icon
+        className="back-btn"
           icon="icon-park-outline:back"
           color="black"
-          width="30"
+          width="50"
           onClick={() => navigate(-1)}
         />
       </div>

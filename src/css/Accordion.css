@@ -3,7 +3,7 @@
 }
 
 .sub-drawer-name {
-  color: grey;
+  color: #808080;
 }
 
 .indent-2 {
@@ -54,10 +54,15 @@
 
 a {
   text-decoration: none;
+  color:#606060
+}
+
+a:hover {
+  color:purple
 }
 
 .sub-drawer-div {
-  border-top: 2px dotted lightseagreen;
+  border-top: 2px dotted #808080;
 }
 
 /* .sub-drawer-scribble-list {
