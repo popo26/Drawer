@@ -6,41 +6,52 @@
 }
 
 /* top-level drawer */
-.rendered-drawers>h2{
-/* font-size:22px; */
-font-weight:900;
+.rendered-drawers > h2 {
+  /* font-size:22px; */
+  font-weight: 900;
 }
 
 /* sub-folders */
-.sub-drawer-header>h3{
-  font-size:14px;
-  font-weight:900;
-  display:block;
+.sub-drawer-header h3 {
+  font-size: 10px;
+  font-weight: 900;
+  /* font-size: 2em;
+  container-name: sidebar */
 }
+
+/* @container sidebar (min-width: 700px) {
+  .sub-drawer-header h3 {
+    font-size: 1em;
+  }
+} */
 
 /* scribbles */
-.sub-drawer-header{
-  font-size:10px;
+.sub-drawer-header {
+  font-size: 8px;
 }
 
-.no-scribble{
-  font-size:10px;
+.no-scribble {
+  font-size: 8px;
+}
+
+.individual-scribble {
+  font-size: 10px;
 }
 
 .indent-2 {
-  text-indent: 40px;
+  text-indent: 20px;
 }
 
 .indent-3 {
-  text-indent: 80px;
+  text-indent: 40px;
 }
 
 .indent-4 {
-  text-indent: 1200px;
+  text-indent: 60px;
 }
 
 .indent-5 {
-  text-indent: 160px;
+  text-indent: 80px;
 }
 
 .scrb-indent1 {
@@ -48,17 +59,17 @@ font-weight:900;
 }
 
 .scrb-indent2 {
-  text-indent: 50px;
+  text-indent: 40px;
 }
 
 .scrb-indent3 {
-  text-indent: 90px;
+  text-indent: 60px;
 }
 
 .scrb-indent4 {
-  text-indent: 130px;
+  text-indent: 80px;
 }
 
 .scrb-indent5 {
-  text-indent: 170px;
+  text-indent: 100px;
 }

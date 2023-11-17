@@ -19,7 +19,7 @@ export default function ScribblePage({
   const [scribbleContent, setScribbleContent] = useState("");
   const [scribbleTitle, setScribbleTitle] = useState("");
   const [tempFiles, setTempFiles] = useState([]);
-  const [content, setContent] = useState("Enter Text");
+  const [content, setContent] = useState("Enter");
   const body = useRef(content);
 
   const createNewScribble = () => {
@@ -28,7 +28,7 @@ export default function ScribblePage({
     //console.log("scribble length: ", Object.values(data["scribbles"]).length);
     const attachmentBool = files.length < 1 ? false : true;
     //files default extraction include only path and preview so add more info here
-    console.log("You are inside the Fetch function")
+    console.log("You are inside the Fetch function");
     console.log("files", files);
 
     let filesInfo = [];
@@ -108,23 +108,23 @@ export default function ScribblePage({
   // };
 
   const detectContent = () => {
-    if (document.querySelector(".screenshot")){
-      document.querySelector(".screenshot").addEventListener('input', function(e){
-        let imageArray = [];
-        // console.log(e.target);
-        console.log(document.querySelector(".screenshot").innerHTML);
-
-        // body.current = document.querySelector(".screenshot").innerHTML;
-        const parent = document.querySelector(".screenshot");
-        console.log(typeof body.current)
-       if(parent.getElementsByTagName('img')){
-        console.log("________________FOUND")
-       } else {console.log("NOOOOOOOOOOOOOOOOOOOO")}
-        console.log("imageArray", imageArray);
-        setContent("Goodbye");
-      })
+    if (document.querySelector(".screenshot")) {
+      document
+        .querySelector(".screenshot")
+        .addEventListener("input", function (e) {
+          let imageArray = [];
+          console.log(document.querySelector(".screenshot").innerHTML);
+          const parent = document.querySelector(".screenshot");
+          console.log(typeof body.current);
+          if (parent.getElementsByTagName("img")) {
+            console.log("________________FOUND");
+          } else {
+            console.log("NOOOOOOOOOOOOOOOOOOOO");
+          }
+          console.log("imageArray", imageArray);
+          // setContent("");
+        });
     }
-   
   };
 
   detectContent();
@@ -155,25 +155,8 @@ export default function ScribblePage({
   // };
   // //Experiment Screenshot++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
-
   return (
     <div className="ScribblePage">
-      <div>
-        {/* <Icon icon="ic:outline-attachment" color="black" width="36" /> */}
-        {/* <Link to="/sort" > */}
-        <Icon
-          icon="mingcute:drawer-line"
-          color="black"
-          width="30"
-          height="30"
-          onClick={() => {
-            createNewScribble();
-            navigate("/sort", { state: { id: selectedScribbleId } });
-          }}
-        />
-        {/* </Link> */}
-      </div>
       <InputField
         htmlFor="Title"
         type="text"
@@ -184,15 +167,8 @@ export default function ScribblePage({
         // Change the name - handleNewDrawerChange
         handleNewDrawerChange={handleTitleChange}
       />
-      <FileDrop
-        files={files}
-        setFiles={setFiles}
-        tempFiles={tempFiles}
-        setTempFiles={setTempFiles}
-      />
 
       <br />
-
       {/* Experiment++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
       {/* <div className="span-div">
         <span
@@ -227,7 +203,18 @@ export default function ScribblePage({
         {content}
       </div>
       <br />
-      <button onClick={handleSubmitScribble}>Just Save</button>
+
+      <FileDrop
+        files={files}
+        setFiles={setFiles}
+        tempFiles={tempFiles}
+        setTempFiles={setTempFiles}
+      />
+
+      <br />
+      <button onClick={handleSubmitScribble} className="btn btn-outline-dark">
+        Just Save
+      </button>
       {/* <button
         onClick={() => {
           // body.current = document.querySelector(".input").innerText;
@@ -238,6 +225,19 @@ export default function ScribblePage({
       >
         Just Save
       </button> */}
+      {/* <div> */}
+      <span>or</span>
+      <Icon
+        icon="mingcute:drawer-line"
+        color="black"
+        width="30"
+        height="30"
+        onClick={() => {
+          createNewScribble();
+          navigate("/sort", { state: { id: selectedScribbleId } });
+        }}
+      />
+      {/* </div> */}
 
       <div>
         {" "}

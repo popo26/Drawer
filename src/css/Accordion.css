@@ -4,43 +4,54 @@
 
 .sub-drawer-name {
   color: #808080;
+  font-size:12px;
 }
+
 
 .indent-2 {
-  text-indent: 50px;
+  text-indent: 20px;
+
 }
 
 .indent-3 {
-  text-indent: 100px;
-}
+  text-indent: 40px;
 
-.indent-3 {
-  text-indent: 150px;
 }
 
 .indent-4 {
-  text-indent: 200px;
+  text-indent: 60px;
+
+}
+
+.indent-5 {
+  text-indent: 80px;
+
 }
 
 .scrb-indent1 {
-  text-indent: 30px;
+  text-indent: 20px;
 }
 
 .scrb-indent2 {
-  text-indent: 70px;
+  text-indent: 40px;
+
 }
 
 .scrb-indent3 {
-  text-indent: 120px;
+  text-indent: 60px;
+
 }
 
 .scrb-indent4 {
-  text-indent: 170px;
+  text-indent: 80px;
+
 }
 
 .scrb-indent5 {
-  text-indent: 220px;
+  text-indent: 100px;
 }
+
+
 
 .no-scribble {
   color: blueviolet;

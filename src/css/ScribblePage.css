@@ -18,8 +18,13 @@ textarea {
 }
 
 .screenshot {
-    min-height: 300px;
-    border: solid 1px #ccc;
+    /* min-height: 300px;
+    border: solid 1px #ccc; */
+    width: 100%;
+    height: min-content;
+    /* border:4px dotted pink; */
+    background-color:rgb(240, 204, 224, 0.3);
+    text-align: left;
 }
 
 .span-div{

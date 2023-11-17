@@ -295,18 +295,28 @@ export default function DrawerListPage({
               onClick={() => handleDelete(item.id)}
               icon="ion:trash-outline"
               color="black"
-              width="20"
+              width="12"
             />
 
             {/* <Link
                 to={`/sort-preview`}
                 onClick={() => setSelectedDrawerId(item.id)}
               > */}
-            <button
+            <Icon
+              icon="mingcute:drawer-line"
+              color="black"
+              width="12"
               onClick={() => {
-                // selectedDrawerId = item.id
-                // setSelectedDrawerId(selectedDrawerId)
-                // let passingData = { selectedDrawerId };
+                drawerToBeMoved = item.id;
+                setDrawerToBeMoved(drawerToBeMoved);
+                let passingData = { selectedDrawerId, drawerToBeMoved };
+                console.log("PassingData", passingData);
+                navigate("/sort-drawer", { state: passingData });
+              }}
+            />
+
+            {/* <button
+              onClick={() => {
                 drawerToBeMoved = item.id;
                 setDrawerToBeMoved(drawerToBeMoved);
                 let passingData = { drawerToBeMoved };
@@ -314,8 +324,9 @@ export default function DrawerListPage({
                 navigate("/sort-drawer", { state: passingData });
               }}
             >
-              <Icon icon="mingcute:drawer-line" color="black" width="22" />
-            </button>
+              <Icon icon="mingcute:drawer-line" color="black" width="12" />
+            </button> */}
+
             {/* <Icon
               icon="uiw:edit"
               color="black"
@@ -395,7 +406,7 @@ export default function DrawerListPage({
   const renderedList = data["drawers"].map((item) => {
     if (id == item.id) {
       return (
-        <div key={item.id} >
+        <div key={item.id}>
           <div className="rendered-drawers">
             {/* <h2 contentEditable={isContentEditable} style={{display:"inline-block"}} value={drawerNameToEdit}>
             {item.name}
@@ -430,12 +441,12 @@ export default function DrawerListPage({
               onClick={() => handleDelete(item.id)}
               icon="ion:trash-outline"
               color="black"
-              width="20"
+              width="12"
             />
             <Icon
               icon="mingcute:drawer-line"
               color="black"
-              width="22"
+              width="12"
               onClick={() => {
                 drawerToBeMoved = item.id;
                 setDrawerToBeMoved(drawerToBeMoved);

@@ -1,23 +1,22 @@
+.baseStyle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-width: 2;
+  border-radius: 2;
+  border-color: #eeeeee;
+  border-style: dashed;
+  /* background-color: '#fafafa'; */
+  background-color: #fafafa;
 
-.baseStyle{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border-width: 2;
-    border-radius: 2;
-    border-color: #eeeeee;
-    border-style: dashed;
-    /* background-color: '#fafafa'; */
-    background-color: #fafafa;
+  color: #bdbdbb;
+  outline: none;
+  transition: border 0.24s ease-in-out;
+}
 
-    color: #bdbdbb;
-    outline: none;
-    transition: border .24s ease-in-out;
-  };
-  
-  /* const focusedStyle = {
+/* const focusedStyle = {
     borderColor: '#2196f3'
   };
   
@@ -29,11 +28,12 @@
     borderColor: '#ff1744'
   }; */
 
-  .remove-div{
-    /* position:relative; */
-  }
-.remove-btn{
-  position:absolute;
- background-color: #777;
- color:white;
+.remove-div {
+  /* position:relative; */
 }
+.remove-btn {
+  position: absolute;
+  background-color: #777;
+  color: white;
+}
+
