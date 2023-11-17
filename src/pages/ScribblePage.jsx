@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import Button from "../components/Button";
 import "../css/ScribblePage.css";
 import { Icon } from "@iconify/react";
@@ -19,11 +19,16 @@ export default function ScribblePage({
   const [scribbleContent, setScribbleContent] = useState("");
   const [scribbleTitle, setScribbleTitle] = useState("");
   const [tempFiles, setTempFiles] = useState([]);
+  const [content, setContent] = useState("Enter Text");
+  const body = useRef(content);
 
   const createNewScribble = () => {
-    console.log("scribble length: ", Object.values(data["scribbles"]).length);
+    body.current = document.querySelector(".screenshot").innerHTML;
+    setContent(body.current);
+    //console.log("scribble length: ", Object.values(data["scribbles"]).length);
     const attachmentBool = files.length < 1 ? false : true;
     //files default extraction include only path and preview so add more info here
+    console.log("You are inside the Fetch function")
     console.log("files", files);
 
     let filesInfo = [];
@@ -42,7 +47,11 @@ export default function ScribblePage({
       id: selectedScribbleId,
       title: scribbleTitle ? scribbleTitle : "Untitled",
       type: "scribble",
-      content: scribbleContent,
+      // content: scribbleContent,
+      // content: content,
+      content: body.current,
+
+      // content:imageDataURL,
       stray: true,
       level: 1,
       attachment: attachmentBool,
@@ -62,7 +71,7 @@ export default function ScribblePage({
   };
 
   const handleScribbleChange = (e) => {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     setScribbleContent(e.target.value);
   };
 
@@ -73,7 +82,7 @@ export default function ScribblePage({
 
   const handleSubmitScribble = () => {
     createNewScribble();
-    setTempFiles([])
+    setTempFiles([]);
   };
 
   // const deleteAttachment = (blob) => {
@@ -97,6 +106,56 @@ export default function ScribblePage({
   // const handleDeleteAttachment = (passedBlob) => {
   //   deleteAttachment(passedBlob);
   // };
+
+  const detectContent = () => {
+    if (document.querySelector(".screenshot")){
+      document.querySelector(".screenshot").addEventListener('input', function(e){
+        let imageArray = [];
+        // console.log(e.target);
+        console.log(document.querySelector(".screenshot").innerHTML);
+
+        // body.current = document.querySelector(".screenshot").innerHTML;
+        const parent = document.querySelector(".screenshot");
+        console.log(typeof body.current)
+       if(parent.getElementsByTagName('img')){
+        console.log("________________FOUND")
+       } else {console.log("NOOOOOOOOOOOOOOOOOOOO")}
+        console.log("imageArray", imageArray);
+        setContent("Goodbye");
+      })
+    }
+   
+  };
+
+  detectContent();
+
+  console.log("BOdy", body);
+
+  // //Experiment Screenshot+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // const [imageDataURL, setImageDataURL] = useState(null);
+
+  // const onPaste = (event) => {
+  //     const clipboardData = event.clipboardData || window.clipboardData;
+  //     const items = clipboardData.items;
+
+  //     for (let i = 0; i < items.length; i++) {
+  //         if (items[i].type.indexOf('image') !== -1) {
+  //             const imageFile = items[i].getAsFile();
+  //             processImage(imageFile);
+  //         }
+  //     }
+  // };
+
+  // const processImage = (imageFile) => {
+  //     const reader = new FileReader();
+  //     reader.onload = (event) => {
+  //         setImageDataURL(event.target.result);
+  //     };
+  //     reader.readAsDataURL(imageFile);
+  // };
+  // //Experiment Screenshot++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 
   return (
     <div className="ScribblePage">
@@ -133,7 +192,22 @@ export default function ScribblePage({
       />
 
       <br />
-      <div className="textarea-wrap">
+
+      {/* Experiment++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
+      {/* <div className="span-div">
+        <span
+          className="input"
+          role="textbox"
+          contentEditable
+          onClick={handleContentChange2}
+          ref={body}
+          suppressContentEditableWarning={true}
+        >
+          {content}
+        </span>
+      </div> */}
+      {/* Experiment++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
+      {/* <div className="textarea-wrap">
         <textarea
           autoFocus
           value={scribbleContent}
@@ -143,11 +217,29 @@ export default function ScribblePage({
         >
           Scribble here
         </textarea>
+      </div> */}
+      <div
+        contentEditable="true"
+        className="screenshot"
+        ref={body}
+        // onChange={handleContentChange2}
+        suppressContentEditableWarning={true}
+      >
+        {content}
       </div>
-      <div contentEditable="true" className="screenshot"></div>
       <br />
       {/* <Button href="#" btnName="Just Save" color="yellow" /> */}
       <button onClick={handleSubmitScribble}>Just Save</button>
+      {/* <button
+        onClick={() => {
+          // body.current = document.querySelector(".input").innerText;
+          // setContent(body.current);
+          // console.log("CURRENT HERE", body.current)
+          handleSubmitScribble();
+        }}
+      >
+        Just Save
+      </button> */}
 
       <div>
         {" "}
@@ -158,6 +250,24 @@ export default function ScribblePage({
           onClick={() => navigate(-1)}
         />
       </div>
+
+      {/* Experiment Screenshot++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
+      {/* <div className='container'>
+                    <h3 className='title'>React js Copy Paste Image Clipboard</h3>
+                    <div
+                        className='paste-container'
+                        ref={(ref) => {
+                            if (ref) {
+                                ref.addEventListener('paste', onPaste);
+                            }
+                        }}
+                    >
+                        Click here and use Control-V to paste the image.
+                    </div>
+                    <br />
+                    {imageDataURL && <img src={imageDataURL} alt="Pasted Image" className='pasted-image' />}
+                </div> */}
+      {/* Experiment++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
     </div>
   );
 }

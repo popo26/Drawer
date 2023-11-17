@@ -81,14 +81,14 @@ function FileDrop({ files, setFiles, tempFiles, setTempFiles }) {
 
   const handleDelete = (e, blob) => {
     e.stopPropagation();
-    console.log("current files", files);
+    //console.log("current files", files);
     const newFiles = files.filter((item) => item.preview != blob);
     setFiles(newFiles);
     setTempFiles(newFiles);
   };
-  console.log("acceptedFiles", acceptedFiles);
+  //console.log("acceptedFiles", acceptedFiles);
 
-  console.log("fffilesFIleDrop", files);
+  //console.log("fffilesFIleDrop", files);
 
   //tempFiles so that after added to DB it disappear from attachment field. files for throughout App
   const thumbs = tempFiles.map((file) => (

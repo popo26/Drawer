@@ -23,10 +23,10 @@ export default function DrawerListPage({
 
   const text = useRef(drawerNameToEdit);
 
-  console.log("Text current", text.current.innerText);
-  console.log("Updated draewr name", drawerNameToEdit);
-  console.log("Clicked drawer name", drawerNameToEdit);
-  console.log("Clicked drawer Id", drawerIdToEdit);
+  // console.log("Text current", text.current.innerText);
+  // console.log("Updated draewr name", drawerNameToEdit);
+  // console.log("Clicked drawer name", drawerNameToEdit);
+  // console.log("Clicked drawer Id", drawerIdToEdit);
 
   // ++++++++Delete Drawer and its sub-drawers and scribbles
 
