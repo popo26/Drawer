@@ -222,13 +222,11 @@ export default function ScribblePage({
         contentEditable="true"
         className="screenshot"
         ref={body}
-        // onChange={handleContentChange2}
         suppressContentEditableWarning={true}
       >
         {content}
       </div>
       <br />
-      {/* <Button href="#" btnName="Just Save" color="yellow" /> */}
       <button onClick={handleSubmitScribble}>Just Save</button>
       {/* <button
         onClick={() => {

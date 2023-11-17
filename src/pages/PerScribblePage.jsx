@@ -2,7 +2,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useDropzone } from "react-dropzone";
 import Dropzone from "react-dropzone";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import FileDrop from "../components/FileDrop";
 
 const thumbsContainer = {
@@ -41,6 +41,9 @@ export default function PerScribblePage({ data }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [screenshots, setSecreenshots] = useState([]);
+  const [isEditable, setIsEditable] = useState(false);
+
+  const body = useRef(screenshots);
 
   let scribbleData;
 
@@ -132,6 +135,10 @@ export default function PerScribblePage({ data }) {
     deleteAttachment(id, blob);
   };
 
+  const handleEdit = () => {
+    setIsEditable(true);
+  };
+
   //   const renderedAttachments = data["scribbles"]
   //     .find((item) => item.id == id)
   //     .files.map((x) => x.preview);
@@ -188,6 +195,44 @@ export default function PerScribblePage({ data }) {
       ));
   };
 
+  const updateContent = () => {
+    const scribbleContentToBeUpdated = data["scribbles"].filter(
+      (item) => item.id == id
+    );
+
+    const newContent = body.current.innerHTML;
+    setSecreenshots(newContent);
+
+    let dataPost = {
+      rootDrawerId: scribbleContentToBeUpdated[0]["rootDrawerId"],
+      userId: 1,
+      drawerId: scribbleContentToBeUpdated[0]["drawerId"],
+      id: id,
+      title: scribbleContentToBeUpdated[0]["title"],
+      type: "scribble",
+      content: newContent,
+      stray: scribbleContentToBeUpdated[0]["stray"],
+      level: scribbleContentToBeUpdated[0]["level"],
+      files: scribbleContentToBeUpdated[0]["files"],
+    };
+    fetch(`http://localhost:3000/scribbles/${id}`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataPost),
+    })
+      .then((response) => console.log(response.json()))
+      //.then((response) => console.log("newName", newName))
+
+      .catch((error) => console.error(error.message));
+  };
+
+  const update = () => {
+    updateContent();
+  };
+
   //console.log("fffilesPerScribble", files)
 
   // useEffect(() => {
@@ -227,13 +272,6 @@ export default function PerScribblePage({ data }) {
   // html string
   const selectedScribble = data["scribbles"].filter((item) => item.id == id);
   const htmlStr = selectedScribble[0].content;
-  console.log(htmlStr);
-
-  // function decodeHtml(html) {
-  //   var txt = document.getElementById("content");
-  //   txt.innerHTML = html;
-  //   return txt.value;
-  // }
 
   function decodeHtml(html) {
     if (document.getElementById("content")) {
@@ -242,22 +280,14 @@ export default function PerScribblePage({ data }) {
       return txt.value;
     }
   }
-  const r = decodeHtml(htmlStr);
-  console.log(r);
+  const decodedHTML = decodeHtml(htmlStr);
 
+  //Need to have scribble content onload so that decodeHtml function can be used
   useEffect(() => {
     const selectedScribble = data["scribbles"].filter((item) => item.id == id);
     setSecreenshots(selectedScribble[0].content);
-    return ()=>setSecreenshots([])
+    return () => setSecreenshots([]);
   }, []);
-
-  // //make a new parser
-  //const parser = new DOMParser();
-
-  // // convert html string into DOM
-  // const doc = parser.parseFromString(htmlStr, "text/html");
-  // console.log(doc)
-  // document.getElementById("content").innerHTML = htmlStr
 
   return (
     <div>
@@ -267,9 +297,16 @@ export default function PerScribblePage({ data }) {
         <h2>
           {scribbleData.id}, {scribbleData.title}
         </h2>
-        {/* <section>{scribbleData.content}</section> */}
-        {/* <section id="content">{decodeHtml(scribbleData.content)}</section> */}
-        <section id="content">{r}</section>
+
+        {/* <section id="content">{decodedHTML}</section> */}
+        <section
+          id="content"
+          contentEditable={isEditable}
+          suppressContentEditableWarning={true}
+          ref={body}
+        >
+          {decodedHTML}
+        </section>
 
         {/* <aside>{renderedAttachments}</aside> */}
         {scribbleData.attachment && (
@@ -283,7 +320,17 @@ export default function PerScribblePage({ data }) {
           width="30"
           onClick={() => navigate(-1)}
         />
-        <Icon icon="uiw:edit" color="black" width="30" />
+        {!isEditable ? (
+          <Icon icon="uiw:edit" color="black" width="30" onClick={handleEdit} />
+        ) : (
+          <Icon
+            icon="material-symbols:update"
+            color="black"
+            width="22"
+            onClick={update}
+          />
+        )}
+
         <Icon
           icon="ion:trash-outline"
           color="black"
