@@ -35,9 +35,6 @@ export default function SortDrawerPage({
 
     return () => {
       console.log("cleanup");
-      // setSelectedDrawerId("")
-      // const drawer = selectedDrawerId;
-      // setDrawerToBeMoved(state.selectedDrawerId);
     };
   }, []);
 
@@ -223,7 +220,7 @@ export default function SortDrawerPage({
 
   return (
     <div id="page">
-      <h4>
+      <h4 className="sort-drawer-title">
         Drawer to be moved : {drawerToBeMovedObj[0]["name"]}---ID
         {drawerToBeMoved}
       </h4>
@@ -245,7 +242,7 @@ export default function SortDrawerPage({
           drawerName={drawerName}
         />
 
-        <h4 className="sort-msg">Or move it to existing drawer</h4>
+        <h4 className="sort-msg">Or move it to...</h4>
 
         <Dropdown
           data={data}

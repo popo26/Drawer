@@ -231,6 +231,7 @@ export default function PerScribblePage({ data }) {
 
   const update = () => {
     updateContent();
+    setIsEditable(false)
   };
 
   //console.log("fffilesPerScribble", files)

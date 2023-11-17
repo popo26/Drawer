@@ -1,6 +1,11 @@
 .InputField-main-div {
-  padding: 20px;
+  padding-top: 20px;
   min-width: 60%;
   max-width: 70%;
   margin: auto;
+}
+
+.InputField-main-div>label{
+  font-size:12px;
+  font-weight:600
 }

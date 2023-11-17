@@ -395,8 +395,8 @@ export default function DrawerListPage({
   const renderedList = data["drawers"].map((item) => {
     if (id == item.id) {
       return (
-        <div key={item.id}>
-          <div>
+        <div key={item.id} >
+          <div className="rendered-drawers">
             {/* <h2 contentEditable={isContentEditable} style={{display:"inline-block"}} value={drawerNameToEdit}>
             {item.name}
             </h2>             */}

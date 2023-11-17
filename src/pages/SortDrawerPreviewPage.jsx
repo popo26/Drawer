@@ -261,9 +261,9 @@ export default function SortDrawerPreviewPage({
 
 
   return (
-    <div>
+    <div className="sort-drawer-preview-div">
       <h3>Drawer to be moved: {drawerToBeMovedObj[0]["name"]}---ID {drawerToBeMoved}</h3>
-      <p>To: {selectedDrawerId}</p>
+      <h3>To: {selectedDrawerId}</h3>
 
       <div>{renderedList}</div>
       {/* <div>{findSubDrawers()}</div> */}

@@ -1,11 +1,31 @@
 .drawer-list {
   text-align: left;
- width:100%;
-  margin:auto;
-  padding:30px
+  width: 100%;
+  margin: auto;
+  padding: 30px;
 }
 
+/* top-level drawer */
+.rendered-drawers>h2{
+/* font-size:22px; */
+font-weight:900;
+}
 
+/* sub-folders */
+.sub-drawer-header>h3{
+  font-size:14px;
+  font-weight:900;
+  display:block;
+}
+
+/* scribbles */
+.sub-drawer-header{
+  font-size:10px;
+}
+
+.no-scribble{
+  font-size:10px;
+}
 
 .indent-2 {
   text-indent: 40px;

@@ -3,6 +3,10 @@
   color: green;
 }
 
+.sort-drawer-preview-div>h3{
+  font-size:12px;
+}
+
 .sort-preview-sub-drawers {
   text-align: left;
   color: purple;
