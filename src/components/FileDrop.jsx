@@ -123,7 +123,7 @@ function FileDrop({ files, setFiles, tempFiles, setTempFiles }) {
     <section className="container">
       <div {...getRootProps({ className: "dropzone" })} className="baseStyle">
         <input {...getInputProps()} />
-        <Icon icon="ic:outline-attachment" color="lightpink" width="36" />
+        <Icon icon="ic:outline-attachment" color="rgb(192,192,192,0.6)" width="40" />
         <aside style={thumbsContainer}>{thumbs}</aside>
       </div>
     </section>

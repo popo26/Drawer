@@ -25,6 +25,8 @@ textarea {
     /* border:4px dotted pink; */
     background-color:rgb(240, 204, 224, 0.3);
     text-align: left;
+    padding:10px;
+    border-radius: 6px;
 }
 
 .span-div{

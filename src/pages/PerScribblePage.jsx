@@ -76,7 +76,7 @@ export default function PerScribblePage({ data }) {
     console.log("stray", scribbleToBeDeleted);
     scribbleToBeDeleted[0].stray == true
       ? navigate("/stray")
-      : navigate("/home");
+      : navigate("/");
   };
 
   const deleteAttachment = (id, blob) => {

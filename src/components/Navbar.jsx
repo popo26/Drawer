@@ -7,7 +7,7 @@ export default function Navbar() {
     <div className="Navbar">
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/home">
+          <NavLink className="navbar-brand" to="/">
             <Icon
               icon="mingcute:drawer-line"
               color="black"

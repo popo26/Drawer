@@ -40,7 +40,7 @@ export default function AppRoutes({
       <Routes>
         <Route
           index
-          path="/home"
+          // path="/home"
           element={
             <HomePage
               expandedIndex={expandedIndex}

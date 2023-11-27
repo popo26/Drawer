@@ -242,9 +242,10 @@ export default function ScribblePage({
       <div>
         {" "}
         <Icon
+          className="back-btn"
           icon="icon-park-outline:back"
           color="black"
-          width="30"
+          width="50"
           onClick={() => navigate(-1)}
         />
       </div>

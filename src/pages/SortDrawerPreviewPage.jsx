@@ -24,30 +24,31 @@ export default function SortDrawerPreviewPage({
   const updateParentDrawerBoolean = (parentDrawerId) => {
     console.log("PUT2");
     let dataPost;
-    const x = data["drawers"].filter((item) => item.id == parentDrawerId);
+    const parentDrawerObj = data["drawers"].filter((item) => item.id == parentDrawerId);
     //Something wrong with here
     // console.log("x[0][drawerId]", x[0]["drawerId"]);
-    if (x[0]["drawerId"]) {
+    if (parentDrawerObj[0]["drawerId"]) {
       dataPost = {
-        rootId: parentDrawerId,
-        drawerId: x[0]["drawerId"],
+        // rootId: parentDrawerId,
+        rootId:parentDrawerObj[0]["rootId"],
+        drawerId: parentDrawerObj[0]["drawerId"],
         userId: 1,
         // name: "Bagger",
         // type: "drawer",
-        name: x[0]["name"],
+        name: parentDrawerObj[0]["name"],
         type: "drawer",
         ["sub-drawer"]: true,
         // level:Object.values(data["drawers"])[parentDrawerId]["level"],
         // root:Object.values(data["drawers"])[parentDrawerId]["root"]
-        level: x[0]["level"],
-        root: x[0]["root"],
+        level: parentDrawerObj[0]["level"],
+        root: parentDrawerObj[0]["root"],
       };
     } else {
       dataPost = {
-        rootId: parentDrawerId,
+        // rootId: parentDrawerId,
+        rootId:parentDrawerObj[0]["rootId"],
         userId: 1,
-        // name: "Bomb",
-        name: x[0]["name"],
+        name: parentDrawerObj[0]["name"],
         type: "drawer",
         ["sub-drawer"]: true,
         level: 1,
@@ -95,7 +96,9 @@ export default function SortDrawerPreviewPage({
           type: "drawer",
           ["sub-drawer"]: x["sub-drawer"],
           root: false,
-          level: drawerToBeMovedObject[0]["level"] + 1,
+          // level: drawerToBeMovedObject[0]["level"] + 1,
+          level: newTopLevelDrawerObject[0]["level"] + 1,
+
         };
         //console.log("You are in Move Children fx");
         //console.log("FETCH PATH",`http://localhost:3000/drawers/${x.id}`)
@@ -124,7 +127,9 @@ export default function SortDrawerPreviewPage({
           content: x.content,
           type: "scribble",
           stray: false,
-          level: drawerToBeMovedObject[0]["level"] + 1,
+          // level: drawerToBeMovedObject[0]["level"],
+          level: newTopLevelDrawerObject[0]["level"] + 1,
+
         };
         fetch(`http://localhost:3000/scribbles/${x.id}`, {
           method: "PUT",
@@ -155,15 +160,18 @@ export default function SortDrawerPreviewPage({
       (item) => item.id == passedId
     );
     let dataPost = {
-      rootId: passedId,
+      // rootId: passedId,
+      rootId: parentDrawerObject[0]['rootId'],
       userId: 1,
-      drawerId: passedId,
+      // drawerId: passedId,
+      drawerId:parentDrawerObject[0]['id'],
       id: drawerToBeMovedObject[0]["id"],
       name: drawerToBeMovedObject[0]["name"],
       type: "drawer",
       ["sub-drawer"]: drawerToBeMovedObject[0]["sub-drawer"],
       root: false,
-      level: 2,
+      // level: 2,
+      level:parentDrawerObject[0]['level'] + 1
     };
     fetch(`http://localhost:3000/drawers/${drawerToBeMoved}`, {
       method: "PUT",

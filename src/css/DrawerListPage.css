@@ -54,6 +54,26 @@
   text-indent: 80px;
 }
 
+.indent-6{
+  text-indent: 100px;
+}
+
+.indent-7{
+  text-indent: 120px;
+}
+
+.indent-8{
+  text-indent: 140px;
+}
+
+.indent-9{
+  text-indent: 160px;
+}
+
+.indent-10{
+  text-indent: 180px;
+}
+
 .scrb-indent1 {
   text-indent: 20px;
 }
@@ -72,4 +92,24 @@
 
 .scrb-indent5 {
   text-indent: 100px;
+}
+
+.scrb-indent6 {
+  text-indent: 120px;
+}
+
+.scrb-indent7 {
+  text-indent: 140px;
+}
+
+.scrb-indent8 {
+  text-indent: 160px;
+}
+
+.scrb-indent9 {
+  text-indent: 180px;
+}
+
+.scrb-indent10 {
+  text-indent: 200px;
 }

@@ -114,7 +114,7 @@ export default function DrawerListPage({
   const handleDelete = (id) => {
     alert(`Are you sure to delete this drawer and all the content? -ID:${id}`);
     deleteSelectedDrawer(id);
-    navigate("/home");
+    navigate("/");
   };
 
   //+++++++++++++++++++Get feedback from Anthony++++++++++++++++++++++++++++++++

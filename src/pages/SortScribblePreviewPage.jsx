@@ -26,7 +26,8 @@ export default function SortScribblePreviewPage({
     // console.log("x[0][drawerId]", x[0]["drawerId"]);
     if (x[0]["drawerId"]) {
       dataPost = {
-        rootId: parentDrawerId,
+        // rootId: parentDrawerId,
+        rootId:x[0]['rootId'],
         drawerId: x[0]["drawerId"],
         userId: 1,
         // name: "Bagger",
@@ -111,7 +112,8 @@ export default function SortScribblePreviewPage({
       name: newSubDrawerName,
       type: "drawer",
       "sub-drawer": false,
-      drawerId: state.selectedDrawerId,
+      // drawerId: state.selectedDrawerId,
+      drawerId: selectedDrawerObject[0]['id'],
       root: false,
       // level:Object.values(data["drawers"])[state.selectedDrawerId]["level"],
       level: selectedDrawerObject[0]["level"] + 1,
