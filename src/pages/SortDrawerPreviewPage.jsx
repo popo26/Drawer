@@ -73,20 +73,35 @@ export default function SortDrawerPreviewPage({
 
   const moveAllChildrenToNewDrawer = (parentDrawerId, newTopLevelDrawerId) => {
     console.log("PUT - move Children");
-    const drawerToBeMovedObject = data["drawers"].filter(
-      //   (item) => item.id == drawerToBeMoved
-      (item) => item.id == parentDrawerId
-    );
-
-    const newTopLevelDrawerObject = data["drawers"].filter(
-      (item) => item.id == newTopLevelDrawerId
-    );
 
     const allDrawers = data["drawers"];
     const allScribbles = data["scribbles"];
 
+    const drawerToBeMovedObject = allDrawers.filter(
+      //   (item) => item.id == drawerToBeMoved
+      (item) => item.id == parentDrawerId
+    );
+
+    const newTopLevelDrawerObject = allDrawers.filter(
+      (item) => item.id == newTopLevelDrawerId
+    );
+
+    // for (let x of allDrawers) {
+    //   if (x.drawerId === parentDrawerId) {
+    //     let dataPost = {
+    //       rootId: newTopLevelDrawerId,
+    //       userId: 1,
+    //       drawerId: x.drawerId,
+    //       id: x.id,
+    //       name: x.name,
+    //       type: "drawer",
+    //       ["sub-drawer"]: x["sub-drawer"],
+    //       root: false,
+    //       level: newTopLevelDrawerObject[0]["level"] + 1,
+    //     };
+
     for (let x of allDrawers) {
-      if (x.drawerId === parentDrawerId) {
+      if (x.drawerId === parentDrawerId || x.rootId === drawerToBeMovedObject[0]['rootId'] && x.level > drawerToBeMovedObject[0]['level']) {
         let dataPost = {
           rootId: newTopLevelDrawerId,
           userId: 1,
@@ -96,12 +111,10 @@ export default function SortDrawerPreviewPage({
           type: "drawer",
           ["sub-drawer"]: x["sub-drawer"],
           root: false,
-          // level: drawerToBeMovedObject[0]["level"] + 1,
-          level: newTopLevelDrawerObject[0]["level"] + 1,
-
+          level: newTopLevelDrawerObject[0]["level"] + x.level,
+          // level:x.level,
         };
-        //console.log("You are in Move Children fx");
-        //console.log("FETCH PATH",`http://localhost:3000/drawers/${x.id}`)
+             
 
         fetch(`http://localhost:3000/drawers/${x.id}`, {
           method: "PUT",
@@ -128,7 +141,8 @@ export default function SortDrawerPreviewPage({
           type: "scribble",
           stray: false,
           // level: drawerToBeMovedObject[0]["level"],
-          level: newTopLevelDrawerObject[0]["level"] + 1,
+          level: newTopLevelDrawerObject[0]["level"] + x.level,
+          // level: x.level,
 
         };
         fetch(`http://localhost:3000/scribbles/${x.id}`, {

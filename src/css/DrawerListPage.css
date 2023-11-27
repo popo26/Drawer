@@ -38,42 +38,45 @@
   font-size: 10px;
 }
 
+/* Drawer indent */
 .indent-2 {
-  text-indent: 20px;
-}
-
-.indent-3 {
   text-indent: 40px;
 }
 
-.indent-4 {
+.indent-3 {
   text-indent: 60px;
 }
 
-.indent-5 {
+.indent-4 {
   text-indent: 80px;
 }
 
-.indent-6{
+.indent-5 {
   text-indent: 100px;
 }
 
-.indent-7{
+.indent-6{
   text-indent: 120px;
 }
 
-.indent-8{
+.indent-7{
   text-indent: 140px;
 }
 
-.indent-9{
+.indent-8{
   text-indent: 160px;
 }
 
-.indent-10{
+.indent-9{
   text-indent: 180px;
 }
 
+.indent-10{
+  text-indent: 200px;
+}
+
+
+/* Scribble indent */
 .scrb-indent1 {
   text-indent: 20px;
 }

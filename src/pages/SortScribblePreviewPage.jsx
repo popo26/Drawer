@@ -70,10 +70,14 @@ export default function SortScribblePreviewPage({
     const scribbleObject = data["scribbles"].filter(
       (item) => item.id == selectedScribbleId
     );
-    //const parentDrawerObject = data["drawers"].filter((item) => item.id == state.selectedDrawerId);
+
+    // const newlyCreatedDrawerObj = data["data"].filter((item)=> item.id == passedId)
+
+    const newlyCreatedDrawerObj = data["drawers"].filter((item) => item.id == state.selectedDrawerId);
     //console.log("scribble length: ", Object.values(data["scribbles"]).length);
     let dataPost = {
       //   drawerId: Object.values(data["drawers"]).length + 1,
+      rootDrawerId:newlyCreatedDrawerObj[0]['rootId'],
       drawerId: passedId,
       userId: 1,
       title: scribbleObject[0]["title"],
@@ -111,7 +115,8 @@ export default function SortScribblePreviewPage({
       id: Object.values(data["drawers"]).length + 1,
       name: newSubDrawerName,
       type: "drawer",
-      "sub-drawer": false,
+      // "sub-drawer": false,
+      'sub-drawer':selectedDrawerObject[0]["sub-drawer"],
       // drawerId: state.selectedDrawerId,
       drawerId: selectedDrawerObject[0]['id'],
       root: false,

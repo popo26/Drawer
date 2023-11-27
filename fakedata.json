@@ -107,7 +107,7 @@
     {
       "rootId": 10,
       "userId": 1,
-      "name": "TOP",
+      "name": "TEST",
       "type": "drawer",
       "sub-drawer": true,
       "level": 1,
@@ -115,19 +115,19 @@
       "id": 10
     },
     {
-      "rootId": 14,
+      "rootId": 15,
       "userId": 1,
-      "drawerId": 12,
+      "drawerId": 15,
       "id": 11,
       "name": "One",
       "type": "drawer",
       "sub-drawer": true,
       "root": false,
-      "level": 4
+      "level": 2
     },
     {
-      "rootId": 14,
-      "drawerId": 13,
+      "rootId": 15,
+      "drawerId": 11,
       "userId": 1,
       "name": "Two",
       "type": "drawer",
@@ -137,25 +137,58 @@
       "id": 12
     },
     {
-      "rootId": 14,
+      "rootId": 15,
       "userId": 1,
-      "drawerId": 14,
+      "drawerId": 12,
       "id": 13,
       "name": "Three",
       "type": "drawer",
-      "sub-drawer": false,
+      "sub-drawer": true,
       "root": false,
-      "level": 2
+      "level": 4
     },
     {
-      "rootId": 14,
+      "rootId": 15,
       "userId": 1,
-      "name": "MOVED",
+      "drawerId": 13,
+      "id": 14,
+      "name": "Four",
+      "type": "drawer",
+      "sub-drawer": false,
+      "root": false,
+      "level": 5
+    },
+    {
+      "rootId": 15,
+      "userId": 1,
+      "name": "TEST2",
       "type": "drawer",
       "sub-drawer": true,
       "level": 1,
       "root": true,
-      "id": 14
+      "id": 15
+    },
+    {
+      "rootId": 15,
+      "drawerId": 14,
+      "userId": 1,
+      "name": "Five",
+      "type": "drawer",
+      "sub-drawer": true,
+      "level": 6,
+      "root": false,
+      "id": 16
+    },
+    {
+      "rootId": 15,
+      "userId": 1,
+      "id": 17,
+      "name": "Six",
+      "type": "drawer",
+      "sub-drawer": false,
+      "drawerId": 16,
+      "root": false,
+      "level": 7
     }
   ],
   "scribbles": [
@@ -328,6 +361,7 @@
       "level": 1
     },
     {
+      "rootDrawerId": 15,
       "drawerId": 11,
       "userId": 1,
       "title": "One",
@@ -340,6 +374,7 @@
       "files": []
     },
     {
+      "rootDrawerId": 15,
       "drawerId": 12,
       "userId": 1,
       "title": "Two",
@@ -352,6 +387,7 @@
       "files": []
     },
     {
+      "rootDrawerId": 15,
       "drawerId": 13,
       "userId": 1,
       "title": "Three",
@@ -364,13 +400,41 @@
       "files": []
     },
     {
+      "rootDrawerId": 15,
+      "drawerId": 14,
       "userId": 1,
-      "id": 20,
       "title": "Four",
+      "content": "Enter",
+      "type": "scribble",
+      "id": 20,
+      "stray": false,
+      "level": 5,
+      "attachment": false,
+      "files": []
+    },
+    {
+      "rootDrawerId": 15,
+      "drawerId": 16,
+      "userId": 1,
+      "id": 21,
+      "title": "Five",
       "type": "scribble",
       "content": "Enter",
-      "stray": true,
-      "level": 1,
+      "stray": false,
+      "level": 6,
+      "attachment": false,
+      "files": []
+    },
+    {
+      "rootDrawerId": 15,
+      "drawerId": 17,
+      "userId": 1,
+      "title": "Six",
+      "content": "Enter",
+      "type": "scribble",
+      "id": 22,
+      "stray": false,
+      "level": 7,
       "attachment": false,
       "files": []
     }
