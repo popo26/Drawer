@@ -256,9 +256,12 @@ export default function DrawerListPage({
     for (let x in values) {
       for (let y in values[x]) {
         if (values[x][y].drawerId && values[x][y].rootId == id) {
+          console.log("VALUE-X-Y", values[x][y])
           newArray.push(values[x][y]);
         }
       }
+
+      newArray.sort((a, b) => parseInt(a.level) - parseInt(b.level));
 
       return newArray.map((item) => {
         const scribbleList = findScribbles(item.id, data["scribbles"]);

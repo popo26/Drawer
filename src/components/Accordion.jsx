@@ -49,6 +49,9 @@ export default function Accordion({
       }
     }
 
+    newArray.sort((a, b) => parseInt(a.level) - parseInt(b.level));
+
+
     return newArray.map((item) => {
       const scribbleList = findScribbles(item.id, data["scribbles"]);
       //console.log(data["drawers"])

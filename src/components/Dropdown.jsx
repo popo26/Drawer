@@ -57,6 +57,9 @@ export default function Dropdown({
           newArray.push(values[x][y]);
         }
       }
+
+      newArray.sort((a, b) => parseInt(a.level) - parseInt(b.level));
+
       return newArray.map((item) => {
         return (
             <p 
