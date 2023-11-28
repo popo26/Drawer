@@ -38,34 +38,9 @@ export default function SortDrawerPage({
     };
   }, []);
 
-  //   const parentDrawerObject = data["drawers"].filter(
-  //     (item) => item.id == drawerToBeMoved
-  //   );
-  //   console.log(parentDrawerObject)
-
-  //   const allDrawers = data["drawers"];
-  //   const allScribbles = data["scribbles"];
-
-  //   for (let x of allDrawers) {
-  //     if (x.rootId == drawerToBeMoved) {
-  //       //console.log("rootId same as DrawerToBeMoved {{PUT FOR DRAWERS}}",x)
-  //       //console.log("Sub Drawer ID",x.id)
-  //     }
-  //   }
-
-  //   for (let x of allScribbles) {
-  //     if (x.rootDrawerId == drawerToBeMoved) {
-  //       //console.log(
-  //         "rootDrawerId same as DrawerToBeMoved {{PUT FOR SCRIBBLES}}",
-  //         x
-  //       );
-  //     }
-  //   }
-
   const moveAllChildrenToNewDrawer = (parentDrawerId, newTopLevelDrawerId) => {
     console.log("PUT - move Children");
     const drawerToBeMovedObject = data["drawers"].filter(
-      //   (item) => item.id == drawerToBeMoved
       (item) => item.id == parentDrawerId
     );
 
@@ -76,8 +51,21 @@ export default function SortDrawerPage({
     const allDrawers = data["drawers"];
     const allScribbles = data["scribbles"];
 
+    let subDrawersToBeMoved = [];
     for (let x of allDrawers) {
-      if (x.drawerId === parentDrawerId) {
+      if (
+        x.drawerId === parentDrawerId ||
+        // (x.rootId === drawerToBeMovedObject[0]["rootId"] &&
+        //   x.level > drawerToBeMovedObject[0]["level"])
+        (x.rootId == drawerToBeMoved && x.level > 1)
+      ) {
+        subDrawersToBeMoved.push(x);
+
+        // console.log("drawerToBeMoved!!!", drawerToBeMoved);
+        // console.log("INDEXINDEXINDEX", subDrawersToBeMoved);
+        // console.log("newTopLevelDrawerId", newTopLevelDrawerId);
+        // console.log("drawerToBeMovedObj", drawerToBeMovedObject[0]);
+
         let dataPost = {
           rootId: newTopLevelDrawerId,
           userId: 1,
@@ -87,10 +75,9 @@ export default function SortDrawerPage({
           type: "drawer",
           ["sub-drawer"]: x["sub-drawer"],
           root: false,
-          level: drawerToBeMovedObject[0]["level"] + 1,
+          level: 2 + subDrawersToBeMoved.indexOf(x) + 1,
         };
-        //console.log("You are in Move Children fx");
-        //console.log("FETCH PATH",`http://localhost:3000/drawers/${x.id}`)
+        // console.log("HERERERERERERER", subDrawersToBeMoved);
 
         fetch(`http://localhost:3000/drawers/${x.id}`, {
           method: "PUT",
@@ -116,7 +103,7 @@ export default function SortDrawerPage({
           content: x.content,
           type: "scribble",
           stray: false,
-          level: drawerToBeMovedObject[0]["level"] + 1,
+          level: drawerToBeMovedObject[0]["level"] + x.level,
         };
         fetch(`http://localhost:3000/scribbles/${x.id}`, {
           method: "PUT",
@@ -130,23 +117,15 @@ export default function SortDrawerPage({
           .catch((error) => console.error(error.message));
       }
     }
-    //console.log("DONE with moveChildren fx")
   };
 
-  const parentDrawerObject = data["drawers"].filter(
-    (item) => item.id == Object.values(data["drawers"]).length
-  );
-  //console.log("drawer length",Object.values(data["drawers"]).length)
-  //console.log(parentDrawerObject[0]['level'])
-
   const moveDrawerToNewDrawer = (passedId) => {
-    //console.log("PUT - move Drawer To New Drawer");
     const drawerToBeMovedObject = data["drawers"].filter(
       (item) => item.id == drawerToBeMoved
     );
-    const parentDrawerObject = data["drawers"].filter(
-      (item) => item.id == passedId
-    );
+    // const parentDrawerObject = data["drawers"].filter(
+    //   (item) => item.id == passedId
+    // );
     let dataPost = {
       rootId: passedId,
       userId: 1,
@@ -158,8 +137,6 @@ export default function SortDrawerPage({
       root: false,
       level: 2,
     };
-    ////console.log("You are in MoveDrawerToNewDrawer fx")
-    //console.log("FETCH PATH",`http://localhost:3000/drawers/${drawerToBeMoved}`)
     fetch(`http://localhost:3000/drawers/${drawerToBeMoved}`, {
       method: "PUT",
       mode: "cors",
@@ -190,25 +167,28 @@ export default function SortDrawerPage({
         "Content-Type": "application/json",
       },
       body: JSON.stringify(dataPost),
-    }).then((response) => console.log(response.json()));
+    })
+      .then((response) => console.log(response.json()))
+      .then(moveDrawerToNewDrawer(Object.values(data["drawers"]).length + 1))
+      .then(
+        moveAllChildrenToNewDrawer(
+          drawerToBeMoved,
+          Object.values(data["drawers"]).length + 1
+        )
+      );
 
-    //console.log("DONE with moveToNeDrawer fx")
-    moveDrawerToNewDrawer(Object.values(data["drawers"]).length + 1);
-    moveAllChildrenToNewDrawer(
-      drawerToBeMoved,
-      Object.values(data["drawers"]).length + 1
-    );
+    // moveDrawerToNewDrawer(Object.values(data["drawers"]).length + 1);
+    // moveAllChildrenToNewDrawer(
+    //   drawerToBeMoved,
+    //   Object.values(data["drawers"]).length + 1
+    // );
   };
 
   const handleChange = (value) => {
-    //console.log(value);
-    //somehow need a spot to set this state
-    // setSelectedScribbleId(state.id)
     setDrawerName(value);
   };
 
   const handleCreate = (value) => {
-    //console.log("Create btn clicked", value);
     createNewDrawer();
     setDrawerName("");
   };
@@ -216,7 +196,7 @@ export default function SortDrawerPage({
   const drawerToBeMovedObj = data["drawers"].filter(
     (item) => item.id == drawerToBeMoved
   );
-  console.log("LOOK", drawerToBeMovedObj[0]["name"]);
+  //console.log("LOOK", drawerToBeMovedObj[0]["name"]);
 
   return (
     <div id="page">
@@ -248,12 +228,10 @@ export default function SortDrawerPage({
           data={data}
           selectedDrawerId={selectedDrawerId}
           setSelectedDrawerId={setSelectedDrawerId}
-          //   onClick={()=>{setSelectedScribbleId(state.id)}}
         />
       </div>
-      {/* <Button href="/sort-preview" btnName="Next" handleNewDrawerCreate={handleNext}/> */}
       <button
-      className="btn btn-outline-success next-btn"
+        className="btn btn-outline-success next-btn"
         onClick={(e) => {
           e.preventDefault();
           let passingData = { selectedDrawerId, drawerToBeMoved };

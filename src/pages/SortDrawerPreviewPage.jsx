@@ -20,17 +20,18 @@ export default function SortDrawerPreviewPage({
 
   console.log("State", state);
 
-
   const updateParentDrawerBoolean = (parentDrawerId) => {
     console.log("PUT2");
     let dataPost;
-    const parentDrawerObj = data["drawers"].filter((item) => item.id == parentDrawerId);
+    const parentDrawerObj = data["drawers"].filter(
+      (item) => item.id == parentDrawerId
+    );
     //Something wrong with here
     // console.log("x[0][drawerId]", x[0]["drawerId"]);
     if (parentDrawerObj[0]["drawerId"]) {
       dataPost = {
         // rootId: parentDrawerId,
-        rootId:parentDrawerObj[0]["rootId"],
+        rootId: parentDrawerObj[0]["rootId"],
         drawerId: parentDrawerObj[0]["drawerId"],
         userId: 1,
         // name: "Bagger",
@@ -46,7 +47,7 @@ export default function SortDrawerPreviewPage({
     } else {
       dataPost = {
         // rootId: parentDrawerId,
-        rootId:parentDrawerObj[0]["rootId"],
+        rootId: parentDrawerObj[0]["rootId"],
         userId: 1,
         name: parentDrawerObj[0]["name"],
         type: "drawer",
@@ -68,11 +69,8 @@ export default function SortDrawerPreviewPage({
       .catch((error) => console.error(error.message));
   };
 
-
-
-
   const moveAllChildrenToNewDrawer = (parentDrawerId, newTopLevelDrawerId) => {
-    console.log("PUT - move Children");
+    //console.log("PUT - move Children");
 
     const allDrawers = data["drawers"];
     const allScribbles = data["scribbles"];
@@ -99,9 +97,16 @@ export default function SortDrawerPreviewPage({
     //       root: false,
     //       level: newTopLevelDrawerObject[0]["level"] + 1,
     //     };
+    let subDrawersToBeMoved = [];
 
     for (let x of allDrawers) {
-      if (x.drawerId === parentDrawerId || x.rootId === drawerToBeMovedObject[0]['rootId'] && x.level > drawerToBeMovedObject[0]['level']) {
+      if (
+        x.drawerId === parentDrawerId ||
+        (x.rootId === drawerToBeMovedObject[0]["rootId"] &&
+          x.level > drawerToBeMovedObject[0]["level"])
+      ) {
+        subDrawersToBeMoved.push(x);
+        console.log("index", subDrawersToBeMoved.indexOf(x));
         let dataPost = {
           rootId: newTopLevelDrawerId,
           userId: 1,
@@ -111,10 +116,12 @@ export default function SortDrawerPreviewPage({
           type: "drawer",
           ["sub-drawer"]: x["sub-drawer"],
           root: false,
-          level: newTopLevelDrawerObject[0]["level"] + x.level,
-          // level:x.level,
+          // level: newTopLevelDrawerObject[0]["level"] + x.level,
+          level:
+            newTopLevelDrawerObject[0]["level"] +
+            subDrawersToBeMoved.indexOf(x) +
+            2,
         };
-             
 
         fetch(`http://localhost:3000/drawers/${x.id}`, {
           method: "PUT",
@@ -142,8 +149,6 @@ export default function SortDrawerPreviewPage({
           stray: false,
           // level: drawerToBeMovedObject[0]["level"],
           level: newTopLevelDrawerObject[0]["level"] + x.level,
-          // level: x.level,
-
         };
         fetch(`http://localhost:3000/scribbles/${x.id}`, {
           method: "PUT",
@@ -159,14 +164,9 @@ export default function SortDrawerPreviewPage({
     }
   };
 
-  const parentDrawerObject = data["drawers"].filter(
-    (item) => item.id == Object.values(data["drawers"]).length
-  );
-  //console.log("drawer length",Object.values(data["drawers"]).length)
-  //console.log(parentDrawerObject[0]['level'])
+ 
 
   const moveDrawerToNewDrawer = (passedId) => {
-    //console.log("PUT - move Drawer To New Drawer");
     const drawerToBeMovedObject = data["drawers"].filter(
       (item) => item.id == drawerToBeMoved
     );
@@ -175,17 +175,17 @@ export default function SortDrawerPreviewPage({
     );
     let dataPost = {
       // rootId: passedId,
-      rootId: parentDrawerObject[0]['rootId'],
+      rootId: parentDrawerObject[0]["rootId"],
       userId: 1,
       // drawerId: passedId,
-      drawerId:parentDrawerObject[0]['id'],
+      drawerId: parentDrawerObject[0]["id"],
       id: drawerToBeMovedObject[0]["id"],
       name: drawerToBeMovedObject[0]["name"],
       type: "drawer",
       ["sub-drawer"]: drawerToBeMovedObject[0]["sub-drawer"],
       root: false,
       // level: 2,
-      level:parentDrawerObject[0]['level'] + 1
+      level: parentDrawerObject[0]["level"] + 1,
     };
     fetch(`http://localhost:3000/drawers/${drawerToBeMoved}`, {
       method: "PUT",
@@ -199,13 +199,7 @@ export default function SortDrawerPreviewPage({
       .catch((error) => console.error(error.message));
   };
 
-
-
   const handleMoveHere = () => {
-    // const selectedDrawerObject = data["drawers"].filter(
-    //   (item) => item.id == state.selectedDrawerId
-    // );
-    // addScribbleToNewSubDrawer(state.selectedDrawerId, selectedDrawerObject[0]['level'])
     moveDrawerToNewDrawer(selectedDrawerId);
     moveAllChildrenToNewDrawer(drawerToBeMoved, selectedDrawerId);
     updateParentDrawerBoolean(selectedDrawerId);
@@ -281,10 +275,12 @@ export default function SortDrawerPreviewPage({
   );
   console.log("LOOK", destinationObj[0]["name"]);
 
-
   return (
     <div className="sort-drawer-preview-div">
-      <h3>Drawer to be moved: {drawerToBeMovedObj[0]["name"]}---ID {drawerToBeMoved}</h3>
+      <h3>
+        Drawer to be moved: {drawerToBeMovedObj[0]["name"]}---ID{" "}
+        {drawerToBeMoved}
+      </h3>
       <h3>To: {selectedDrawerId}</h3>
 
       <div>{renderedList}</div>
@@ -292,9 +288,11 @@ export default function SortDrawerPreviewPage({
       <FindSubDrawers />
 
       <div>
-        <button onClick={handleMoveHere} className="btn btn-success move-btn">Move Here</button>
+        <button onClick={handleMoveHere} className="btn btn-success move-btn">
+          Move Here
+        </button>
 
-{/* UNDERCONSTRUCTION or NOT REQUIRED */}
+        {/* UNDERCONSTRUCTION or NOT REQUIRED */}
         {/* <h6>Or create new sub-drawer</h6>
         <InputField
           type="text"
@@ -311,7 +309,7 @@ export default function SortDrawerPreviewPage({
           //handleNewDrawerCreate={handleCreate}
           drawerName={newSubDrawerName}
         /> */}
-{/* UNDERCONSTRUCTION        */}
+        {/* UNDERCONSTRUCTION        */}
       </div>
       <div>
         <Icon
