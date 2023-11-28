@@ -326,8 +326,8 @@ export default function PerScribblePage({ data }) {
         ) : (
           <Icon
             icon="material-symbols:update"
-            color="black"
-            width="22"
+            color="red"
+            width="30"
             onClick={update}
           />
         )}

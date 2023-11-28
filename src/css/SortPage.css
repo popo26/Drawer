@@ -1,6 +1,17 @@
-.sort-msg {
-    padding-top:50px;
-    font-weight:900
+.sort-msg-btn {
+    margin: 20px;
+    border-radius: 6px;
+    padding:6px;
+    border:4px solid purple;
+    background: none;
+    color:purple;
+}
+
+.sort-msg-btn:hover {
+
+    border:4px solid purple;
+    background: black;
+    color:white;
 }
 
 .next-btn {

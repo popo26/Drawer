@@ -18,11 +18,13 @@ export default function SortDrawerPage({
   setDrawerToBeMoved,
 }) {
   const navigate = useNavigate();
-  // const [newDrawerName, setNewDrawerName] = useState("");
-  // const [selectedDrawerId, setSelectedDrawerId] = useState("");
   const { state } = useLocation();
-  // const [selectedScribbleId, setSelectedScribbleId] = useState("");
-  //   const [drawerToBeMoved, setDrawerToBeMoved] = useState("");
+
+  const [newDrawerNameFieldSelected, setNewDrawerNameFieldSelected] =
+    useState(true);
+  const [displayMessage, setDisplayMessage] = useState(
+    "Or move it to existing drawer"
+  );
 
   console.log("State", state);
   console.log("DrawerToBeMoved", drawerToBeMoved);
@@ -193,6 +195,15 @@ export default function SortDrawerPage({
     setDrawerName("");
   };
 
+  const handleDisplay = () => {
+    setNewDrawerNameFieldSelected(!newDrawerNameFieldSelected);
+    {
+      displayMessage === "Or move it to existing drawer"
+        ? setDisplayMessage("Or create new top level drawer")
+        : setDisplayMessage("Or move it to existing drawer");
+    }
+  };
+
   const drawerToBeMovedObj = data["drawers"].filter(
     (item) => item.id == drawerToBeMoved
   );
@@ -205,42 +216,52 @@ export default function SortDrawerPage({
         {drawerToBeMoved}
       </h4>
       <h4>Selected drawer Id : {selectedDrawerId}</h4>
-      <div>
-        <InputField
-          type="text"
-          name="create-new-drawer"
-          id="create-new-drawer"
-          placeholder="Create new TOP-level drawer"
-          value={drawerName}
-          handleNewDrawerChange={handleChange}
-        />
-        <br />
-        <Button
-          href={null}
-          btnName="Create & Move"
-          handleNewDrawerCreate={handleCreate}
-          drawerName={drawerName}
-        />
 
-        <h4 className="sort-msg">Or move it to...</h4>
+      {newDrawerNameFieldSelected && (
+        <div>
+          <InputField
+            type="text"
+            name="create-new-drawer"
+            id="create-new-drawer"
+            placeholder="Create new TOP-level drawer"
+            value={drawerName}
+            handleNewDrawerChange={handleChange}
+          />
+          <br />
+          <Button
+            href={null}
+            btnName="Create & Move"
+            handleNewDrawerCreate={handleCreate}
+            drawerName={drawerName}
+          />
+        </div>
+      )}
 
-        <Dropdown
-          data={data}
-          selectedDrawerId={selectedDrawerId}
-          setSelectedDrawerId={setSelectedDrawerId}
-        />
-      </div>
-      <button
-        className="btn btn-outline-success next-btn"
-        onClick={(e) => {
-          e.preventDefault();
-          let passingData = { selectedDrawerId, drawerToBeMoved };
-          console.log("PassingData", passingData);
-          navigate("/sort-drawer-preview", { state: passingData });
-        }}
-      >
-        Next
-      </button>
+      <button onClick={handleDisplay} className="sort-msg-btn">{displayMessage}</button>
+
+      {!newDrawerNameFieldSelected && (
+        <>
+          <div>
+            <Dropdown
+              data={data}
+              selectedDrawerId={selectedDrawerId}
+              setSelectedDrawerId={setSelectedDrawerId}
+            />
+          </div>
+          <button
+            className="btn btn-outline-success next-btn"
+            onClick={(e) => {
+              e.preventDefault();
+              let passingData = { selectedDrawerId, drawerToBeMoved };
+              console.log("PassingData", passingData);
+              navigate("/sort-drawer-preview", { state: passingData });
+            }}
+          >
+            Next
+          </button>
+        </>
+      )}
+
       <div>
         <Icon
           icon="icon-park-outline:back"
@@ -252,3 +273,58 @@ export default function SortDrawerPage({
     </div>
   );
 }
+
+//   return (
+//     <div id="page">
+//       <h4 className="sort-drawer-title">
+//         Drawer to be moved : {drawerToBeMovedObj[0]["name"]}---ID
+//         {drawerToBeMoved}
+//       </h4>
+//       <h4>Selected drawer Id : {selectedDrawerId}</h4>
+//       <div>
+//         <InputField
+//           type="text"
+//           name="create-new-drawer"
+//           id="create-new-drawer"
+//           placeholder="Create new TOP-level drawer"
+//           value={drawerName}
+//           handleNewDrawerChange={handleChange}
+//         />
+//         <br />
+//         <Button
+//           href={null}
+//           btnName="Create & Move"
+//           handleNewDrawerCreate={handleCreate}
+//           drawerName={drawerName}
+//         />
+
+//         <h4 className="sort-msg">Or move it to...</h4>
+
+//         <Dropdown
+//           data={data}
+//           selectedDrawerId={selectedDrawerId}
+//           setSelectedDrawerId={setSelectedDrawerId}
+//         />
+//       </div>
+//       <button
+//         className="btn btn-outline-success next-btn"
+//         onClick={(e) => {
+//           e.preventDefault();
+//           let passingData = { selectedDrawerId, drawerToBeMoved };
+//           console.log("PassingData", passingData);
+//           navigate("/sort-drawer-preview", { state: passingData });
+//         }}
+//       >
+//         Next
+//       </button>
+//       <div>
+//         <Icon
+//           icon="icon-park-outline:back"
+//           color="black"
+//           width="50"
+//           onClick={() => navigate(-1)}
+//         />
+//       </div>
+//     </div>
+//   );
+// }

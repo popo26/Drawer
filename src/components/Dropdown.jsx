@@ -6,8 +6,6 @@ export default function Dropdown({
   data,
   selectedDrawerId,
   setSelectedDrawerId,
-  newDrawerNameFieldClicked,
-  setNewDrawerNameFieldClicked,
 }) {
   const [open, setOpen] = useState(false);
   const [currentDropdown, setCurrentDropDown] = useState("Existing Drawers");
@@ -16,10 +14,6 @@ export default function Dropdown({
   const handleOpen = () => {
     setOpen(!open);
   };
-
-  useEffect(()=>{
-    setNewDrawerNameFieldClicked(!newDrawerNameFieldClicked)
-  }, [open])
 
   // const existingDrawersList = data["drawers"].map((item) => {
   //   return item["drawerId"] ? (
@@ -71,7 +65,6 @@ export default function Dropdown({
         return (
           <p
             className={"sub-drawer indent-" + item.level}
-            style={{ cursor: "pointer" }}
             key={item.id}
             onClick={() => {
               setCurrentDropDown(item.name);
@@ -96,7 +89,9 @@ export default function Dropdown({
               setSelectedDrawerId(item.id);
             }}
           >
-            <p style={{ cursor: "pointer" }}>{item.name}</p>
+            <p className="top-drawer" >
+              {item.name}
+            </p>
           </div>
           <div>
             {item["sub-drawer"] === true ? (
@@ -110,23 +105,18 @@ export default function Dropdown({
 
   return (
     <div>
-      <div className="dropdown" >
+      <div className="dropdown">
         <button
           className="btn btn-secondary dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
           onClick={handleOpen} //Not sure why this is needed
-
         >
           {currentDropdown}
         </button>
         {/* <ul className="dropdown-menu">{existingDrawersList}</ul> */}
-        <div
-          className="dropdown-menu"
-        >
-          {existingDrawersList}
-        </div>
+        <div className="dropdown-menu">{existingDrawersList}</div>
       </div>
     </div>
   );

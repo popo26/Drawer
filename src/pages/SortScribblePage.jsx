@@ -14,24 +14,19 @@ export default function SortScribblePage({
   selectedDrawerId,
   setSelectedDrawerId,
 }) {
-  const [newDrawerNameFieldClicked, setNewDrawerNameFieldClicked] =
+  const [newDrawerNameFieldSelected, setNewDrawerNameFieldSelected] =
     useState(true);
-  const [DropDownClicked, setDropDownClicked] = useState(true);
+  const [displayMessage, setDisplayMessage] = useState(
+    "Or choose from existing drawer"
+  );
 
   const navigate = useNavigate();
-  // const [newDrawerName, setNewDrawerName] = useState("");
-  // const [selectedDrawerId, setSelectedDrawerId] = useState("");
   const { state } = useLocation();
-  // const [selectedScribbleId, setSelectedScribbleId] = useState("");
 
   //console.log("State", state);
 
   //To persist selected Scribble ID so browser refresh won't wipe it
   useEffect(() => {
-    // const screen = document.getElementById("page");
-    // screen.addEventListener("click", function () {
-    //   setSelectedScribbleId(state.id);
-    // });
     setSelectedScribbleId(state.id);
     setSelectedDrawerId(""); //this is still bit in quesion
   }, []);
@@ -97,8 +92,6 @@ export default function SortScribblePage({
     console.log(value);
     //somehow need a spot to set this state
     setDrawerName(value);
-    // setNewDrawerNameFieldClicked(true);
-    setDropDownClicked(false);
   };
 
   const handleCreate = (value) => {
@@ -107,20 +100,24 @@ export default function SortScribblePage({
     setDrawerName("");
   };
 
-  const handleReset =() => {
-    setNewDrawerNameFieldClicked(true);
-    setDropDownClicked(true)
-  }
 
-  console.log("NewDrawerNameFieldClicked", newDrawerNameFieldClicked);
-  console.log("dropDownClicked", DropDownClicked);
+  //console.log("NewDrawerNameFieldSelected", newDrawerNameFieldSelected);
+
+  const handleDisplay = () => {
+    setNewDrawerNameFieldSelected(!newDrawerNameFieldSelected);
+    {
+      displayMessage === "Or choose from existing drawer"
+        ? setDisplayMessage("Or create new top level drawer")
+        : setDisplayMessage("Or choose from existing drawer");
+    }
+  };
 
   return (
-    <div id="page" onClick={handleReset}>
+    <div id="page">
       <h4>Scribble ID: {selectedScribbleId}</h4>
       <h4>Selected Drawer Id: {selectedDrawerId}</h4>
       <div>
-        {newDrawerNameFieldClicked && (
+        {newDrawerNameFieldSelected && (
           <>
             <InputField
               type="text"
@@ -136,86 +133,39 @@ export default function SortScribblePage({
               btnName="Create & Save"
               handleNewDrawerCreate={handleCreate}
               drawerName={drawerName}
-              // onClick={()=>{navigate("/home")}}
             />
           </>
         )}
 
-        {/* <InputField
-          type="text"
-          name="create-new-drawer"
-          id="create-new-drawer"
-          placeholder="Enter new drawer name"
-          value={drawerName}
-          handleNewDrawerChange={handleChange}
-          onClick={() => {
-            setNewDrawerNameFieldClicked(true);
-            setDropDownClicked(false);
-          }}
-        />
-        <br />
-        <Button
-          href={null}
-          btnName="Create & Save"
-          handleNewDrawerCreate={handleCreate}
-          drawerName={drawerName}
-          // onClick={()=>{navigate("/home")}}
-        /> */}
-
-        {/* <h6 className="sort-msg">Or choose from existing drawer</h6>
-
-        <Dropdown
-          data={data}
-          selectedDrawerId={selectedDrawerId}
-          setSelectedDrawerId={setSelectedDrawerId}
-          //   onClick={()=>{setSelectedScribbleId(state.id)}}
-          onClick={() => {
-            setDropDownClicked(true);
-            setNewDrawerNameFieldClicked(false);
-          }}
-        />
       </div>
-      <button
-        className="btn btn-outline-success next-btn"
-        onClick={(e) => {
-          e.preventDefault();
-          let passingData = { selectedScribbleId, selectedDrawerId };
-          console.log("PassingData", passingData);
-          navigate("/sort-preview", { state: passingData });
-        }}
-      >
-        Next
-      </button> */}
+     
+      <button className="sort-msg-btn" onClick={handleDisplay}>
+        {displayMessage}
+      </button>
 
-        {DropDownClicked && (
-          <>
-            <h6 className="sort-msg">Or choose from existing drawer</h6>
+      {!newDrawerNameFieldSelected && (
+        <>
+          <Dropdown
+            data={data}
+            selectedDrawerId={selectedDrawerId}
+            setSelectedDrawerId={setSelectedDrawerId}
+       
+          />
+          <button
+            className="btn btn-outline-success next-btn"
+            onClick={(e) => {
+              e.preventDefault();
+              let passingData = { selectedScribbleId, selectedDrawerId };
+              console.log("PassingData", passingData);
+              navigate("/sort-preview", { state: passingData });
+            }}
+          >
+            Next
+          </button>
+        </>
+      )}
 
-            <Dropdown
-              data={data}
-              selectedDrawerId={selectedDrawerId}
-              setSelectedDrawerId={setSelectedDrawerId}
-              //   onClick={()=>{setSelectedScribbleId(state.id)}}
-              setNewDrawerNameFieldClicked={setNewDrawerNameFieldClicked}
-              newDrawerNameFieldClicked={newDrawerNameFieldClicked}
-
-            />
-            {/* </div> */}
-            <button
-              className="btn btn-outline-success next-btn"
-              onClick={(e) => {
-                e.preventDefault();
-                let passingData = { selectedScribbleId, selectedDrawerId };
-                console.log("PassingData", passingData);
-                navigate("/sort-preview", { state: passingData });
-              }}
-            >
-              Next
-            </button>
-          </>
-        )}
-
-        {/* <div> */}
+      <div>
         <Icon
           icon="icon-park-outline:back"
           color="black"
@@ -227,67 +177,3 @@ export default function SortScribblePage({
   );
 }
 
-// return (
-//   <div id="page">
-//     <h4>Scribble ID: {selectedScribbleId}</h4>
-//     <h4>Selected Drawer Id: {selectedDrawerId}</h4>
-//     <div>
-
-// <InputField
-//         type="text"
-//         name="create-new-drawer"
-//         id="create-new-drawer"
-//         placeholder="Enter new drawer name"
-//         value={drawerName}
-//         handleNewDrawerChange={handleChange}
-//         onClick={() => {
-//           setNewDrawerNameFieldClicked(true);
-//           setDropDownClicked(false);
-//         }}
-//       />
-//       <br />
-//       <Button
-//         href={null}
-//         btnName="Create & Save"
-//         handleNewDrawerCreate={handleCreate}
-//         drawerName={drawerName}
-//         // onClick={()=>{navigate("/home")}}
-//       />
-
-//       <h6 className="sort-msg">Or choose from existing drawer</h6>
-
-//       <Dropdown
-//         data={data}
-//         selectedDrawerId={selectedDrawerId}
-//         setSelectedDrawerId={setSelectedDrawerId}
-//         //   onClick={()=>{setSelectedScribbleId(state.id)}}
-//         onClick={() => {
-//           setDropDownClicked(true);
-//           setNewDrawerNameFieldClicked(false);
-//         }}
-//       />
-//     </div>
-//     {/* <Button href="/sort-preview" btnName="Next" handleNewDrawerCreate={handleNext}/> */}
-//     <button
-//       className="btn btn-outline-success next-btn"
-//       onClick={(e) => {
-//         e.preventDefault();
-//         // setSelectedScribbleId(state.id)
-//         let passingData = { selectedScribbleId, selectedDrawerId };
-//         console.log("PassingData", passingData);
-//         navigate("/sort-preview", { state: passingData });
-//       }}
-//     >
-//       Next
-//     </button>
-//     <div>
-//       <Icon
-//         icon="icon-park-outline:back"
-//         color="black"
-//         width="50"
-//         onClick={() => navigate(-1)}
-//       />
-//     </div>
-//   </div>
-// );
-// }

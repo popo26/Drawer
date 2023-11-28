@@ -16,6 +16,9 @@ export default function SortScribblePreviewPage({
   const { state } = useLocation();
   const [newSubDrawerName, setNewSubDrawerName] = useState("");
 
+  const [saveHereSelected, setSaveHereSelected] = useState(true);
+  const [displayMessage, setDisplayMessage] = useState("Or create sub-drawer");
+
   console.log("State", state.selectedDrawerId);
 
   const updateParentDrawerBoolean = (parentDrawerId) => {
@@ -27,7 +30,7 @@ export default function SortScribblePreviewPage({
     if (x[0]["drawerId"]) {
       dataPost = {
         // rootId: parentDrawerId,
-        rootId:x[0]['rootId'],
+        rootId: x[0]["rootId"],
         drawerId: x[0]["drawerId"],
         userId: 1,
         // name: "Bagger",
@@ -73,11 +76,13 @@ export default function SortScribblePreviewPage({
 
     // const newlyCreatedDrawerObj = data["data"].filter((item)=> item.id == passedId)
 
-    const newlyCreatedDrawerObj = data["drawers"].filter((item) => item.id == state.selectedDrawerId);
+    const newlyCreatedDrawerObj = data["drawers"].filter(
+      (item) => item.id == state.selectedDrawerId
+    );
     //console.log("scribble length: ", Object.values(data["scribbles"]).length);
     let dataPost = {
       //   drawerId: Object.values(data["drawers"]).length + 1,
-      rootDrawerId:newlyCreatedDrawerObj[0]['rootId'],
+      rootDrawerId: newlyCreatedDrawerObj[0]["rootId"],
       drawerId: passedId,
       userId: 1,
       title: scribbleObject[0]["title"],
@@ -87,8 +92,8 @@ export default function SortScribblePreviewPage({
       stray: false,
       // level:parentDrawerObject[0]["level"]+1,
       level: selectedDrawerLevel,
-      attachment:scribbleObject[0]["attachment"],
-      files:scribbleObject[0]["files"]
+      attachment: scribbleObject[0]["attachment"],
+      files: scribbleObject[0]["files"],
     };
     fetch(`http://localhost:3000/scribbles/${state.selectedScribbleId}`, {
       method: "PUT",
@@ -116,9 +121,9 @@ export default function SortScribblePreviewPage({
       name: newSubDrawerName,
       type: "drawer",
       // "sub-drawer": false,
-      'sub-drawer':selectedDrawerObject[0]["sub-drawer"],
+      "sub-drawer": selectedDrawerObject[0]["sub-drawer"],
       // drawerId: state.selectedDrawerId,
-      drawerId: selectedDrawerObject[0]['id'],
+      drawerId: selectedDrawerObject[0]["id"],
       root: false,
       // level:Object.values(data["drawers"])[state.selectedDrawerId]["level"],
       level: selectedDrawerObject[0]["level"] + 1,
@@ -221,6 +226,18 @@ export default function SortScribblePreviewPage({
     return renderedChildren;
   };
 
+  console.log("saveHereSelected", saveHereSelected)
+  console.log("displayMessage", displayMessage)
+
+  const handleDisplay = () => {
+    setSaveHereSelected(!saveHereSelected);
+    {
+      displayMessage === "Or create sub-drawer"
+        ? setDisplayMessage("Or save here")
+        : setDisplayMessage("Or create sub-drawer");
+    }
+  };
+
   return (
     <div>
       <p>Sort Preview - Selected Drawer ID: {state.selectedDrawerId}</p>
@@ -229,25 +246,36 @@ export default function SortScribblePreviewPage({
       <div>{renderedList}</div>
       <FindSubDrawers />
 
-      <div>
-        <button className="btn btn-outline-success" onClick={handleSaveHere}>Save Here</button>
-        <h6 className="sort-msg">Or create new sub-drawer</h6>
-        <InputField
-          type="text"
-          name="create-new-sub-drawer"
-          id="create-new-sub-drawer"
-          placeholder="New sub drawer name"
-          value={newSubDrawerName}
-          handleNewDrawerChange={handleChange}
-        />
-        <br />
-        <Button
-          href={null}
-          btnName="Create & Save"
-          handleNewDrawerCreate={handleCreate}
-          drawerName={newSubDrawerName}
-        />
-      </div>
+      {saveHereSelected && (
+        <div>
+          <button className="btn btn-outline-success" onClick={handleSaveHere}>
+            Save Here
+          </button>
+        </div>
+      )}
+
+      <button onClick={handleDisplay} className="sort-msg-btn">{displayMessage}</button>
+
+      {!saveHereSelected && (
+        <div>
+          <InputField
+            type="text"
+            name="create-new-sub-drawer"
+            id="create-new-sub-drawer"
+            placeholder="New sub drawer name"
+            value={newSubDrawerName}
+            handleNewDrawerChange={handleChange}
+          />
+          <br />
+          <Button
+            href={null}
+            btnName="Create & Save"
+            handleNewDrawerCreate={handleCreate}
+            drawerName={newSubDrawerName}
+          />
+        </div>
+      )}
+
       <div className="back-btn">
         <Icon
           icon="icon-park-outline:back"
@@ -259,3 +287,42 @@ export default function SortScribblePreviewPage({
     </div>
   );
 }
+
+//   return (
+//     <div>
+//       <p>Sort Preview - Selected Drawer ID: {state.selectedDrawerId}</p>
+//       <p>Scribble ID: {state.selectedScribbleId}</p>
+
+//       <div>{renderedList}</div>
+//       <FindSubDrawers />
+
+//       <div>
+//         <button className="btn btn-outline-success" onClick={handleSaveHere}>Save Here</button>
+//         <h6 className="sort-msg">Or create new sub-drawer</h6>
+//         <InputField
+//           type="text"
+//           name="create-new-sub-drawer"
+//           id="create-new-sub-drawer"
+//           placeholder="New sub drawer name"
+//           value={newSubDrawerName}
+//           handleNewDrawerChange={handleChange}
+//         />
+//         <br />
+//         <Button
+//           href={null}
+//           btnName="Create & Save"
+//           handleNewDrawerCreate={handleCreate}
+//           drawerName={newSubDrawerName}
+//         />
+//       </div>
+//       <div className="back-btn">
+//         <Icon
+//           icon="icon-park-outline:back"
+//           color="black"
+//           width="50"
+//           onClick={() => navigate(-1)}
+//         />
+//       </div>
+//     </div>
+//   );
+// }

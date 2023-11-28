@@ -129,7 +129,7 @@ export default function DrawerListPage({
       return (
         <Icon
           icon="material-symbols:update"
-          color="black"
+          color="red"
           width="22"
           onClick={update}
         />
