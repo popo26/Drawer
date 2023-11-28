@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../css/Dropdown.css";
 import { Icon } from "@iconify/react";
 
@@ -6,13 +6,20 @@ export default function Dropdown({
   data,
   selectedDrawerId,
   setSelectedDrawerId,
+  newDrawerNameFieldClicked,
+  setNewDrawerNameFieldClicked,
 }) {
   const [open, setOpen] = useState(false);
   const [currentDropdown, setCurrentDropDown] = useState("Existing Drawers");
 
+  //++++++++++NOt sure if I ened this++++++++++++++++++++
   const handleOpen = () => {
     setOpen(!open);
   };
+
+  useEffect(()=>{
+    setNewDrawerNameFieldClicked(!newDrawerNameFieldClicked)
+  }, [open])
 
   // const existingDrawersList = data["drawers"].map((item) => {
   //   return item["drawerId"] ? (
@@ -62,15 +69,17 @@ export default function Dropdown({
 
       return newArray.map((item) => {
         return (
-            <p 
+          <p
             className={"sub-drawer indent-" + item.level}
-            style={{cursor:"pointer"}}
+            style={{ cursor: "pointer" }}
             key={item.id}
             onClick={() => {
               setCurrentDropDown(item.name);
               setSelectedDrawerId(item.id);
             }}
-            >{item.name}</p>
+          >
+            {item.name}
+          </p>
         );
       });
     }
@@ -80,20 +89,20 @@ export default function Dropdown({
     if (item.root === true) {
       return (
         <>
-        <div 
-        key={item.id}
-        onClick={() => {
-          setCurrentDropDown(item.name);
-          setSelectedDrawerId(item.id);
-        }}
-        >
-          <p style={{cursor:"pointer"}}>{item.name}</p>
+          <div
+            key={item.id}
+            onClick={() => {
+              setCurrentDropDown(item.name);
+              setSelectedDrawerId(item.id);
+            }}
+          >
+            <p style={{ cursor: "pointer" }}>{item.name}</p>
           </div>
           <div>
-          {item["sub-drawer"] === true ? (
+            {item["sub-drawer"] === true ? (
               <>{findSubDrawers(item.id, Array(data["drawers"]))} </>
-          ) : null}
-        </div>
+            ) : null}
+          </div>
         </>
       );
     }
@@ -101,19 +110,23 @@ export default function Dropdown({
 
   return (
     <div>
-      <div className="dropdown">
+      <div className="dropdown" >
         <button
           className="btn btn-secondary dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
-          onClick={handleOpen}
+          onClick={handleOpen} //Not sure why this is needed
+
         >
           {currentDropdown}
         </button>
         {/* <ul className="dropdown-menu">{existingDrawersList}</ul> */}
-        <div className="dropdown-menu">{existingDrawersList}</div>
-
+        <div
+          className="dropdown-menu"
+        >
+          {existingDrawersList}
+        </div>
       </div>
     </div>
   );

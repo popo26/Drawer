@@ -115,9 +115,9 @@
       "id": 10
     },
     {
-      "rootId": 10,
+      "rootId": 15,
       "userId": 1,
-      "drawerId": 10,
+      "drawerId": 15,
       "id": 11,
       "name": "One",
       "type": "drawer",
@@ -126,18 +126,18 @@
       "level": 2
     },
     {
-      "rootId": 10,
-      "userId": 1,
+      "rootId": 15,
       "drawerId": 11,
-      "id": 12,
+      "userId": 1,
       "name": "Two",
       "type": "drawer",
       "sub-drawer": true,
+      "level": 3,
       "root": false,
-      "level": 3
+      "id": 12
     },
     {
-      "rootId": 10,
+      "rootId": 15,
       "userId": 1,
       "drawerId": 12,
       "id": 13,
@@ -148,7 +148,7 @@
       "level": 4
     },
     {
-      "rootId": 10,
+      "rootId": 15,
       "userId": 1,
       "drawerId": 13,
       "id": 14,
@@ -159,47 +159,36 @@
       "level": 5
     },
     {
-      "rootId": 18,
+      "rootId": 15,
       "userId": 1,
-      "drawerId": 18,
-      "id": 15,
       "name": "TEST2",
       "type": "drawer",
       "sub-drawer": true,
-      "root": false,
-      "level": 2
+      "level": 1,
+      "root": true,
+      "id": 15
     },
     {
-      "rootId": 10,
-      "userId": 1,
+      "rootId": 15,
       "drawerId": 14,
-      "id": 16,
+      "userId": 1,
       "name": "Five",
       "type": "drawer",
       "sub-drawer": true,
+      "level": 6,
       "root": false,
-      "level": 6
+      "id": 16
     },
     {
-      "rootId": 10,
+      "rootId": 15,
       "userId": 1,
-      "drawerId": 16,
       "id": 17,
       "name": "Six",
       "type": "drawer",
       "sub-drawer": false,
+      "drawerId": 16,
       "root": false,
       "level": 7
-    },
-    {
-      "rootId": 18,
-      "userId": 1,
-      "id": 18,
-      "name": "TEST8",
-      "type": "drawer",
-      "sub-drawer": true,
-      "root": true,
-      "level": 1
     }
   ],
   "scribbles": [
@@ -322,8 +311,8 @@
       "userId": 1,
       "id": 12,
       "title": "HARD CODED",
-      "content": "HTTP//:HARDCODED",
       "type": "scribble",
+      "content": "HTTP//:HARDCODED",
       "stray": true,
       "level": 1
     },
@@ -372,70 +361,82 @@
       "level": 1
     },
     {
-      "rootDrawerId": 18,
-      "userId": 1,
+      "rootDrawerId": 15,
       "drawerId": 11,
-      "id": 17,
+      "userId": 1,
       "title": "One",
       "content": "Enter",
       "type": "scribble",
+      "id": 17,
       "stray": false,
-      "level": 3
+      "level": 2,
+      "attachment": false,
+      "files": []
     },
     {
-      "rootDrawerId": 18,
-      "userId": 1,
+      "rootDrawerId": 15,
       "drawerId": 12,
-      "id": 18,
+      "userId": 1,
       "title": "Two",
       "content": "Enter",
       "type": "scribble",
+      "id": 18,
       "stray": false,
-      "level": 4
+      "level": 3,
+      "attachment": false,
+      "files": []
     },
     {
-      "rootDrawerId": 18,
-      "userId": 1,
+      "rootDrawerId": 15,
       "drawerId": 13,
-      "id": 19,
+      "userId": 1,
       "title": "Three",
       "content": "Enter",
       "type": "scribble",
+      "id": 19,
       "stray": false,
-      "level": 5
+      "level": 4,
+      "attachment": false,
+      "files": []
     },
     {
-      "rootDrawerId": 18,
-      "userId": 1,
+      "rootDrawerId": 15,
       "drawerId": 14,
-      "id": 20,
+      "userId": 1,
       "title": "Four",
       "content": "Enter",
       "type": "scribble",
+      "id": 20,
       "stray": false,
-      "level": 6
+      "level": 5,
+      "attachment": false,
+      "files": []
     },
     {
-      "rootDrawerId": 18,
-      "userId": 1,
+      "rootDrawerId": 15,
       "drawerId": 16,
+      "userId": 1,
       "id": 21,
       "title": "Five",
-      "content": "Enter",
       "type": "scribble",
+      "content": "Enter",
       "stray": false,
-      "level": 7
+      "level": 6,
+      "attachment": false,
+      "files": []
     },
     {
-      "rootDrawerId": 18,
-      "userId": 1,
+      "rootDrawerId": 15,
       "drawerId": 17,
-      "id": 22,
+      "userId": 1,
       "title": "Six",
       "content": "Enter",
       "type": "scribble",
+      "id": 22,
       "stray": false,
-      "level": 8
+      "level": 7,
+      "attachment": false,
+      "files": []
     }
   ]
 }
