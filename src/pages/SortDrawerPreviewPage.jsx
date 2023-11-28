@@ -266,10 +266,13 @@ export default function SortDrawerPreviewPage({
     return renderedChildren;
   };
 
+  console.log("drawer session", sessionStorage.getItem("drawerToBeMoved"))
+
   const drawerToBeMovedObj = data["drawers"].filter(
-    (item) => item.id == drawerToBeMoved
+    (item) => item.id == sessionStorage.getItem("drawerToBeMoved")
   );
   console.log("LOOK", drawerToBeMovedObj[0]["name"]);
+  
   const destinationObj = data["drawers"].filter(
     (item) => item.id == selectedDrawerId
   );

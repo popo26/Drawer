@@ -256,7 +256,7 @@ export default function DrawerListPage({
     for (let x in values) {
       for (let y in values[x]) {
         if (values[x][y].drawerId && values[x][y].rootId == id) {
-          console.log("VALUE-X-Y", values[x][y])
+          //console.log("VALUE-X-Y", values[x][y])
           newArray.push(values[x][y]);
         }
       }
@@ -315,6 +315,8 @@ export default function DrawerListPage({
                 let passingData = { selectedDrawerId, drawerToBeMoved };
                 console.log("PassingData", passingData);
                 navigate("/sort-drawer", { state: passingData });
+                sessionStorage.setItem("drawerToBeMoved", drawerToBeMoved);
+
               }}
             />
 

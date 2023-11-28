@@ -28,13 +28,11 @@ export default function SortDrawerPage({
 
   console.log("State", state);
   console.log("DrawerToBeMoved", drawerToBeMoved);
+  console.log("sessionStorage", sessionStorage.getItem("drawerToBeMoved"));
 
   useEffect(() => {
-    // const drawerToBeMoved = selectedDrawerId;
-    // setDrawerToBeMoved(drawerToBeMoved);
     setDrawerToBeMoved(state.drawerToBeMoved);
     setSelectedDrawerId("");
-
     return () => {
       console.log("cleanup");
     };
@@ -204,10 +202,11 @@ export default function SortDrawerPage({
     }
   };
 
+  //Using ID of drawerToBeMoved stored in sessionStorage to avoid error in case of page refresh
   const drawerToBeMovedObj = data["drawers"].filter(
-    (item) => item.id == drawerToBeMoved
+    (item) => item.id == sessionStorage.getItem("drawerToBeMoved")
   );
-  //console.log("LOOK", drawerToBeMovedObj[0]["name"]);
+  console.log("LOOK", drawerToBeMoved);
 
   return (
     <div id="page">
@@ -237,7 +236,9 @@ export default function SortDrawerPage({
         </div>
       )}
 
-      <button onClick={handleDisplay} className="sort-msg-btn">{displayMessage}</button>
+      <button onClick={handleDisplay} className="sort-msg-btn">
+        {displayMessage}
+      </button>
 
       {!newDrawerNameFieldSelected && (
         <>
@@ -254,6 +255,9 @@ export default function SortDrawerPage({
               e.preventDefault();
               let passingData = { selectedDrawerId, drawerToBeMoved };
               console.log("PassingData", passingData);
+              sessionStorage.setItem()"selecte"
+
+
               navigate("/sort-drawer-preview", { state: passingData });
             }}
           >
