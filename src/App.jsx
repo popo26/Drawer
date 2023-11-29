@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
-import Navbar from "./components/Navbar";
+import MyNavbar from "./components/MyNavbar";
 import ScribbleBtn from "./components/ScribbleBtn";
 import "./css/App.css";
 import fakedata from "../fakedata.json";
@@ -28,7 +28,7 @@ export default function App() {
 
   return (
     <>
-      <Navbar />
+      <MyNavbar />
       <AppRoutes
         expandedIndex={expandedIndex}
         handleExpand={handleClickExpand}

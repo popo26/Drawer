@@ -1,6 +1,7 @@
 import { useState } from "react";
 import InputField from "../components/InputField";
 import "../css/LoginPage.css";
+import { Button } from "react-bootstrap";
 
 export default function LoginPage() {
   const [loginDetails, setLoginDetails] = useState({
@@ -32,11 +33,11 @@ export default function LoginPage() {
           id="password"
           value={loginDetails.password}
         />
-        <button onClick={handleClick}>Login</button>
+        <Button variant="outline-dark" onClick={handleClick}>Login</Button>
       </form>
       <a href="#">Don't remember?</a>
       <br/>
-      <a><button>Sign Up</button></a>
+      <a><Button variant="dark">Sign Up</Button></a>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import InputField from "../components/InputField";
-import Button from "../components/Button";
+import MyButton from "../components/MyButton";
 import "../css/CreateDrawerPage.css";
 import { useNavigate } from "react-router-dom";
 
@@ -57,7 +57,7 @@ export default function CreateDrawerPage({data, drawerName, setDrawerName}) {
           handleNewDrawerChange={handleChange}
         />
         <br />
-        <Button
+        <MyButton
           href={null}
           btnName="Create"
           handleNewDrawerCreate={handleCreate}

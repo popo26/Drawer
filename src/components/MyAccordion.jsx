@@ -4,8 +4,9 @@ import { GoTriangleRight, GoTriangleDown } from "react-icons/go";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { Accordion } from "react-bootstrap";
 
-export default function Accordion({
+export default function MyAccordion({
   expandedIndex,
   data,
   setExpandedIndex,
@@ -80,6 +81,7 @@ export default function Accordion({
       );
 
       return (
+
         <AccordionItem
           key={item.id}
           triangle={triangle}

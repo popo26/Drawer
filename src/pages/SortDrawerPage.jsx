@@ -2,9 +2,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import InputField from "../components/InputField";
-import Button from "../components/Button";
-import Dropdown from "../components/Dropdown";
+import MyButton from "../components/MyButton";
+import MyDropdown from "../components/MyDropdown";
 import "../css/SortPage.css";
+import { Button } from "react-bootstrap";
 
 export default function SortDrawerPage({
   data,
@@ -31,7 +32,10 @@ export default function SortDrawerPage({
   console.log("sessionStorage", sessionStorage.getItem("drawerToBeMoved"));
 
   useEffect(() => {
+    //let drawerToBeMovedSession = sessionStorage.getItem("drawerToBeMoved")
+    // setDrawerToBeMoved(drawerToBeMovedSession);
     setDrawerToBeMoved(state.drawerToBeMoved);
+
     setSelectedDrawerId("");
     return () => {
       console.log("cleanup");
@@ -227,7 +231,7 @@ export default function SortDrawerPage({
             handleNewDrawerChange={handleChange}
           />
           <br />
-          <Button
+          <MyButton
             href={null}
             btnName="Create & Move"
             handleNewDrawerCreate={handleCreate}
@@ -236,33 +240,33 @@ export default function SortDrawerPage({
         </div>
       )}
 
-      <button onClick={handleDisplay} className="sort-msg-btn">
+      <Button onClick={handleDisplay} className="sort-msg-btn">
         {displayMessage}
-      </button>
+      </Button>
 
       {!newDrawerNameFieldSelected && (
         <>
           <div>
-            <Dropdown
+            <MyDropdown
               data={data}
               selectedDrawerId={selectedDrawerId}
               setSelectedDrawerId={setSelectedDrawerId}
             />
           </div>
-          <button
-            className="btn btn-outline-success next-btn"
+          <Button
+          variant="success"
+            className="next-btn"
             onClick={(e) => {
               e.preventDefault();
               let passingData = { selectedDrawerId, drawerToBeMoved };
               console.log("PassingData", passingData);
-              sessionStorage.setItem()"selecte"
-
-
               navigate("/sort-drawer-preview", { state: passingData });
+              sessionStorage.setItem("selectedDrawerId", selectedDrawerId);
+
             }}
           >
             Next
-          </button>
+          </Button>
         </>
       )}
 
@@ -295,7 +299,7 @@ export default function SortDrawerPage({
 //           handleNewDrawerChange={handleChange}
 //         />
 //         <br />
-//         <Button
+//         <MyButton
 //           href={null}
 //           btnName="Create & Move"
 //           handleNewDrawerCreate={handleCreate}

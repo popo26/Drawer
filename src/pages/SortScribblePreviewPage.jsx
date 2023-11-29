@@ -3,7 +3,8 @@ import { Icon } from "@iconify/react";
 import InputField from "../components/InputField";
 import { useState } from "react";
 import "../css/SortPreviewPage.css";
-import Button from "../components/Button";
+import MyButton from "../components/MyButton";
+import { Button } from "react-bootstrap";
 
 export default function SortScribblePreviewPage({
   data,
@@ -226,8 +227,8 @@ export default function SortScribblePreviewPage({
     return renderedChildren;
   };
 
-  console.log("saveHereSelected", saveHereSelected)
-  console.log("displayMessage", displayMessage)
+  console.log("saveHereSelected", saveHereSelected);
+  console.log("displayMessage", displayMessage);
 
   const handleDisplay = () => {
     setSaveHereSelected(!saveHereSelected);
@@ -248,13 +249,15 @@ export default function SortScribblePreviewPage({
 
       {saveHereSelected && (
         <div>
-          <button className="btn btn-outline-success" onClick={handleSaveHere}>
+          <Button variant="success" onClick={handleSaveHere}>
             Save Here
-          </button>
+          </Button>
         </div>
       )}
 
-      <button onClick={handleDisplay} className="sort-msg-btn">{displayMessage}</button>
+      <button onClick={handleDisplay} className="sort-msg-btn">
+        {displayMessage}
+      </button>
 
       {!saveHereSelected && (
         <div>
@@ -267,7 +270,7 @@ export default function SortScribblePreviewPage({
             handleNewDrawerChange={handleChange}
           />
           <br />
-          <Button
+          <MyButton
             href={null}
             btnName="Create & Save"
             handleNewDrawerCreate={handleCreate}
@@ -308,7 +311,7 @@ export default function SortScribblePreviewPage({
 //           handleNewDrawerChange={handleChange}
 //         />
 //         <br />
-//         <Button
+//         <MyButton
 //           href={null}
 //           btnName="Create & Save"
 //           handleNewDrawerCreate={handleCreate}

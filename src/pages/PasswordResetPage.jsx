@@ -1,6 +1,7 @@
 import InputField from "../components/InputField";
 import { useState } from "react";
 import "../css/PasswordResetPage.css";
+import { Button } from "react-bootstrap";
 
 export default function PasswordResetPage() {
   const [email, setEmail] = useState("");
@@ -31,7 +32,7 @@ export default function PasswordResetPage() {
           onChange={handleChange}
         />
         <br />
-        <button>Send Password Reset Link</button>
+        <Button variant="dark">Send Password Reset Link</Button>
         {isSent && <div>Please check your email.</div>}
       </form>
     </div>

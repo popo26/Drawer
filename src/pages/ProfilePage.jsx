@@ -6,15 +6,15 @@ import {
   useNavigate,
 } from "react-router-dom";
 import InputField from "../components/InputField";
-import Button from "../components/Button";
+import MyButton from "../components/MyButton";
 import { Icon } from "@iconify/react";
+import { Button } from "react-bootstrap";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
 
   return (
     <div>
-      
       <InputField
         name="username"
         htmlFor="username"
@@ -22,7 +22,7 @@ export default function ProfilePage() {
         id="username"
         type="text"
       />
-      <button className="btn btn-dark">Change</button>
+      <Button variant="dark">Change</Button>
       <InputField
         name="email"
         htmlFor="email"
@@ -30,7 +30,7 @@ export default function ProfilePage() {
         id="email"
         type="email"
       />
-      <button className="btn btn-dark">Change</button>
+      <Button variant="dark">Change</Button>
       <InputField
         name="password"
         htmlFor="password"
@@ -39,12 +39,12 @@ export default function ProfilePage() {
         type="password"
       />
       <Link to="/password-reset">
-        <button className="btn btn-dark">Change</button>
+        <Button variant="dark">Change</Button>
       </Link>
       <br />
       <div>
         <Icon
-        className="back-btn"
+          className="back-btn"
           icon="icon-park-outline:back"
           color="black"
           width="50"

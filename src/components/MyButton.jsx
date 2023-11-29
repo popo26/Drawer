@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-
+import { Button } from "react-bootstrap";
 //Apply color in css in progress
-export default function Button({
+export default function MyButton({
   btnName,
   href,
   color,
@@ -15,11 +15,14 @@ export default function Button({
 
   return (
     <>
-      {/* <a href={href}><button>{btnName}</button></a> */}
       <Link to={href}>
-        <button onClick={handleClick} className="btn btn-success">
+        {/* <button onClick={handleClick} className="btn btn-success">
           {btnName}
-        </button>
+        </button> */}
+        <Button variant="success" onClick={handleClick}>
+          {" "}
+          {btnName}
+        </Button>{" "}
       </Link>
     </>
   );

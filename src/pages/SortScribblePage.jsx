@@ -2,8 +2,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import InputField from "../components/InputField";
-import Button from "../components/Button";
-import Dropdown from "../components/Dropdown";
+import MyButton from "../components/MyButton";
+import MyDropdown from "../components/MyDropdown";
+import { Button } from "react-bootstrap";
 
 export default function SortScribblePage({
   data,
@@ -128,7 +129,7 @@ export default function SortScribblePage({
               handleNewDrawerChange={handleChange}
             />
             <br />
-            <Button
+            <MyButton
               href={null}
               btnName="Create & Save"
               handleNewDrawerCreate={handleCreate}
@@ -145,14 +146,15 @@ export default function SortScribblePage({
 
       {!newDrawerNameFieldSelected && (
         <>
-          <Dropdown
+          <MyDropdown
             data={data}
             selectedDrawerId={selectedDrawerId}
             setSelectedDrawerId={setSelectedDrawerId}
        
           />
-          <button
-            className="btn btn-outline-success next-btn"
+          <Button
+          variant="success"
+            className="next-btn"
             onClick={(e) => {
               e.preventDefault();
               let passingData = { selectedScribbleId, selectedDrawerId };
@@ -161,7 +163,7 @@ export default function SortScribblePage({
             }}
           >
             Next
-          </button>
+          </Button>
         </>
       )}
 

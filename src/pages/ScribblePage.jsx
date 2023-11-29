@@ -1,11 +1,12 @@
 import { useState, useCallback, useRef } from "react";
-import Button from "../components/Button";
+import MyButton from "../components/MyButton";
 import "../css/ScribblePage.css";
 import { Icon } from "@iconify/react";
 import { useNavigate, Link } from "react-router-dom";
 import InputField from "../components/InputField";
 import FileDrop from "../components/FileDrop";
 import { useDropzone } from "react-dropzone";
+import { Button } from "react-bootstrap";
 
 export default function ScribblePage({
   data,
@@ -212,9 +213,9 @@ export default function ScribblePage({
       />
 
       <br />
-      <button onClick={handleSubmitScribble} className="btn btn-outline-dark">
+      <Button onClick={handleSubmitScribble} variant="dark">
         Just Save
-      </button>
+      </Button>
       {/* <button
         onClick={() => {
           // body.current = document.querySelector(".input").innerText;

@@ -367,6 +367,9 @@ export default function DrawerListPage({
       });
     }
   };
+  // sessionStorage.setItem("drawerToBeMoved", 1);
+  // sessionStorage.setItem("item_key2", 1);
+
 
   console.log("Ref", text);
 
@@ -458,6 +461,7 @@ export default function DrawerListPage({
                 let passingData = { selectedDrawerId, drawerToBeMoved };
                 console.log("PassingData", passingData);
                 navigate("/sort-drawer", { state: passingData });
+                sessionStorage.setItem("drawerToBeMoved", drawerToBeMoved);
               }}
             />
             {/* <Icon

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function Search({ data }) {
@@ -43,31 +44,31 @@ export default function Search({ data }) {
 
   return (
     <div className="Search">
-    <div className="">
-      <form onSubmit={handleSubmit}>
-        <input
-        className="search-input"
-          onChange={handleChange}
-          name="search"
-          id="search"
-          value={searchItem}
-          placeholder="Enter keyword.."
-        />
-        <button className="btn btn-dark">Search</button>
-      </form>
+      <div className="">
+        <form onSubmit={handleSubmit}>
+          <input
+            className="search-input"
+            onChange={handleChange}
+            name="search"
+            id="search"
+            value={searchItem}
+            placeholder="Enter keyword.."
+          />
+          <Button variant="dark">Search</Button>
+        </form>
 
-      <div>
-        {searchResult.map((item) => {
-          return (
-            <Link to={`/scribble/${item.id}`} key={item.id}>
-              <p>
-                ID{item.id}: {item.title}
-              </p>
-            </Link>
-          );
-        })}
+        <div>
+          {searchResult.map((item) => {
+            return (
+              <Link to={`/scribble/${item.id}`} key={item.id}>
+                <p>
+                  ID{item.id}: {item.title}
+                </p>
+              </Link>
+            );
+          })}
+        </div>
       </div>
-    </div>
     </div>
   );
 }

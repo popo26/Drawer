@@ -3,7 +3,9 @@ import { Icon } from "@iconify/react";
 import InputField from "../components/InputField";
 import { useState } from "react";
 import "../css/SortPreviewPage.css";
-import Button from "../components/Button";
+import MyButton from "../components/MyButton";
+import { useEffect } from "react";
+import { Button } from "react-bootstrap";
 
 export default function SortDrawerPreviewPage({
   data,
@@ -19,6 +21,12 @@ export default function SortDrawerPreviewPage({
   const [newSubDrawerName, setNewSubDrawerName] = useState("");
 
   console.log("State", state);
+
+  //To persist those 2 values incase of browser refresh
+  useEffect(()=>{
+    setDrawerToBeMoved(sessionStorage.getItem("drawerToBeMoved"));
+    setSelectedDrawerId(sessionStorage.getItem("selectedDrawerId"));
+  }, [])
 
   const updateParentDrawerBoolean = (parentDrawerId) => {
     console.log("PUT2");
@@ -266,16 +274,20 @@ export default function SortDrawerPreviewPage({
     return renderedChildren;
   };
 
-  console.log("drawer session", sessionStorage.getItem("drawerToBeMoved"))
+  console.log("drawer session moved", sessionStorage.getItem("drawerToBeMoved"))
+  console.log("drawer session selected", sessionStorage.getItem("selectedDrawerId"))
 
+    //To persist those 2 values incase of browser refresh
   const drawerToBeMovedObj = data["drawers"].filter(
     (item) => item.id == sessionStorage.getItem("drawerToBeMoved")
   );
-  console.log("LOOK", drawerToBeMovedObj[0]["name"]);
   
   const destinationObj = data["drawers"].filter(
-    (item) => item.id == selectedDrawerId
+    (item) => item.id == sessionStorage.getItem("selectedDrawerId")
+
   );
+  
+  console.log("LOOK", drawerToBeMovedObj[0]["name"]);
   console.log("LOOK", destinationObj[0]["name"]);
 
   return (
@@ -291,9 +303,9 @@ export default function SortDrawerPreviewPage({
       <FindSubDrawers />
 
       <div>
-        <button onClick={handleMoveHere} className="btn btn-success move-btn">
+        <Button onClick={handleMoveHere} variant="success" className="move-btn">
           Move Here
-        </button>
+        </Button>
 
         {/* UNDERCONSTRUCTION or NOT REQUIRED */}
         {/* <h6>Or create new sub-drawer</h6>
@@ -306,7 +318,7 @@ export default function SortDrawerPreviewPage({
           //handleNewDrawerChange={handleChange}
         />
         <br />
-        <Button
+        <MyButton
           href={null}
           btnName="Create & Move"
           //handleNewDrawerCreate={handleCreate}
