@@ -29,8 +29,8 @@ export default function AppRoutes({
   setFiles,
   drawerName,
   setDrawerName,
-  selectedDrawerId,
-  setSelectedDrawerId,
+  // selectedDrawerId,
+  // setSelectedDrawerId,
   drawerToBeMoved,
   setDrawerToBeMoved,
 }) {
@@ -94,8 +94,8 @@ export default function AppRoutes({
               setDrawerName={setDrawerName}
               selectedScribbleId={selectedScribbleId}
               setSelectedScribbleId={setSelectedScribbleId}
-              selectedDrawerId={selectedDrawerId}
-              setSelectedDrawerId={setSelectedDrawerId}
+              // selectedDrawerId={selectedDrawerId}
+              // setSelectedDrawerId={setSelectedDrawerId}
             />
           }
         ></Route>
@@ -106,8 +106,8 @@ export default function AppRoutes({
               //data={data}
               selectedScribbleId={selectedScribbleId}
               setSelectedScribbleId={setSelectedScribbleId}
-              selectedDrawerId={selectedDrawerId}
-              setSelectedDrawerId={setSelectedDrawerId}
+              // selectedDrawerId={selectedDrawerId}
+              // setSelectedDrawerId={setSelectedDrawerId}
             />
           }
         ></Route>
@@ -121,8 +121,8 @@ export default function AppRoutes({
               setDrawerName={setDrawerName}
               selectedScribbleId={selectedScribbleId}
               setSelectedScribbleId={setSelectedScribbleId}
-              selectedDrawerId={selectedDrawerId}
-              setSelectedDrawerId={setSelectedDrawerId}
+              // selectedDrawerId={selectedDrawerId}
+              // setSelectedDrawerId={setSelectedDrawerId}
               drawerToBeMoved={drawerToBeMoved}
               setDrawerToBeMoved={setDrawerToBeMoved}
             />
@@ -135,8 +135,8 @@ export default function AppRoutes({
               //data={data}
               selectedScribbleId={selectedScribbleId}
               setSelectedScribbleId={setSelectedScribbleId}
-              selectedDrawerId={selectedDrawerId}
-              setSelectedDrawerId={setSelectedDrawerId}
+              // selectedDrawerId={selectedDrawerId}
+              // setSelectedDrawerId={setSelectedDrawerId}
               drawerToBeMoved={drawerToBeMoved}
               setDrawerToBeMoved={setDrawerToBeMoved}
             />
@@ -160,8 +160,8 @@ export default function AppRoutes({
             <DrawerListPage
               //data={data}
               expandedIndex={expandedIndex}
-              selectedDrawerId={selectedDrawerId}
-              setSelectedDrawerId={setSelectedDrawerId}
+              // selectedDrawerId={selectedDrawerId}
+              // setSelectedDrawerId={setSelectedDrawerId}
               drawerToBeMoved={drawerToBeMoved}
               setDrawerToBeMoved={setDrawerToBeMoved}
             />

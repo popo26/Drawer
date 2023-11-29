@@ -7,13 +7,14 @@ import MyButton from "../components/MyButton";
 import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useDataContext } from "../context/DataContext";
+import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
 
 export default function SortDrawerPreviewPage({
   //data,
   selectedScribbleId,
   setSelectedScribbleId,
-  selectedDrawerId,
-  setSelectedDrawerId,
+  // selectedDrawerId,
+  // setSelectedDrawerId,
   drawerToBeMoved,
   setDrawerToBeMoved,
 }) {
@@ -21,14 +22,17 @@ export default function SortDrawerPreviewPage({
   const { state } = useLocation();
   const [newSubDrawerName, setNewSubDrawerName] = useState("");
   const data = useDataContext();
+  const { selectedDrawerId, handleSelectedDrawerId } =
+    useSelectedDrawerContext();
 
   console.log("State", state);
 
   //To persist those 2 values incase of browser refresh
-  useEffect(()=>{
+  useEffect(() => {
     setDrawerToBeMoved(sessionStorage.getItem("drawerToBeMoved"));
-    setSelectedDrawerId(sessionStorage.getItem("selectedDrawerId"));
-  }, [])
+    // setSelectedDrawerId(sessionStorage.getItem("selectedDrawerId"));
+    handleSelectedDrawerId(sessionStorage.getItem("selectedDrawerId"));
+  }, []);
 
   const updateParentDrawerBoolean = (parentDrawerId) => {
     console.log("PUT2");
@@ -174,8 +178,6 @@ export default function SortDrawerPreviewPage({
     }
   };
 
- 
-
   const moveDrawerToNewDrawer = (passedId) => {
     const drawerToBeMovedObject = data["drawers"].filter(
       (item) => item.id == drawerToBeMoved
@@ -276,19 +278,24 @@ export default function SortDrawerPreviewPage({
     return renderedChildren;
   };
 
-  console.log("drawer session moved", sessionStorage.getItem("drawerToBeMoved"))
-  console.log("drawer session selected", sessionStorage.getItem("selectedDrawerId"))
+  console.log(
+    "drawer session moved",
+    sessionStorage.getItem("drawerToBeMoved")
+  );
+  console.log(
+    "drawer session selected",
+    sessionStorage.getItem("selectedDrawerId")
+  );
 
-    //To persist those 2 values incase of browser refresh
+  //To persist those 2 values incase of browser refresh
   const drawerToBeMovedObj = data["drawers"].filter(
     (item) => item.id == sessionStorage.getItem("drawerToBeMoved")
   );
-  
+
   const destinationObj = data["drawers"].filter(
     (item) => item.id == sessionStorage.getItem("selectedDrawerId")
-
   );
-  
+
   console.log("LOOK", drawerToBeMovedObj[0]["name"]);
   console.log("LOOK", destinationObj[0]["name"]);
 

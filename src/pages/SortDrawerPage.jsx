@@ -7,7 +7,7 @@ import MyDropdown from "../components/MyDropdown";
 import "../css/SortPage.css";
 import { Button } from "react-bootstrap";
 import { useDataContext } from "../context/DataContext";
-
+import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
 
 export default function SortDrawerPage({
   //data,
@@ -15,15 +15,16 @@ export default function SortDrawerPage({
   setDrawerName,
   selectedScribbleId,
   setSelectedScribbleId,
-  selectedDrawerId,
-  setSelectedDrawerId,
+  // selectedDrawerId,
+  // setSelectedDrawerId,
   drawerToBeMoved,
   setDrawerToBeMoved,
 }) {
   const navigate = useNavigate();
   const { state } = useLocation();
   const data = useDataContext();
-
+  const { selectedDrawerId, handleSelectedDrawerId } =
+    useSelectedDrawerContext();
   const [newDrawerNameFieldSelected, setNewDrawerNameFieldSelected] =
     useState(true);
   const [displayMessage, setDisplayMessage] = useState(
@@ -39,7 +40,9 @@ export default function SortDrawerPage({
     // setDrawerToBeMoved(drawerToBeMovedSession);
     setDrawerToBeMoved(state.drawerToBeMoved);
 
-    setSelectedDrawerId("");
+    // setSelectedDrawerId("");
+    handleSelectedDrawerId("");
+
     return () => {
       console.log("cleanup");
     };
@@ -251,13 +254,13 @@ export default function SortDrawerPage({
         <>
           <div>
             <MyDropdown
-              data={data}
-              selectedDrawerId={selectedDrawerId}
-              setSelectedDrawerId={setSelectedDrawerId}
+            // data={data}
+            // selectedDrawerId={selectedDrawerId}
+            // setSelectedDrawerId={setSelectedDrawerId}
             />
           </div>
           <Button
-          variant="success"
+            variant="success"
             className="next-btn"
             onClick={(e) => {
               e.preventDefault();
@@ -265,7 +268,6 @@ export default function SortDrawerPage({
               console.log("PassingData", passingData);
               navigate("/sort-drawer-preview", { state: passingData });
               sessionStorage.setItem("selectedDrawerId", selectedDrawerId);
-
             }}
           >
             Next

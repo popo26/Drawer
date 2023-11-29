@@ -3,15 +3,19 @@ import "../css/Dropdown.css";
 import { Icon } from "@iconify/react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { useDataContext } from "../context/DataContext";
+import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
 
-export default function MyDropdown({
-  //data,
-  selectedDrawerId,
-  setSelectedDrawerId,
-}) {
+export default function MyDropdown(
+  {
+    //data,
+    // selectedDrawerId,
+    // setSelectedDrawerId,
+  }
+) {
   const [open, setOpen] = useState(false);
   const [currentDropdown, setCurrentDropDown] = useState("Existing Drawers");
-const data = useDataContext();
+  const data = useDataContext();
+  const { handleSelectedDrawerId } = useSelectedDrawerContext();
   //++++++++++NOt sure if I ened this++++++++++++++++++++
   const handleOpen = () => {
     setOpen(!open);
@@ -70,7 +74,8 @@ const data = useDataContext();
             key={item.id}
             onClick={() => {
               setCurrentDropDown(item.name);
-              setSelectedDrawerId(item.id);
+              // setSelectedDrawerId(item.id);
+              handleSelectedDrawerId(item.id);
             }}
           >
             {item.name}
@@ -88,7 +93,8 @@ const data = useDataContext();
             key={item.id}
             onClick={() => {
               setCurrentDropDown(item.name);
-              setSelectedDrawerId(item.id);
+              // setSelectedDrawerId(item.id);
+              handleSelectedDrawerId(item.id);
             }}
           >
             <p className="top-drawer">{item.name}</p>
@@ -103,38 +109,38 @@ const data = useDataContext();
     }
   });
 
-//   return (
-//     <div>
-//       <div className="dropdown">
-//         <button
-//           className="btn btn-secondary dropdown-toggle"
-//           type="button"
-//           data-bs-toggle="dropdown"
-//           aria-expanded="false"
-//           onClick={handleOpen} //Not sure why this is needed
-//         >
-//           {currentDropdown}
-//         </button>
-//         <div className="dropdown-menu">{existingDrawersList}</div>
-//       </div>
-//     </div>
-//   );
-// }
+  //   return (
+  //     <div>
+  //       <div className="dropdown">
+  //         <button
+  //           className="btn btn-secondary dropdown-toggle"
+  //           type="button"
+  //           data-bs-toggle="dropdown"
+  //           aria-expanded="false"
+  //           onClick={handleOpen} //Not sure why this is needed
+  //         >
+  //           {currentDropdown}
+  //         </button>
+  //         <div className="dropdown-menu">{existingDrawersList}</div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
-return (
-  <div>
-   <Dropdown>
-      <Dropdown.Toggle variant="dark" id="dropdown-basic" >
-      {currentDropdown}
-      </Dropdown.Toggle>
+  return (
+    <div>
+      <Dropdown>
+        <Dropdown.Toggle variant="dark" id="dropdown-basic">
+          {currentDropdown}
+        </Dropdown.Toggle>
 
-      <Dropdown.Menu>
-        <Dropdown.Item>{existingDrawersList}</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+        <Dropdown.Menu>
+          <Dropdown.Item>{existingDrawersList}</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
 
-{/* ORIGINAL without React-BOOTSTRAP */}
-    {/* <div className="dropdown">
+      {/* ORIGINAL without React-BOOTSTRAP */}
+      {/* <div className="dropdown">
       <button
         className="btn btn-secondary dropdown-toggle"
         type="button"
@@ -146,6 +152,6 @@ return (
       </button>
       <div className="dropdown-menu">{existingDrawersList}</div>
     </div> */}
-  </div>
-);
+    </div>
+  );
 }

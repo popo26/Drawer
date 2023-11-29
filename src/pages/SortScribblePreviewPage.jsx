@@ -6,14 +6,14 @@ import "../css/SortPreviewPage.css";
 import MyButton from "../components/MyButton";
 import { Button } from "react-bootstrap";
 import { useDataContext } from "../context/DataContext";
-
+import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
 
 export default function SortScribblePreviewPage({
   //data,
   selectedScribbleId,
   setSelectedScribbleId,
-  selectedDrawerId,
-  setSelectedDrawerId,
+  // selectedDrawerId,
+  // setSelectedDrawerId,
 }) {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -22,6 +22,8 @@ export default function SortScribblePreviewPage({
   const [saveHereSelected, setSaveHereSelected] = useState(true);
   const [displayMessage, setDisplayMessage] = useState("Or create sub-drawer");
   const data = useDataContext();
+  const { selectedDrawerId, handleSelectedDrawerId } =
+    useSelectedDrawerContext();
 
   console.log("State", state.selectedDrawerId);
 

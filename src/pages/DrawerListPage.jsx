@@ -5,13 +5,13 @@ import { useState, useCallback, useRef, useEffect } from "react";
 // import sanitizeHtml from "sanitize-html";
 import ContentEditable from "react-contenteditable";
 import { useDataContext } from "../context/DataContext";
-
+import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
 
 export default function DrawerListPage({
   //data,
   expandedIndex,
-  selectedDrawerId,
-  setSelectedDrawerId,
+  // selectedDrawerId,
+  // setSelectedDrawerId,
   drawerToBeMoved,
   setDrawerToBeMoved,
 }) {
@@ -23,7 +23,7 @@ export default function DrawerListPage({
   //const [isContentEditableDisabled, setIsContentEditableDisabled] = useState(true);
   const [isContentEditable, setIsContentEditable] = useState(false);
   const data = useDataContext();
-
+  const { selectedDrawerId } = useSelectedDrawerContext();
   const text = useRef(drawerNameToEdit);
 
   // console.log("Text current", text.current.innerText);
@@ -319,7 +319,6 @@ export default function DrawerListPage({
                 console.log("PassingData", passingData);
                 navigate("/sort-drawer", { state: passingData });
                 sessionStorage.setItem("drawerToBeMoved", drawerToBeMoved);
-
               }}
             />
 
@@ -372,7 +371,6 @@ export default function DrawerListPage({
   };
   // sessionStorage.setItem("drawerToBeMoved", 1);
   // sessionStorage.setItem("item_key2", 1);
-
 
   console.log("Ref", text);
 

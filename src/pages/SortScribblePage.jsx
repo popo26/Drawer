@@ -6,7 +6,7 @@ import MyButton from "../components/MyButton";
 import MyDropdown from "../components/MyDropdown";
 import { Button } from "react-bootstrap";
 import { useDataContext } from "../context/DataContext";
-
+import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
 
 export default function SortScribblePage({
   //data,
@@ -14,8 +14,8 @@ export default function SortScribblePage({
   setDrawerName,
   selectedScribbleId,
   setSelectedScribbleId,
-  selectedDrawerId,
-  setSelectedDrawerId,
+  // selectedDrawerId,
+  // setSelectedDrawerId,
 }) {
   const [newDrawerNameFieldSelected, setNewDrawerNameFieldSelected] =
     useState(true);
@@ -26,13 +26,16 @@ export default function SortScribblePage({
   const navigate = useNavigate();
   const { state } = useLocation();
   const data = useDataContext();
+  const { selectedDrawerId, handleSelectedDrawerId } =
+    useSelectedDrawerContext();
 
   //console.log("State", state);
 
   //To persist selected Scribble ID so browser refresh won't wipe it
   useEffect(() => {
     setSelectedScribbleId(state.id);
-    setSelectedDrawerId(""); //this is still bit in quesion
+    // setSelectedDrawerId(""); //this is still bit in quesion
+    handleSelectedDrawerId(""); //this is still bit in quesion
   }, []);
 
   //console.log("Sccribleid is", selectedScribbleId);
@@ -104,7 +107,6 @@ export default function SortScribblePage({
     setDrawerName("");
   };
 
-
   //console.log("NewDrawerNameFieldSelected", newDrawerNameFieldSelected);
 
   const handleDisplay = () => {
@@ -140,9 +142,8 @@ export default function SortScribblePage({
             />
           </>
         )}
-
       </div>
-     
+
       <button className="sort-msg-btn" onClick={handleDisplay}>
         {displayMessage}
       </button>
@@ -150,13 +151,12 @@ export default function SortScribblePage({
       {!newDrawerNameFieldSelected && (
         <>
           <MyDropdown
-            data={data}
-            selectedDrawerId={selectedDrawerId}
-            setSelectedDrawerId={setSelectedDrawerId}
-       
+          // data={data}
+          // selectedDrawerId={selectedDrawerId}
+          // setSelectedDrawerId={setSelectedDrawerId}
           />
           <Button
-          variant="success"
+            variant="success"
             className="next-btn"
             onClick={(e) => {
               e.preventDefault();
@@ -181,4 +181,3 @@ export default function SortScribblePage({
     </div>
   );
 }
-
