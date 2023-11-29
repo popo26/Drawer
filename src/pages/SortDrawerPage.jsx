@@ -10,13 +10,8 @@ import { useDataContext } from "../context/DataContext";
 import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
 
 export default function SortDrawerPage({
-  //data,
   drawerName,
   setDrawerName,
-  selectedScribbleId,
-  setSelectedScribbleId,
-  // selectedDrawerId,
-  // setSelectedDrawerId,
   drawerToBeMoved,
   setDrawerToBeMoved,
 }) {

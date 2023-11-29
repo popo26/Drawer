@@ -7,11 +7,12 @@ import "./css/App.css";
 //import fakedata from "../fakedata.json";
 import { DataProvider } from "./context/DataContext";
 import { SelectedDrawerProvider } from "./context/SelectedDrawerContext";
+import { SelectedScribbleProvider } from "./context/SelectedScribbleContext";
 
 export default function App() {
   const [expandedIndex, setExpandedIndex] = useState(-1);
   const [drawerName, setDrawerName] = useState("");
-  const [selectedScribbleId, setSelectedScribbleId] = useState("");
+  // const [selectedScribbleId, setSelectedScribbleId] = useState("");
   // const [selectedDrawerId, setSelectedDrawerId] = useState("");
   const [drawerToBeMoved, setDrawerToBeMoved] = useState("");
   const [files, setFiles] = useState([]);
@@ -32,13 +33,14 @@ export default function App() {
     <>
       <DataProvider>
         <SelectedDrawerProvider>
+          <SelectedScribbleProvider>
           <MyNavbar />
           <AppRoutes
             expandedIndex={expandedIndex}
             handleExpand={handleClickExpand}
             //data={data}
-            selectedScribbleId={selectedScribbleId}
-            setSelectedScribbleId={setSelectedScribbleId}
+            // selectedScribbleId={selectedScribbleId}
+            // setSelectedScribbleId={setSelectedScribbleId}
             files={files}
             setFiles={setFiles}
             drawerName={drawerName}
@@ -51,6 +53,7 @@ export default function App() {
           <Link to="/scribble">
             <ScribbleBtn />
           </Link>
+          </SelectedScribbleProvider>
         </SelectedDrawerProvider>
       </DataProvider>
     </>

@@ -4,18 +4,9 @@ import { useState } from "react";
 import "../css/ScribbleListPage.css";
 import { useDataContext } from "../context/DataContext";
 
-
-export default function ScribbleListPage({
-  //data,
-  selectedScribbleId,
-  setSelectedScribbleId,
-  files
-}) {
-  //   console.log(data[0]["stray"]);
+export default function ScribbleListPage({ files }) {
   const navigate = useNavigate();
- const data = useDataContext();
-  // const [selectedScribbleId, setSelectedScribbleId] = useState("");
-
+  const data = useDataContext();
   const strayScribbles = data["scribbles"];
 
   const deleteScribble = (id) => {
@@ -37,21 +28,21 @@ export default function ScribbleListPage({
     deleteScribble(id);
   };
 
-  console.log("files length", files.length)
+  console.log("files length", files.length);
 
   // const attachmentIcon = () => {
-  //   return 
+  //   return
   // }
-
 
   const renderedList = strayScribbles.map(
     (item) =>
       item.stray === true && (
-        
         <p key={item.id}>
           <Link to={`/scribble/${item.id}`}>
-          {item.attachment && <Icon icon="ic:outline-attachment" color="lightpink" width="36" />}            
-          ID:{item.id}, {item.title}
+            {item.attachment && (
+              <Icon icon="ic:outline-attachment" color="lightpink" width="36" />
+            )}
+            ID:{item.id}, {item.title}
           </Link>{" "}
           <a onClick={() => handleDelete(item.id)}>
             <Icon icon="ion:trash-outline" color="black" width="20" />

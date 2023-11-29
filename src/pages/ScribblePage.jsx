@@ -8,23 +8,21 @@ import FileDrop from "../components/FileDrop";
 import { useDropzone } from "react-dropzone";
 import { Button } from "react-bootstrap";
 import { useDataContext } from "../context/DataContext";
+import { useSelectedScribbleContext } from "../context/SelectedScribbleContext";
 
 
 export default function ScribblePage({
-  //data,
-  selectedScribbleId,
-  setSelectedScribbleId,
   files,
   setFiles,
 }) {
   const navigate = useNavigate();
   const data = useDataContext();
-  // const [scribbleId, setScribbleId] = useState("");
   const [scribbleContent, setScribbleContent] = useState("");
   const [scribbleTitle, setScribbleTitle] = useState("");
   const [tempFiles, setTempFiles] = useState([]);
   const [content, setContent] = useState("Enter");
   const body = useRef(content);
+  const [selectedScribbleId, setSelectedScribbleId] = useSelectedScribbleContext();
 
   const createNewScribble = () => {
     body.current = document.querySelector(".screenshot").innerHTML;

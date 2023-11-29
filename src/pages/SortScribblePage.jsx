@@ -7,15 +7,11 @@ import MyDropdown from "../components/MyDropdown";
 import { Button } from "react-bootstrap";
 import { useDataContext } from "../context/DataContext";
 import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
+import { useSelectedScribbleContext } from "../context/SelectedScribbleContext";
 
 export default function SortScribblePage({
-  //data,
   drawerName,
   setDrawerName,
-  selectedScribbleId,
-  setSelectedScribbleId,
-  // selectedDrawerId,
-  // setSelectedDrawerId,
 }) {
   const [newDrawerNameFieldSelected, setNewDrawerNameFieldSelected] =
     useState(true);
@@ -28,13 +24,13 @@ export default function SortScribblePage({
   const data = useDataContext();
   const { selectedDrawerId, handleSelectedDrawerId } =
     useSelectedDrawerContext();
+    const [selectedScribbleId, setSelectedScribbleId] = useSelectedScribbleContext();
 
   //console.log("State", state);
 
   //To persist selected Scribble ID so browser refresh won't wipe it
   useEffect(() => {
     setSelectedScribbleId(state.id);
-    // setSelectedDrawerId(""); //this is still bit in quesion
     handleSelectedDrawerId(""); //this is still bit in quesion
   }, []);
 

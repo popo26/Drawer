@@ -13,12 +13,13 @@
     {
       "rootId": 1,
       "userId": 1,
+      "drawerId": 4,
       "id": 1,
       "name": "Reacttt",
       "type": "drawer",
       "sub-drawer": true,
-      "root": true,
-      "level": 1
+      "root": false,
+      "level": 3
     },
     {
       "rootId": 1,
@@ -221,6 +222,16 @@
       "drawerId": 18,
       "root": false,
       "level": 4
+    },
+    {
+      "rootId": 21,
+      "userId": 1,
+      "id": 21,
+      "name": "TEST2",
+      "type": "drawer",
+      "sub-drawer": false,
+      "root": true,
+      "level": 1
     }
   ],
   "scribbles": [
@@ -247,15 +258,18 @@
       "level": 2
     },
     {
-      "rootDrawerId": 2,
+      "rootDrawerId": 21,
+      "drawerId": 21,
       "userId": 1,
-      "drawerId": 2,
-      "id": 3,
       "title": "Example code C#",
       "content": "Quisque varius, est vel mollis aliquam, turpis sapien lacinia ante, quis viverra metus quam et nisl. Etiam eu imperdiet est. Nulla facilisi.",
       "type": "scribble",
+      "id": 3,
       "stray": false,
-      "level": 1
+      "level": 1,
+      "files": [
+        null
+      ]
     },
     {
       "rootDrawerId": 2,

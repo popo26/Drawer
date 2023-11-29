@@ -7,14 +7,9 @@ import MyButton from "../components/MyButton";
 import { Button } from "react-bootstrap";
 import { useDataContext } from "../context/DataContext";
 import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
+import { useSelectedScribbleContext } from "../context/SelectedScribbleContext";
 
-export default function SortScribblePreviewPage({
-  //data,
-  selectedScribbleId,
-  setSelectedScribbleId,
-  // selectedDrawerId,
-  // setSelectedDrawerId,
-}) {
+export default function SortScribblePreviewPage() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [newSubDrawerName, setNewSubDrawerName] = useState("");
@@ -24,6 +19,7 @@ export default function SortScribblePreviewPage({
   const data = useDataContext();
   const { selectedDrawerId, handleSelectedDrawerId } =
     useSelectedDrawerContext();
+    const [selectedScribbleId] = useSelectedScribbleContext();
 
   console.log("State", state.selectedDrawerId);
 
