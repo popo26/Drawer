@@ -68,13 +68,14 @@ export default function AccordionItem({
           console.log("Itemmmm id", item.id);
           handleExpand(item.id);
         }}
+       
       >
-        <div>
+        <div  >
           <div className="accordion-header">
             <h1>
               {item.name} {triangle}
             </h1>
-            <div style={{ position: "absolute", right: 60 }}>
+            <div className="drawer-icon">
               <Link to={`/drawer-list/${item.id}`}>
                 <Icon
                   icon="mingcute:drawer-line"

@@ -17,7 +17,7 @@ export default function SortDrawerPreviewPage() {
   const data = useDataContext();
   const { selectedDrawerId, handleSelectedDrawerId } =
     useSelectedDrawerContext();
-    const [drawerToBeMoved, setDrawerToBeMoved] = useDrawerToBeMovedContext();
+  const [drawerToBeMoved, setDrawerToBeMoved] = useDrawerToBeMovedContext();
 
   console.log("State", state);
 
@@ -78,8 +78,6 @@ export default function SortDrawerPreviewPage() {
   };
 
   const moveAllChildrenToNewDrawer = (parentDrawerId, newTopLevelDrawerId) => {
-    //console.log("PUT - move Children");
-
     const allDrawers = data["drawers"];
     const allScribbles = data["scribbles"];
 
@@ -157,6 +155,7 @@ export default function SortDrawerPreviewPage() {
           stray: false,
           // level: drawerToBeMovedObject[0]["level"],
           level: newTopLevelDrawerObject[0]["level"] + x.level,
+          // level: x.level + 1,
         };
         fetch(`http://localhost:3000/scribbles/${x.id}`, {
           method: "PUT",

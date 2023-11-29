@@ -30,7 +30,7 @@ export default function SortDrawerPage() {
   console.log("sessionStorage", sessionStorage.getItem("drawerToBeMoved"));
 
   useEffect(() => {
-    let drawerToBeMovedSession = sessionStorage.getItem("drawerToBeMoved")
+    let drawerToBeMovedSession = sessionStorage.getItem("drawerToBeMoved");
     setDrawerToBeMoved(drawerToBeMovedSession);
     //setDrawerToBeMoved(state.drawerToBeMoved);
     // setSelectedDrawerId("");
@@ -78,9 +78,12 @@ export default function SortDrawerPage() {
           type: "drawer",
           ["sub-drawer"]: x["sub-drawer"],
           root: false,
-          level: 2 + subDrawersToBeMoved.indexOf(x) + 1,
+          //DONT DELETE TILL GET MONGO
+          level: 2 + subDrawersToBeMoved.indexOf(x),
+          // level: 2 + parseInt(subDrawersToBeMoved.indexOf(x)),
+          // level: drawerToBeMovedObj[0]['level'] - subDrawersToBeMoved.indexOf(x),
+
         };
-        // console.log("HERERERERERERER", subDrawersToBeMoved);
 
         fetch(`http://localhost:3000/drawers/${x.id}`, {
           method: "PUT",
@@ -97,6 +100,10 @@ export default function SortDrawerPage() {
 
     for (let x of allScribbles) {
       if (x.rootDrawerId === parentDrawerId) {
+        // const linkedDrawerObj = allDrawers.filter((item)=> item.id == x.drawerId);
+        // const newLevel = parseInt(linkedDrawerObj[0]['level'])+1;
+        
+        // console.log("NewLEVEL!!!!!!!!!!!!!!!!!!!!!!!!!!", newLevel)
         let dataPost = {
           rootDrawerId: newTopLevelDrawerId,
           userId: 1,
@@ -106,7 +113,10 @@ export default function SortDrawerPage() {
           content: x.content,
           type: "scribble",
           stray: false,
-          level: drawerToBeMovedObject[0]["level"] + x.level,
+          level: drawerToBeMovedObject[0]["level"] + x.level + 1,
+          // level: x.level + 2,
+          // level: parseInt(linkedDrawerObj[0]['level'])+1,
+          // level:newLevel,
         };
         fetch(`http://localhost:3000/scribbles/${x.id}`, {
           method: "PUT",
@@ -175,19 +185,20 @@ export default function SortDrawerPage() {
       body: JSON.stringify(dataPost),
     })
       .then((response) => console.log(response.json()))
-      .then(moveDrawerToNewDrawer(Object.values(data["drawers"]).length + 1))
-      .then(
-        moveAllChildrenToNewDrawer(
-          drawerToBeMoved,
-          Object.values(data["drawers"]).length + 1
-        )
-      );
+      // .then(moveDrawerToNewDrawer(Object.values(data["drawers"]).length + 1))
+      // .then(
+      //   moveAllChildrenToNewDrawer(
+      //     drawerToBeMoved,
+      //     Object.values(data["drawers"]).length + 1
+      //   )
+      // )
+      ;
 
-    // moveDrawerToNewDrawer(Object.values(data["drawers"]).length + 1);
-    // moveAllChildrenToNewDrawer(
-    //   drawerToBeMoved,
-    //   Object.values(data["drawers"]).length + 1
-    // );
+    moveDrawerToNewDrawer(Object.values(data["drawers"]).length + 1);
+    moveAllChildrenToNewDrawer(
+      drawerToBeMoved,
+      Object.values(data["drawers"]).length + 1
+    );
   };
 
   const handleChange = (value) => {

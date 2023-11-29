@@ -39,6 +39,11 @@
 }
 
 /* Drawer indent */
+
+.indent-1 {
+  text-indent: 20px;
+}
+
 .indent-2 {
   text-indent: 40px;
 }
