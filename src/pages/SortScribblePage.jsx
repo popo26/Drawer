@@ -8,11 +8,9 @@ import { Button } from "react-bootstrap";
 import { useDataContext } from "../context/DataContext";
 import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
 import { useSelectedScribbleContext } from "../context/SelectedScribbleContext";
+import { useDrawerNameContext } from "../context/DrawerName.Context";
 
-export default function SortScribblePage({
-  drawerName,
-  setDrawerName,
-}) {
+export default function SortScribblePage() {
   const [newDrawerNameFieldSelected, setNewDrawerNameFieldSelected] =
     useState(true);
   const [displayMessage, setDisplayMessage] = useState(
@@ -24,7 +22,9 @@ export default function SortScribblePage({
   const data = useDataContext();
   const { selectedDrawerId, handleSelectedDrawerId } =
     useSelectedDrawerContext();
-    const [selectedScribbleId, setSelectedScribbleId] = useSelectedScribbleContext();
+  const [selectedScribbleId, setSelectedScribbleId] =
+    useSelectedScribbleContext();
+  const [drawerName, setDrawerName] = useDrawerNameContext();
 
   //console.log("State", state);
 

@@ -3,21 +3,15 @@ import Search from "../components/Search";
 import "../css/SearchPage.css";
 import { Icon } from "@iconify/react";
 
-
-// export default function SearchPage({data}) {
-  export default function SearchPage() {
-
-
+export default function SearchPage() {
   const navigate = useNavigate();
-  
+
   return (
     <div className="SearchPage">
-      {/* <Search data={data}/> */}
-      <Search/>
-
+      <Search />
 
       <div className="back-btn">
-      <Icon
+        <Icon
           icon="icon-park-outline:back"
           color="black"
           width="50"

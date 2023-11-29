@@ -8,18 +8,17 @@ import "../css/SortPage.css";
 import { Button } from "react-bootstrap";
 import { useDataContext } from "../context/DataContext";
 import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
+import { useDrawerToBeMovedContext } from "../context/DrawerToBeMovedContext";
+import { useDrawerNameContext } from "../context/DrawerName.Context";
 
-export default function SortDrawerPage({
-  drawerName,
-  setDrawerName,
-  drawerToBeMoved,
-  setDrawerToBeMoved,
-}) {
+export default function SortDrawerPage() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const data = useDataContext();
   const { selectedDrawerId, handleSelectedDrawerId } =
     useSelectedDrawerContext();
+  const [drawerToBeMoved, setDrawerToBeMoved] = useDrawerToBeMovedContext();
+  const [drawerName, setDrawerName] = useDrawerNameContext();
   const [newDrawerNameFieldSelected, setNewDrawerNameFieldSelected] =
     useState(true);
   const [displayMessage, setDisplayMessage] = useState(
@@ -124,9 +123,12 @@ export default function SortDrawerPage({
     }
   };
 
+  console.log("drawerToBeMoved");
+
   const moveDrawerToNewDrawer = (passedId) => {
     const drawerToBeMovedObject = data["drawers"].filter(
       (item) => item.id == drawerToBeMoved
+      // (item) => item.id == sessionStorage.getItem("DrawerToBeMoved")
     );
     // const parentDrawerObject = data["drawers"].filter(
     //   (item) => item.id == passedId

@@ -8,17 +8,16 @@ import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useDataContext } from "../context/DataContext";
 import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
+import { useDrawerToBeMovedContext } from "../context/DrawerToBeMovedContext";
 
-export default function SortDrawerPreviewPage({
-  drawerToBeMoved,
-  setDrawerToBeMoved,
-}) {
+export default function SortDrawerPreviewPage() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [newSubDrawerName, setNewSubDrawerName] = useState("");
+  //const [newSubDrawerName, setNewSubDrawerName] = useState("");
   const data = useDataContext();
   const { selectedDrawerId, handleSelectedDrawerId } =
     useSelectedDrawerContext();
+    const [drawerToBeMoved, setDrawerToBeMoved] = useDrawerToBeMovedContext();
 
   console.log("State", state);
 

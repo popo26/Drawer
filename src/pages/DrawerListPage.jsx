@@ -6,15 +6,9 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import ContentEditable from "react-contenteditable";
 import { useDataContext } from "../context/DataContext";
 import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
+import { useDrawerToBeMovedContext } from "../context/DrawerToBeMovedContext";
 
-export default function DrawerListPage({
-  //data,
-  expandedIndex,
-  // selectedDrawerId,
-  // setSelectedDrawerId,
-  drawerToBeMoved,
-  setDrawerToBeMoved,
-}) {
+export default function DrawerListPage({ expandedIndex }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [drawerNameToEdit, setDrawerNameToEdit] = useState("");
@@ -24,6 +18,7 @@ export default function DrawerListPage({
   const [isContentEditable, setIsContentEditable] = useState(false);
   const data = useDataContext();
   const { selectedDrawerId } = useSelectedDrawerContext();
+  const [drawerToBeMoved, setDrawerToBeMoved] = useDrawerToBeMovedContext();
   const text = useRef(drawerNameToEdit);
 
   // console.log("Text current", text.current.innerText);
@@ -313,12 +308,14 @@ export default function DrawerListPage({
               color="black"
               width="12"
               onClick={() => {
-                drawerToBeMoved = item.id;
-                setDrawerToBeMoved(drawerToBeMoved);
+                // drawerToBeMoved = item.id;
+                // setDrawerToBeMoved(drawerToBeMoved);
+                setDrawerToBeMoved(item.id);
                 let passingData = { selectedDrawerId, drawerToBeMoved };
                 console.log("PassingData", passingData);
                 navigate("/sort-drawer", { state: passingData });
-                sessionStorage.setItem("drawerToBeMoved", drawerToBeMoved);
+                // sessionStorage.setItem("drawerToBeMoved", drawerToBeMoved);
+                sessionStorage.setItem("drawerToBeMoved", item.id);
               }}
             />
 
@@ -457,12 +454,14 @@ export default function DrawerListPage({
               color="black"
               width="12"
               onClick={() => {
-                drawerToBeMoved = item.id;
-                setDrawerToBeMoved(drawerToBeMoved);
+                // drawerToBeMoved = item.id;
+                // setDrawerToBeMoved(drawerToBeMoved);
+                setDrawerToBeMoved(item.id);
                 let passingData = { selectedDrawerId, drawerToBeMoved };
                 console.log("PassingData", passingData);
                 navigate("/sort-drawer", { state: passingData });
-                sessionStorage.setItem("drawerToBeMoved", drawerToBeMoved);
+                // sessionStorage.setItem("drawerToBeMoved", drawerToBeMoved);
+                sessionStorage.setItem("drawerToBeMoved", item.id);
               }}
             />
             {/* <Icon

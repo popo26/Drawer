@@ -21,13 +21,8 @@ import SortScribblePreviewPage from "../pages/SortScribblePreviewPage";
 export default function AppRoutes({
   expandedIndex,
   handleExpand,
-
   files,
   setFiles,
-  drawerName,
-  setDrawerName,
-  drawerToBeMoved,
-  setDrawerToBeMoved,
 }) {
   return (
     <div>
@@ -59,8 +54,6 @@ export default function AppRoutes({
           path="/sort"
           element={
             <SortScribblePage
-              drawerName={drawerName}
-              setDrawerName={setDrawerName}
             />
           }
         ></Route>
@@ -73,10 +66,6 @@ export default function AppRoutes({
           path="/sort-drawer"
           element={
             <SortDrawerPage
-              drawerName={drawerName}
-              setDrawerName={setDrawerName}
-              drawerToBeMoved={drawerToBeMoved}
-              setDrawerToBeMoved={setDrawerToBeMoved}
             />
           }
         ></Route>
@@ -84,8 +73,6 @@ export default function AppRoutes({
           path="/sort-drawer-preview"
           element={
             <SortDrawerPreviewPage
-              drawerToBeMoved={drawerToBeMoved}
-              setDrawerToBeMoved={setDrawerToBeMoved}
             />
           }
         ></Route>
@@ -95,9 +82,6 @@ export default function AppRoutes({
           path="/create"
           element={
             <CreateDrawerPage
-              //data={data}
-              drawerName={drawerName}
-              setDrawerName={setDrawerName}
             />
           }
         ></Route>
@@ -105,10 +89,7 @@ export default function AppRoutes({
           path="/drawer-list/:id"
           element={
             <DrawerListPage
-              //data={data}
               expandedIndex={expandedIndex}
-              drawerToBeMoved={drawerToBeMoved}
-              setDrawerToBeMoved={setDrawerToBeMoved}
             />
           }
         ></Route>
@@ -119,9 +100,6 @@ export default function AppRoutes({
         ></Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-      {/* <Link to="/scribble">
-        <ScribbleBtn />
-      </Link> */}
     </div>
   );
 }

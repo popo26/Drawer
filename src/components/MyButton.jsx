@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { useDrawerNameContext } from "../context/DrawerName.Context";
 //Apply color in css in progress
 export default function MyButton({
   btnName,
@@ -8,6 +9,8 @@ export default function MyButton({
   drawerName,
   handleNewDrawerCreate,
 }) {
+  //const [drawerName] = useDrawerNameContext();
+
   const handleClick = (e) => {
     e.preventDefault();
     handleNewDrawerCreate(drawerName);

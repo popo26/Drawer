@@ -39,7 +39,6 @@ const img = {
 };
 
 // export default function PerScribblePage({ data, files, setFiles }) {
-// export default function PerScribblePage({ data }) {
   export default function PerScribblePage() {
 
   const { id } = useParams();
