@@ -9,7 +9,7 @@ import { Button } from "react-bootstrap";
 import { useDataContext } from "../context/DataContext";
 import { useSelectedDrawerContext } from "../context/SelectedDrawerContext";
 import { useDrawerToBeMovedContext } from "../context/DrawerToBeMovedContext";
-import { useDrawerNameContext } from "../context/DrawerName.Context";
+import { useDrawerNameContext } from "../context/DrawerNameContext";
 
 export default function SortDrawerPage() {
   const navigate = useNavigate();
@@ -30,10 +30,9 @@ export default function SortDrawerPage() {
   console.log("sessionStorage", sessionStorage.getItem("drawerToBeMoved"));
 
   useEffect(() => {
-    //let drawerToBeMovedSession = sessionStorage.getItem("drawerToBeMoved")
-    // setDrawerToBeMoved(drawerToBeMovedSession);
-    setDrawerToBeMoved(state.drawerToBeMoved);
-
+    let drawerToBeMovedSession = sessionStorage.getItem("drawerToBeMoved")
+    setDrawerToBeMoved(drawerToBeMovedSession);
+    //setDrawerToBeMoved(state.drawerToBeMoved);
     // setSelectedDrawerId("");
     handleSelectedDrawerId("");
 

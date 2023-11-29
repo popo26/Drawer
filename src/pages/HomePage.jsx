@@ -1,15 +1,14 @@
 import MyAccordion from "../components/MyAccordion";
-import MyButton from "../components/MyButton";
 import { Link } from "react-router-dom";
 
-
-  export default function HomePage({expandedIndex, handleExpand}) {
-
+export default function HomePage({ expandedIndex, handleExpand }) {
   return (
     <div>
-      <MyAccordion expandedIndex={expandedIndex} handleExpand={handleExpand}/>
+      <MyAccordion expandedIndex={expandedIndex} handleExpand={handleExpand} />
 
-      <Link to="/create" className="btn btn-dark btn-lg">Create New Drawer</Link>
+      <Link to="/create" className="btn btn-dark btn-lg">
+        Create New Drawer
+      </Link>
     </div>
   );
 }

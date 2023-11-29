@@ -12,7 +12,6 @@ export default function AccordionItem({
   triangle,
   findSubDrawers,
   findScribbles,
-  //data,
   item,
 }) {
   const navigate = useNavigate();
@@ -20,7 +19,7 @@ export default function AccordionItem({
 
   return (
     <>
-    {/* React-Bootstrap - I dont like it */}
+      {/* React-Bootstrap - I dont like it */}
       {/* <Accordion>
         <Accordion.Item
           eventKey="0"
@@ -72,17 +71,19 @@ export default function AccordionItem({
       >
         <div>
           <div className="accordion-header">
-            <Link to={`/drawer-list/${item.id}`}>
-              <Icon
-                icon="mingcute:drawer-line"
-                color="black"
-                width="30"
-                height="30"
-              />
-            </Link>
             <h1>
               {item.name} {triangle}
             </h1>
+            <div style={{ position: "absolute", right: 60 }}>
+              <Link to={`/drawer-list/${item.id}`}>
+                <Icon
+                  icon="mingcute:drawer-line"
+                  color="black"
+                  width="30"
+                  height="30"
+                />
+              </Link>
+            </div>
           </div>
         </div>
         <div>
@@ -103,5 +104,3 @@ export default function AccordionItem({
     </>
   );
 }
-
-

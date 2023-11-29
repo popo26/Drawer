@@ -10,7 +10,6 @@ import { useDataContext } from "../context/DataContext";
 
 export default function MyAccordion({
   expandedIndex,
-  //data,
   setExpandedIndex,
   handleExpand,
 }) {

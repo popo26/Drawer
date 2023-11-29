@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { useDrawerNameContext } from "../context/DrawerName.Context";
+import { useDrawerNameContext } from "../context/DrawerNameContext";
 //Apply color in css in progress
 export default function MyButton({
   btnName,

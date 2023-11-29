@@ -8,7 +8,7 @@ import { DataProvider } from "./context/DataContext";
 import { SelectedDrawerProvider } from "./context/SelectedDrawerContext";
 import { SelectedScribbleProvider } from "./context/SelectedScribbleContext";
 import { DrawerToBeMovedContextProvider } from "./context/DrawerToBeMovedContext";
-import { DrawerNameProvider } from "./context/DrawerName.Context";
+import { DrawerNameProvider } from "./context/DrawerNameContext";
 
 export default function App() {
   const [expandedIndex, setExpandedIndex] = useState(-1);
