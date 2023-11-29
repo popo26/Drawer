@@ -4,9 +4,11 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useCallback, useRef, useEffect } from "react";
 // import sanitizeHtml from "sanitize-html";
 import ContentEditable from "react-contenteditable";
+import { useDataContext } from "../context/DataContext";
+
 
 export default function DrawerListPage({
-  data,
+  //data,
   expandedIndex,
   selectedDrawerId,
   setSelectedDrawerId,
@@ -20,6 +22,7 @@ export default function DrawerListPage({
   const [updateIconIndex, setUpdateIconIndex] = useState(-1);
   //const [isContentEditableDisabled, setIsContentEditableDisabled] = useState(true);
   const [isContentEditable, setIsContentEditable] = useState(false);
+  const data = useDataContext();
 
   const text = useRef(drawerNameToEdit);
 

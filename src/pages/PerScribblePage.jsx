@@ -4,6 +4,8 @@ import { useDropzone } from "react-dropzone";
 import Dropzone from "react-dropzone";
 import { useEffect, useState, useRef } from "react";
 import FileDrop from "../components/FileDrop";
+import { useDataContext } from "../context/DataContext";
+
 
 const thumbsContainer = {
   display: "flex",
@@ -37,12 +39,14 @@ const img = {
 };
 
 // export default function PerScribblePage({ data, files, setFiles }) {
-export default function PerScribblePage({ data }) {
+// export default function PerScribblePage({ data }) {
+  export default function PerScribblePage() {
+
   const { id } = useParams();
   const navigate = useNavigate();
   const [screenshots, setSecreenshots] = useState([]);
   const [isEditable, setIsEditable] = useState(false);
-
+const data = useDataContext();
   const body = useRef(screenshots);
 
   let scribbleData;

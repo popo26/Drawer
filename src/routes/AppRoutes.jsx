@@ -22,7 +22,7 @@ import SortScribblePreviewPage from "../pages/SortScribblePreviewPage";
 export default function AppRoutes({
   expandedIndex,
   handleExpand,
-  data,
+  //data,
   selectedScribbleId,
   setSelectedScribbleId,
   files,
@@ -45,16 +45,19 @@ export default function AppRoutes({
             <HomePage
               expandedIndex={expandedIndex}
               handleExpand={handleExpand}
-              data={data}
+              //data={data}
             />
           }
         ></Route>
-        <Route path="/search" element={<SearchPage data={data} />}></Route>
+        <Route path="/search" element={
+        <SearchPage 
+        //data={data} 
+        />}></Route>
         <Route
           path="/scribble"
           element={
             <ScribblePage
-              data={data}
+              //data={data}
               selectedScribbleId={selectedScribbleId}
               setSelectedScribbleId={setSelectedScribbleId}
               files={files}
@@ -67,7 +70,7 @@ export default function AppRoutes({
           path="/stray"
           element={
             <ScribbleListPage
-              data={data}
+              //data={data}
               selectedScribbleId={selectedScribbleId}
               setSelectedScribbleId={setSelectedScribbleId}
               files={files}
@@ -77,14 +80,16 @@ export default function AppRoutes({
         <Route
           path="/scribble/:id"
           element={
-            <PerScribblePage data={data} files={files} setFiles={setFiles} />
+            <PerScribblePage 
+            //data={data} 
+            files={files} setFiles={setFiles} />
           }
         ></Route>
         <Route
           path="/sort"
           element={
             <SortScribblePage
-              data={data}
+              //data={data}
               drawerName={drawerName}
               setDrawerName={setDrawerName}
               selectedScribbleId={selectedScribbleId}
@@ -98,7 +103,7 @@ export default function AppRoutes({
           path="/sort-preview"
           element={
             <SortScribblePreviewPage
-              data={data}
+              //data={data}
               selectedScribbleId={selectedScribbleId}
               setSelectedScribbleId={setSelectedScribbleId}
               selectedDrawerId={selectedDrawerId}
@@ -111,7 +116,7 @@ export default function AppRoutes({
           path="/sort-drawer"
           element={
             <SortDrawerPage
-              data={data}
+              //data={data}
               drawerName={drawerName}
               setDrawerName={setDrawerName}
               selectedScribbleId={selectedScribbleId}
@@ -127,7 +132,7 @@ export default function AppRoutes({
           path="/sort-drawer-preview"
           element={
             <SortDrawerPreviewPage
-              data={data}
+              //data={data}
               selectedScribbleId={selectedScribbleId}
               setSelectedScribbleId={setSelectedScribbleId}
               selectedDrawerId={selectedDrawerId}
@@ -143,7 +148,7 @@ export default function AppRoutes({
           path="/create"
           element={
             <CreateDrawerPage
-              data={data}
+              //data={data}
               drawerName={drawerName}
               setDrawerName={setDrawerName}
             />
@@ -153,7 +158,7 @@ export default function AppRoutes({
           path="/drawer-list/:id"
           element={
             <DrawerListPage
-              data={data}
+              //data={data}
               expandedIndex={expandedIndex}
               selectedDrawerId={selectedDrawerId}
               setSelectedDrawerId={setSelectedDrawerId}
@@ -167,7 +172,7 @@ export default function AppRoutes({
           path="/test"
           element={
             <TestPage
-              data={data}
+              //data={data}
               selectedScribbleId={selectedScribbleId}
               setSelectedScribbleId={setSelectedScribbleId}
               files={files}

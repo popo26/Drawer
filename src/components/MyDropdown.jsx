@@ -2,15 +2,16 @@ import { useState, useEffect } from "react";
 import "../css/Dropdown.css";
 import { Icon } from "@iconify/react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
+import { useDataContext } from "../context/DataContext";
 
 export default function MyDropdown({
-  data,
+  //data,
   selectedDrawerId,
   setSelectedDrawerId,
 }) {
   const [open, setOpen] = useState(false);
   const [currentDropdown, setCurrentDropDown] = useState("Existing Drawers");
-
+const data = useDataContext();
   //++++++++++NOt sure if I ened this++++++++++++++++++++
   const handleOpen = () => {
     setOpen(!open);

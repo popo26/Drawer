@@ -5,9 +5,11 @@ import { useState } from "react";
 import "../css/SortPreviewPage.css";
 import MyButton from "../components/MyButton";
 import { Button } from "react-bootstrap";
+import { useDataContext } from "../context/DataContext";
+
 
 export default function SortScribblePreviewPage({
-  data,
+  //data,
   selectedScribbleId,
   setSelectedScribbleId,
   selectedDrawerId,
@@ -19,6 +21,7 @@ export default function SortScribblePreviewPage({
 
   const [saveHereSelected, setSaveHereSelected] = useState(true);
   const [displayMessage, setDisplayMessage] = useState("Or create sub-drawer");
+  const data = useDataContext();
 
   console.log("State", state.selectedDrawerId);
 

@@ -5,9 +5,11 @@ import InputField from "../components/InputField";
 import MyButton from "../components/MyButton";
 import MyDropdown from "../components/MyDropdown";
 import { Button } from "react-bootstrap";
+import { useDataContext } from "../context/DataContext";
+
 
 export default function SortScribblePage({
-  data,
+  //data,
   drawerName,
   setDrawerName,
   selectedScribbleId,
@@ -23,6 +25,7 @@ export default function SortScribblePage({
 
   const navigate = useNavigate();
   const { state } = useLocation();
+  const data = useDataContext();
 
   //console.log("State", state);
 

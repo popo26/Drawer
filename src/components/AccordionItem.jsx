@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Accordion } from "react-bootstrap";
+import { useDataContext } from "../context/DataContext";
 
 export default function AccordionItem({
   isExpanded,
@@ -11,10 +12,11 @@ export default function AccordionItem({
   triangle,
   findSubDrawers,
   findScribbles,
-  data,
+  //data,
   item,
 }) {
   const navigate = useNavigate();
+  const data = useDataContext();
 
   return (
     <>

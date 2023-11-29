@@ -3,11 +3,15 @@ import InputField from "../components/InputField";
 import MyButton from "../components/MyButton";
 import "../css/CreateDrawerPage.css";
 import { useNavigate } from "react-router-dom";
+import { useDataContext } from "../context/DataContext";
 
-export default function CreateDrawerPage({data, drawerName, setDrawerName}) {
+
+// export default function CreateDrawerPage({data, drawerName, setDrawerName}) {
+  export default function CreateDrawerPage({drawerName, setDrawerName}) {
+
   // const [drawerName, setDrawerName] = useState("");
   const navigate = useNavigate();
-
+ const data = useDataContext();
   //working! POST
   const createNewDrawer = () => {
     console.log("drawer length: ", Object.values(data['drawers']).length)

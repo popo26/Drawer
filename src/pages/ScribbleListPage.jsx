@@ -2,16 +2,18 @@ import { Icon } from "@iconify/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../css/ScribbleListPage.css";
+import { useDataContext } from "../context/DataContext";
+
 
 export default function ScribbleListPage({
-  data,
+  //data,
   selectedScribbleId,
   setSelectedScribbleId,
   files
 }) {
   //   console.log(data[0]["stray"]);
   const navigate = useNavigate();
-
+ const data = useDataContext();
   // const [selectedScribbleId, setSelectedScribbleId] = useState("");
 
   const strayScribbles = data["scribbles"];

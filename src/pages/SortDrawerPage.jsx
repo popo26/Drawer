@@ -6,9 +6,11 @@ import MyButton from "../components/MyButton";
 import MyDropdown from "../components/MyDropdown";
 import "../css/SortPage.css";
 import { Button } from "react-bootstrap";
+import { useDataContext } from "../context/DataContext";
+
 
 export default function SortDrawerPage({
-  data,
+  //data,
   drawerName,
   setDrawerName,
   selectedScribbleId,
@@ -20,6 +22,7 @@ export default function SortDrawerPage({
 }) {
   const navigate = useNavigate();
   const { state } = useLocation();
+  const data = useDataContext();
 
   const [newDrawerNameFieldSelected, setNewDrawerNameFieldSelected] =
     useState(true);

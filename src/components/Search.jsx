@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useDataContext } from "../context/DataContext";
 
-export default function Search({ data }) {
+// export default function Search({ data }) {
+export default function Search() {
   const [searchItem, setSearchItem] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-
+  const data = useDataContext();
   //Testing out search results with userId1
   const searchKeywordInDb = () => {
     let searchResultArray = [];

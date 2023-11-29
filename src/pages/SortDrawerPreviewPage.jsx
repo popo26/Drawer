@@ -6,9 +6,10 @@ import "../css/SortPreviewPage.css";
 import MyButton from "../components/MyButton";
 import { useEffect } from "react";
 import { Button } from "react-bootstrap";
+import { useDataContext } from "../context/DataContext";
 
 export default function SortDrawerPreviewPage({
-  data,
+  //data,
   selectedScribbleId,
   setSelectedScribbleId,
   selectedDrawerId,
@@ -19,6 +20,7 @@ export default function SortDrawerPreviewPage({
   const navigate = useNavigate();
   const { state } = useLocation();
   const [newSubDrawerName, setNewSubDrawerName] = useState("");
+  const data = useDataContext();
 
   console.log("State", state);
 

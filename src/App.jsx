@@ -5,6 +5,7 @@ import MyNavbar from "./components/MyNavbar";
 import ScribbleBtn from "./components/ScribbleBtn";
 import "./css/App.css";
 import fakedata from "../fakedata.json";
+import { DataProvider } from "./context/DataContext";
 
 export default function App() {
   const [expandedIndex, setExpandedIndex] = useState(-1);
@@ -14,7 +15,7 @@ export default function App() {
   const [drawerToBeMoved, setDrawerToBeMoved] = useState("");
   const [files, setFiles] = useState([]);
 
-  const data = fakedata;
+  //const data = fakedata;
 
   const handleClickExpand = (passedIndex) => {
     setExpandedIndex((currentExpandedIndex) => {
@@ -28,11 +29,12 @@ export default function App() {
 
   return (
     <>
+    <DataProvider>
       <MyNavbar />
       <AppRoutes
         expandedIndex={expandedIndex}
         handleExpand={handleClickExpand}
-        data={data}
+        //data={data}
         selectedScribbleId={selectedScribbleId}
         setSelectedScribbleId={setSelectedScribbleId}
         files={files}
@@ -47,6 +49,7 @@ export default function App() {
       <Link to="/scribble">
         <ScribbleBtn />
       </Link>
+      </DataProvider>
     </>
   );
 }

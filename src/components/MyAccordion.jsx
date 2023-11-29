@@ -5,13 +5,17 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { Accordion } from "react-bootstrap";
+import { useDataContext } from "../context/DataContext";
+
 
 export default function MyAccordion({
   expandedIndex,
-  data,
+  //data,
   setExpandedIndex,
   handleExpand,
 }) {
+
+  const data = useDataContext();
 
   // ++++++++++++++ Find Scribbles +++++++++++++++++++++++++++++++++++++++++++++
   const findScribbles = (id, scribbles) => {

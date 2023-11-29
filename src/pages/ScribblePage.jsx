@@ -7,15 +7,18 @@ import InputField from "../components/InputField";
 import FileDrop from "../components/FileDrop";
 import { useDropzone } from "react-dropzone";
 import { Button } from "react-bootstrap";
+import { useDataContext } from "../context/DataContext";
+
 
 export default function ScribblePage({
-  data,
+  //data,
   selectedScribbleId,
   setSelectedScribbleId,
   files,
   setFiles,
 }) {
   const navigate = useNavigate();
+  const data = useDataContext();
   // const [scribbleId, setScribbleId] = useState("");
   const [scribbleContent, setScribbleContent] = useState("");
   const [scribbleTitle, setScribbleTitle] = useState("");
