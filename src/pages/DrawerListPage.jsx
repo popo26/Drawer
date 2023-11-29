@@ -128,7 +128,7 @@ export default function DrawerListPage({ expandedIndex }) {
         <Icon
           icon="material-symbols:update"
           color="red"
-          width="22"
+          width="26"
           onClick={update}
         />
       );
@@ -296,7 +296,7 @@ export default function DrawerListPage({ expandedIndex }) {
               onClick={() => handleDelete(item.id)}
               icon="ion:trash-outline"
               color="black"
-              width="12"
+              width="18"
             />
 
             {/* <Link
@@ -306,7 +306,7 @@ export default function DrawerListPage({ expandedIndex }) {
             <Icon
               icon="mingcute:drawer-line"
               color="black"
-              width="12"
+              width="18"
               onClick={() => {
                 // drawerToBeMoved = item.id;
                 // setDrawerToBeMoved(drawerToBeMoved);
@@ -447,12 +447,12 @@ export default function DrawerListPage({ expandedIndex }) {
               onClick={() => handleDelete(item.id)}
               icon="ion:trash-outline"
               color="black"
-              width="12"
+              width="18"
             />
             <Icon
               icon="mingcute:drawer-line"
               color="black"
-              width="12"
+              width="18"
               onClick={() => {
                 // drawerToBeMoved = item.id;
                 // setDrawerToBeMoved(drawerToBeMoved);
